@@ -15,15 +15,14 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n) {
 	struct stat st;
 	stat(input_file_path, &st);
 	int size = (int) ceil((double)st.st_size / n);
-
 	char * complement = (char *) malloc (21);
 
 	for (int i = 0 ; i < n ; i ++) {
-//		sprintf(complement, "output/ddmin-%d", i);		
+		int total = 0 ;
 		sprintf(complement, "complement");
-
 		FILE * read_file = fopen(input_file_path, "r");
-		FILE * write_file = fopen("complement", "w+a");
+		remove(complement) ;
+		FILE * write_file = fopen(complement, "w+");
 		for (int j = 0 ; j < n ; j ++) {
 			for (int k = 0 ; k < size ; k ++) {
 				unsigned char buf ;
@@ -34,21 +33,26 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n) {
 					continue ;
 				}
 				fwrite(&buf, 1, 1, write_file);
+				total ++ ;
 			}
 		}
 		fclose(write_file);
 		fclose(read_file) ;
+		
+		if (total == st.st_size)
+			continue ;
 
-		EXITCODE rt = runner(executeFile_path, "complement", "output/ddmin_output.txt");
+		EXITCODE rt = runner(executeFile_path, complement, "output/ddmin_output.txt");
 		if (rt.code_num == 1) {
-			FILE * answer_file = fopen("output/dd_answer", "w+");
-			FILE * failing_file = fopen("complement", "r");
-			unsigned char buf;
-			while (fread(&buf, 1, 1, failing_file)) {
-				fwrite(&buf, 1, 1, answer_file);
+			remove("temp") ;
+			FILE * new_temp = fopen("temp", "w+") ;
+			FILE * result_file = fopen(complement, "r") ;
+			unsigned char buf ;
+			while (fread(&buf, 1, 1, result_file) == 1) {
+				fwrite(&buf, 1, 1, new_temp) ;
 			}
-			fclose(failing_file);
-			fclose(answer_file);
+			fclose(result_file) ;
+			fclose(new_temp) ;
 			return complement;
 
 		}

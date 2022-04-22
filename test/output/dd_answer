@@ -1,17 +1,12 @@
 {
-  "name": "jsmn",
-  "keywords": "json",
-  "description": "Minimalisticn C. It : "jsmn",
-can be easily integrated into resource-limited or embedded projects",
-  "repository":
+  "n"jsmn",
+s": "json"iption": ""jsmn",
+can be easily i into reited or embedded pr itory":
   {
-    "type": "git",
-    "url": "https://github.com/zserge/jsmn.git"
-  },
-  "frameworks": "*",
-  "platforms": "*",
-  "examples": [
-    "example/*.c"
+  ": "git",l": er},
+ orks": "*",
+  "p": "*",
+les": [*.c"
   ],
   "exclude": "test"
 }

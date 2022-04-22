@@ -37,32 +37,16 @@ ddmin (char * executeFile_path, char * inputFile_path) {
 		}
         
 		result_file_path = reduce_to_substring(executeFile_path, "temp", n);
-		if (strcmp(current_file_path, result_file_path) != 0) {
-			fprintf(stderr, "result of substring : %s\n", result_file_path);
-			remove("temp");
-			FILE * new_temp = fopen("temp", "w+") ;
-			FILE * result_file = fopen(result_file_path, "r") ;
-			while (fread(&buf, 1, 1, result_file) == 1) {
-				fwrite(&buf, 1, 1, new_temp) ;
-			}
-			fclose(result_file) ;
-			fclose(new_temp) ;
+		if (strcmp(result_file_path, "temp") != 0) {
+			fprintf(stderr, "result of substring\n");
 			n = 2;
 			free(result_file_path);
 			continue ;
 		}
 			
 		result_file_path = reduce_to_complement(executeFile_path, "temp", n);
-		if (strcmp(current_file_path, result_file_path) != 0) {
-			fprintf(stderr, "result of complement : %s\n", result_file_path);
-			remove("temp");
-			FILE * new_temp = fopen("temp", "w+") ;
-			FILE * result_file = fopen(result_file_path, "r") ;
-			while (fread(&buf, 1, 1, result_file) == 1) {
-				fwrite(&buf, 1, 1, new_temp) ;
-			}
-			fclose(result_file) ;
-			fclose(new_temp) ;
+		if (strcmp(result_file_path, "temp") != 0) {
+			fprintf(stderr, "result of complement\n");
 			n = 2;
 			free(result_file_path);
 		}

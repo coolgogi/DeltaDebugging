@@ -19,14 +19,13 @@ reduce_to_substring (char * executeFile_path, char * input_file_path, int n) {
 	char * substring = (char *) malloc (21);
 
 	for (int i = 0 ; i < n ; i ++ ) {
-//		sprintf(substring, "output/ddmin%d", i);
 		sprintf(substring, "substring");
 		FILE * read_file = fopen(input_file_path, "r") ;
-		FILE * write_file = fopen("substring", "w+");
+		remove(substring) ;
+		FILE * write_file = fopen(substring, "w+");
 		fseek(read_file, i*size, SEEK_SET) ; 
 		for (int j = 0 ; j < size ; j ++) {
 			unsigned char buf ;
-
 			if (fread(&buf, 1, 1, read_file) != 1) {
 				break;
 			}
@@ -36,16 +35,17 @@ reduce_to_substring (char * executeFile_path, char * input_file_path, int n) {
 		fclose(write_file) ;
 		fclose(read_file) ;
 
-		EXITCODE rt = runner(executeFile_path, "substring", "output/ddmin_output.txt");
+		EXITCODE rt = runner(executeFile_path, substring, "output/ddmin_output.txt");
 		if (rt.code_num == 1) {
-			FILE * answer_file = fopen("output/dd_answer", "w+");
-			FILE * failing_file = fopen("substring", "r");
+			remove("temp") ;
+			FILE * new_temp = fopen("temp", "w+") ;
+			FILE * result_file = fopen(substring, "r") ;
 			unsigned char buf ;
-			while (fread(&buf, 1, 1, failing_file)) {
-				fwrite(&buf, 1, 1, answer_file);
+			while (fread(&buf, 1, 1, result_file)) {
+				fwrite(&buf, 1, 1, new_temp);
 			}
-			fclose(failing_file);
-			fclose(answer_file);
+			fclose(result_file);
+			fclose(new_temp);
 			return substring;
 		}
 	}
