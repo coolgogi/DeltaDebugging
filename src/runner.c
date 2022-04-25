@@ -13,43 +13,49 @@
 EXITCODE
 runner (char * exec, char * input, char * output) {
 
-	pid_t child_pid;
+		pid_t child_pid;
     	EXITCODE rt;
 
     	rt.valid = UNRESOLVED;
 
-   	child_pid = fork();
+   		child_pid = fork();
 	
     	if (child_pid < 0) {
         	rt.code_num = errno;
     	}
     	else if (child_pid == 0) {
-		
-	
-		int fp[3] ;
-		mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH ;
-        	fp[0] = open(input, O_RDONLY);
-		fp[1] = open(output, O_WRONLY | O_CREAT, mode) ;	
-		if (dup2(fp[0], STDIN_FILENO) == -1) {
-			fprintf(stderr, "STDIN dup2 error in runner\n");
-     		    	rt.code_num = errno;	
+			int fp[3] ;
+			mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH ;
+			fp[0] = open(input, O_RDONLY);
+			fp[1] = open(output, O_WRONLY | O_CREAT, mode) ;
+			remove("stderr") ;
+			fp[2] = open("stderr", O_WRONLY | O_CREAT, mode) ;
+			if (dup2(fp[0], STDIN_FILENO) == -1) {
+				fprintf(stderr, "STDIN dup2 error in runner\n");
+	   	      	rt.code_num = errno;	
 		    	exit(errno);
+	       	}
+			if (dup2(fp[1], STDOUT_FILENO) == -1 ) {
+				fprintf(stderr, "STDOUT dup2 error in runner\n");
+  	 	      	rt.code_num = errno;	
+		    	exit(errno);
+			}	
+			if (dup2(fp[2], STDERR_FILENO) == -1) {
+	            fprintf(stderr, "STDERR dup2 error in runner\n");
+	            rt.code_num = errno;
+            	exit(errno) ;
         	}
-		if (dup2(fp[1], STDOUT_FILENO) == -1 ) {
-			fprintf(stderr, "STDOUT dup2 error in runner\n");
-     		    	rt.code_num = errno;	
-		    	exit(errno);
-		}	
-		
-		if (execl(exec, exec, input, 0x0) == -1) {	        
-			perror("runner : ");
-       		     	rt.code_num = errno;  
-	            	exit(errno);  
-		}
-		close(fp[1]);	
+
+			if (execl(exec, exec, input, 0x0) == -1) {	        
+				perror("runner : ");
+	      		rt.code_num = errno;  
+		        exit(errno);  
+			}
+			close(fp[2]) ;
+			close(fp[1]);	
         	close(fp[0]);
 
-	}
+		}
     	else {
         	pid_t w;
         	int status ;
@@ -58,36 +64,37 @@ runner (char * exec, char * input, char * output) {
        		start = time(0);
 
        		while (cur - start < 10) {
-			w = waitpid(child_pid, &status, WNOHANG) ;
-			if (w != 0)
-				break ;
-			cur = time(0) ;
+				w = waitpid(child_pid, &status, WNOHANG) ;
+				if (w != 0)
+					break ;
+				cur = time(0) ;
 	        }
 	        if (cur - start >= 10) {
-			kill(child_pid, SIGKILL);
-        		w = waitpid(child_pid, &status, 0);
-			rt.code_num = 9 ;
-			return rt ;
-		}
+				kill(child_pid, SIGKILL);
+    	    	w = waitpid(child_pid, &status, 0);
+				rt.code_num = SIGKILL ;
+				return rt ;
+			}
        
         	if (w == -1) {
-            		perror("runner.c waitpid: ");
-            		rt.code_num = errno;
-            		return rt;
+           		perror("runner.c waitpid: ");
+           		rt.code_num = errno;
+           		return rt;
         	}
 
         	rt.code_num = WEXITSTATUS(status);
+			fprintf(stderr, "exitcode: %d\n", rt.code_num) ;
         	if (rt.code_num == EACCES) {
-            		rt.valid = UNRESOLVED;
+           		rt.valid = UNRESOLVED;
         	}
         	else if (rt.code_num == EBADF) {
-            		rt.valid = UNRESOLVED;
+           		rt.valid = UNRESOLVED;
         	}
         	else if (WIFEXITED(status)) {
-            		rt.valid = VALID;
+           		rt.valid = VALID;
         	}
         	else {
-            		rt.valid = INVALID;
+           		rt.valid = INVALID;
         	}
 		
     	}

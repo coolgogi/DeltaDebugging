@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <limits.h>
 #include <sys/stat.h>
+#include <fcntl.h>
 
 int
 main (int argc, char * argv[]) {
@@ -24,7 +25,14 @@ main (int argc, char * argv[]) {
 		perror("main.c argv[2]: ");
 		exit(errno);
 	}
-
+	
+	int fp = open("answer", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH) ;
+	if (dup2(fp, STDERR_FILENO) == -1) {
+        perror("main.c: ") ;    
+		exit(errno) ;
+    }	
+	runner(argv[1], argv[2], "output/ddmin_output.txt") ;
+	close(fp) ;	
 	printf("result : %s\n", ddmin(argv[1], argv[2])) ;
 	return 0;
 }

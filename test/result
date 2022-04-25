@@ -1,0 +1,67 @@
+=================================================================
+==87933==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x000108f03e80 at pc 0x0001043865d4 bp 0x00016ba7b0d0 sp 0x00016ba7b0c8
+READ of size 4 at 0x000108f03e80 thread T0
+    #0 0x1043865d0 in dump jsondump.c:33
+    #1 0x104386554 in dump jsondump.c:44
+    #2 0x104385dbc in main jsondump.c:120
+    #3 0x197d6d42c in start+0x0 (libdyld.dylib:arm64e+0x1842c)
+
+0x000108f03e80 is located 0 bytes to the right of 512-byte region [0x000108f03c80,0x000108f03e80)
+allocated by thread T0 here:
+    #0 0x1047251d8 in wrap_realloc+0x9c (libclang_rt.asan_osx_dynamic.dylib:arm64e+0x3d1d8)
+    #1 0x104385e18 in main jsondump.c:113
+    #2 0x197d6d42c in start+0x0 (libdyld.dylib:arm64e+0x1842c)
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow jsondump.c:33 in dump
+Shadow bytes around the buggy address:
+  0x007021200780: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x007021200790: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0070212007a0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0070212007b0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0070212007c0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0070212007d0:[fa]fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0070212007e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0070212007f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x007021200800: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x007021200810: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x007021200820: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==87933==ABORTING
+
+'name': 'jsmn'
+'keywords': 'json'
+'description': 'Minimalistic JSON parser/tokenizer in C. It : '
+jsmn": can
+be: easily
+integrated: into
+resource-limited: or
+embedded: projects"
+'repository': 
+  'type': 'git'
+  'url': 'https://github.com/zserge/jsmn.git'
+
+'frameworks': '*'
+'platforms': '*'
+'examples': 
+   - 'example/*.c'
+
+'exclude': 'test'
