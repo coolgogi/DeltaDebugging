@@ -1,0 +1,194 @@
+ddmin algorithm test
+    #0 0x55c354688af1 in dump example/jsondump.c:33
+,     #1 0x55c354688945 in dump example/jsondump.c:44
+,     #2 0x55c354688375 in main example/jsondump.c:120
+
+    #0 0x55b478befaf1 in dump example/jsondump.c:33
+,     #1 0x55b478bef945 in dump example/jsondump.c:44
+,     #2 0x55b478bef375 in main example/jsondump.c:120
+
+    #0 0x557fd4a7faf1 in dump example/jsondump.c:33
+,     #1 0x557fd4a7f945 in dump example/jsondump.c:44
+,     #2 0x557fd4a7f375 in main example/jsondump.c:120
+
+    #0 0x55cd66ae4af1 in dump example/jsondump.c:33
+,     #1 0x55cd66ae4945 in dump example/jsondump.c:44
+,     #2 0x55cd66ae4375 in main example/jsondump.c:120
+
+    #0 0x556a23969af1 in dump example/jsondump.c:33
+,     #1 0x556a23969945 in dump example/jsondump.c:44
+,     #2 0x556a23969375 in main example/jsondump.c:120
+
+    #0 0x55ec70b73af1 in dump example/jsondump.c:33
+,     #1 0x55ec70b73945 in dump example/jsondump.c:44
+,     #2 0x55ec70b73375 in main example/jsondump.c:120
+
+    #0 0x55b158bf3af1 in dump example/jsondump.c:33
+,     #1 0x55b158bf3945 in dump example/jsondump.c:44
+,     #2 0x55b158bf3375 in main example/jsondump.c:120
+
+    #0 0x55fcc1907af1 in dump example/jsondump.c:33
+,     #1 0x55fcc1907945 in dump example/jsondump.c:44
+,     #2 0x55fcc1907375 in main example/jsondump.c:120
+
+    #0 0x55fd7e957af1 in dump example/jsondump.c:33
+,     #1 0x55fd7e957945 in dump example/jsondump.c:44
+,     #2 0x55fd7e957375 in main example/jsondump.c:120
+
+    #0 0x55eb598d4af1 in dump example/jsondump.c:33
+,     #1 0x55eb598d4945 in dump example/jsondump.c:44
+,     #2 0x55eb598d4375 in main example/jsondump.c:120
+
+    #0 0x55a175688af1 in dump example/jsondump.c:33
+,     #1 0x55a175688945 in dump example/jsondump.c:44
+,     #2 0x55a175688375 in main example/jsondump.c:120
+
+    #0 0x55c7c1f77af1 in dump example/jsondump.c:33
+,     #1 0x55c7c1f77945 in dump example/jsondump.c:44
+,     #2 0x55c7c1f77375 in main example/jsondump.c:120
+
+    #0 0x55b142ad3af1 in dump example/jsondump.c:33
+,     #1 0x55b142ad3945 in dump example/jsondump.c:44
+,     #2 0x55b142ad3375 in main example/jsondump.c:120
+
+    #0 0x56332cbd3af1 in dump example/jsondump.c:33
+,     #1 0x56332cbd3945 in dump example/jsondump.c:44
+,     #2 0x56332cbd3375 in main example/jsondump.c:120
+
+    #0 0x564a5f387af1 in dump example/jsondump.c:33
+,     #1 0x564a5f387945 in dump example/jsondump.c:44
+,     #2 0x564a5f387375 in main example/jsondump.c:120
+
+    #0 0x55fd4739caf1 in dump example/jsondump.c:33
+,     #1 0x55fd4739c945 in dump example/jsondump.c:44
+,     #2 0x55fd4739c375 in main example/jsondump.c:120
+
+    #0 0x55a3ef7e2af1 in dump example/jsondump.c:33
+,     #1 0x55a3ef7e2945 in dump example/jsondump.c:44
+,     #2 0x55a3ef7e2375 in main example/jsondump.c:120
+
+    #0 0x5558f96a6af1 in dump example/jsondump.c:33
+,     #1 0x5558f96a6945 in dump example/jsondump.c:44
+,     #2 0x5558f96a6375 in main example/jsondump.c:120
+
+    #0 0x5614903b8af1 in dump example/jsondump.c:33
+,     #1 0x5614903b8945 in dump example/jsondump.c:44
+,     #2 0x5614903b8375 in main example/jsondump.c:120
+
+    #0 0x55dc8cb0eaf1 in dump example/jsondump.c:33
+,     #1 0x55dc8cb0e945 in dump example/jsondump.c:44
+,     #2 0x55dc8cb0e375 in main example/jsondump.c:120
+
+    #0 0x55a8ab1f7af1 in dump example/jsondump.c:33
+,     #1 0x55a8ab1f7945 in dump example/jsondump.c:44
+,     #2 0x55a8ab1f7375 in main example/jsondump.c:120
+
+    #0 0x556e15502af1 in dump example/jsondump.c:33
+,     #1 0x556e15502945 in dump example/jsondump.c:44
+,     #2 0x556e15502375 in main example/jsondump.c:120
+
+    #0 0x56290eba1af1 in dump example/jsondump.c:33
+,     #1 0x56290eba1945 in dump example/jsondump.c:44
+,     #2 0x56290eba1375 in main example/jsondump.c:120
+
+    #0 0x564049f0daf1 in dump example/jsondump.c:33
+,     #1 0x564049f0d945 in dump example/jsondump.c:44
+,     #2 0x564049f0d375 in main example/jsondump.c:120
+
+    #0 0x55b556c56af1 in dump example/jsondump.c:33
+,     #1 0x55b556c56945 in dump example/jsondump.c:44
+,     #2 0x55b556c56375 in main example/jsondump.c:120
+
+    #0 0x559a6ad18af1 in dump example/jsondump.c:33
+,     #1 0x559a6ad18945 in dump example/jsondump.c:44
+,     #2 0x559a6ad18375 in main example/jsondump.c:120
+
+    #0 0x55ef8871baf1 in dump example/jsondump.c:33
+,     #1 0x55ef8871b945 in dump example/jsondump.c:44
+,     #2 0x55ef8871b375 in main example/jsondump.c:120
+
+    #0 0x559c2df76af1 in dump example/jsondump.c:33
+,     #1 0x559c2df76945 in dump example/jsondump.c:44
+,     #2 0x559c2df76375 in main example/jsondump.c:120
+
+    #0 0x556227c4caf1 in dump example/jsondump.c:33
+,     #1 0x556227c4c945 in dump example/jsondump.c:44
+,     #2 0x556227c4c375 in main example/jsondump.c:120
+
+    #0 0x5573cbc28af1 in dump example/jsondump.c:33
+,     #1 0x5573cbc28945 in dump example/jsondump.c:44
+,     #2 0x5573cbc28375 in main example/jsondump.c:120
+
+    #0 0x557fbf350af1 in dump example/jsondump.c:33
+,     #1 0x557fbf350945 in dump example/jsondump.c:44
+,     #2 0x557fbf350375 in main example/jsondump.c:120
+
+    #0 0x563b15a46af1 in dump example/jsondump.c:33
+,     #1 0x563b15a46945 in dump example/jsondump.c:44
+,     #2 0x563b15a46375 in main example/jsondump.c:120
+
+    #0 0x55d7e44c8af1 in dump example/jsondump.c:33
+,     #1 0x55d7e44c8945 in dump example/jsondump.c:44
+,     #2 0x55d7e44c8375 in main example/jsondump.c:120
+
+    #0 0x55a98607eaf1 in dump example/jsondump.c:33
+,     #1 0x55a98607e945 in dump example/jsondump.c:44
+,     #2 0x55a98607e375 in main example/jsondump.c:120
+
+    #0 0x556f70b32af1 in dump example/jsondump.c:33
+,     #1 0x556f70b32945 in dump example/jsondump.c:44
+,     #2 0x556f70b32375 in main example/jsondump.c:120
+
+    #0 0x562b0c306af1 in dump example/jsondump.c:33
+,     #1 0x562b0c306945 in dump example/jsondump.c:44
+,     #2 0x562b0c306375 in main example/jsondump.c:120
+
+    #0 0x55c299fe7af1 in dump example/jsondump.c:33
+,     #1 0x55c299fe7945 in dump example/jsondump.c:44
+,     #2 0x55c299fe7375 in main example/jsondump.c:120
+
+    #0 0x560c16332af1 in dump example/jsondump.c:33
+,     #1 0x560c16332945 in dump example/jsondump.c:44
+,     #2 0x560c16332375 in main example/jsondump.c:120
+
+    #0 0x5593e3cd5af1 in dump example/jsondump.c:33
+,     #1 0x5593e3cd5945 in dump example/jsondump.c:44
+,     #2 0x5593e3cd5375 in main example/jsondump.c:120
+
+    #0 0x563743a79af1 in dump example/jsondump.c:33
+,     #1 0x563743a79945 in dump example/jsondump.c:44
+,     #2 0x563743a79375 in main example/jsondump.c:120
+
+    #0 0x55b7cd8f0af1 in dump example/jsondump.c:33
+,     #1 0x55b7cd8f0945 in dump example/jsondump.c:44
+,     #2 0x55b7cd8f0375 in main example/jsondump.c:120
+
+    #0 0x55f3e3beeaf1 in dump example/jsondump.c:33
+,     #1 0x55f3e3bee945 in dump example/jsondump.c:44
+,     #2 0x55f3e3bee375 in main example/jsondump.c:120
+
+    #0 0x55e86c4b2af1 in dump example/jsondump.c:33
+,     #1 0x55e86c4b2945 in dump example/jsondump.c:44
+,     #2 0x55e86c4b2375 in main example/jsondump.c:120
+
+    #0 0x5573128f0af1 in dump example/jsondump.c:33
+,     #1 0x5573128f0945 in dump example/jsondump.c:44
+,     #2 0x5573128f0375 in main example/jsondump.c:120
+
+    #0 0x55cbe0391af1 in dump example/jsondump.c:33
+,     #1 0x55cbe0391945 in dump example/jsondump.c:44
+,     #2 0x55cbe0391375 in main example/jsondump.c:120
+
+    #0 0x557a33d45af1 in dump example/jsondump.c:33
+,     #1 0x557a33d45945 in dump example/jsondump.c:44
+,     #2 0x557a33d45375 in main example/jsondump.c:120
+
+    #0 0x55afbaa29af1 in dump example/jsondump.c:33
+,     #1 0x55afbaa29945 in dump example/jsondump.c:44
+,     #2 0x55afbaa29375 in main example/jsondump.c:120
+
+    #0 0x564656e50af1 in dump example/jsondump.c:33
+,     #1 0x564656e50945 in dump example/jsondump.c:44
+,     #2 0x564656e50375 in main example/jsondump.c:120
+
+result : temp

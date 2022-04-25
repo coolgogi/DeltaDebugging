@@ -17,13 +17,13 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n) {
 	int size = (int) ceil((double)st.st_size / n);
 	char * complement = (char *) malloc (21);
 	
-	char ans[3][30] ;
-    memset(ans[0], 0, 30) ;
-    memset(ans[1], 0, 30) ;
-    memset(ans[2], 0, 30) ;
-	strcpy(ans[0], "in dump jsondump.c:33\n") ;
-	strcpy(ans[1], "in dump jsondump.c:44\n") ;
-	strcpy(ans[2], "in main jsondump.c:120\n") ;
+	char ans[3][15] ;
+	memset(ans[0], 0, 15) ;
+    	memset(ans[1], 0, 15) ;
+    	memset(ans[2], 0, 15) ;
+	strcpy(ans[0], "jsondump.c:33") ;
+	strcpy(ans[1], "jsondump.c:44") ;
+	strcpy(ans[2], "jsondump.c:120") ;
 
 	for (int i = 0 ; i < n ; i ++) {
 		int total = 0 ;
@@ -53,20 +53,21 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n) {
 		EXITCODE rt = runner(executeFile_path, complement, "output/ddmin_output.txt");
 
 		FILE * stderr_ptr = fopen("stderr", "r") ;
-        char std[3][100] ;
-        memset(std[0], 0, 100) ;
-        memset(std[1], 0, 100) ;
-        memset(std[2], 0, 100) ;
-        fgets(std[0], 100, stderr_ptr) ;
-        fgets(std[0], 100, stderr_ptr) ;
-        fgets(std[0], 100, stderr_ptr) ;
-        fgets(std[0], 100, stderr_ptr) ;
-        fgets(std[0], 100, stderr_ptr) ;
-        fgets(std[1], 100, stderr_ptr) ;
-        fgets(std[2], 100, stderr_ptr) ;
+		char temp[200] ;
+	        char std[3][60] ;
+	        memset(std[0], 0, 60) ;
+	        memset(std[1], 0, 60) ;
+       		memset(std[2], 0, 60) ;
+	        fgets(temp, 200, stderr_ptr) ;
+	        fgets(temp, 200, stderr_ptr) ;
+	        fgets(temp, 200, stderr_ptr) ;
+	        fgets(std[0], 60, stderr_ptr) ;
+	        fgets(std[1], 60, stderr_ptr) ;
+	        fgets(std[2], 60, stderr_ptr) ;
 		fclose(stderr_ptr) ;
-		printf("%s\n%s\n%s\n", std[0]+19, std[1]+19, std[2]+19) ;
-        if (strncmp(ans[0], std[0]+19, 21) == 0 && strncmp(ans[1], std[1]+19, 21) == 0 && strncmp(ans[2], std[2]+19, 22) == 0) {
+		remove("stderr") ;
+	       	printf("%s, %s, %s\n" , std[0], std[1], std[2]) ; 
+		if (strstr(std[0], "33") != NULL && strstr(std[1], "44") != NULL && strstr(std[2], "120") != NULL) {	
 			remove("temp") ;
 			FILE * new_temp = fopen("temp", "w+") ;
 			FILE * result_file = fopen(complement, "r") ;
