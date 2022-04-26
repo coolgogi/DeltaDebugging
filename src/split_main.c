@@ -2,24 +2,32 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <errno.h>
-#include "../../include/ddmin.h"
+#include "../include/ddmin.h"
 
 int
 main (int argc, char * argv[]) {
 
-    if (argc != 3) {
-        fprintf(stderr, "invalid arguments");
-        return EXIT_FAILURE;
+    if (argc != 4) {
+	fprintf(stderr, "invalid arguments\n") ;
+	exit(EXIT_FAILURE) ;
     }
 
-    if (access(argv[1], R_OK) == -1) {
-        perror("");
-        return errno;
-    }
+    int file_size = atoi(argv[1]) ;
+    int n = atoi(argv[2]) ;
+    double stddev = atof(argv[3]) ;
 
-    int n = atoi(argv[2]);
-    char ** ss = split(argv[1], n);
-    
+    int * len = split(file_size, n, stddev);
+    int total = 0 ;
+    for (int i = 0 ; i < n ; i ++) {
+	printf("len[%d]: %d\n", i, len[i]) ;
+    	total = total + len[i] ;
+    }
+    if (total == file_size) {
+	printf("size correct\n") ;
+    }
+    printf("\n") ;
+    free(len) ;
+
     return 0;
 
 }

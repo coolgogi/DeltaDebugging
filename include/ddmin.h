@@ -1,4 +1,4 @@
-char ** split (char * s, int n);
+int * split (int file_size, int n, double stddev);
 char * reduce_to_substring (char * path, char * s, int n);
 char * reduce_to_complement (char * path, char * s, int n);
 char * reduce (char * path, char * s, int n);

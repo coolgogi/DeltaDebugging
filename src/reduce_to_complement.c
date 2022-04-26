@@ -50,7 +50,8 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n) {
 		if (total == st.st_size)
 			continue ;
 
-		EXITCODE rt = runner(executeFile_path, complement, "output/ddmin_output.txt");
+		//EXITCODE rt = 
+		runner(executeFile_path, complement, "output/ddmin_output.txt");
 
 		FILE * stderr_ptr = fopen("stderr", "r") ;
 		char temp[200] ;
