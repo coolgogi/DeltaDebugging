@@ -11,7 +11,7 @@
 int
 main (int argc, char * argv[]) {
 
-	if (argc != 3) {
+	if (argc != 5) {
 		fprintf(stderr, "invalid arguments");
 		exit(EXIT_FAILURE);
 	}
@@ -26,13 +26,6 @@ main (int argc, char * argv[]) {
 		exit(errno);
 	}
 	
-	int fp = open("answer", O_WRONLY | O_CREAT, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH) ;
-	if (dup2(fp, STDERR_FILENO) == -1) {
-        perror("main.c: ") ;    
-		exit(errno) ;
-    }	
-	runner(argv[1], argv[2], "output/ddmin_output.txt") ;
-	close(fp) ;	
-	printf("result : %s\n", ddmin(argv[1], argv[2])) ;
+	printf("result : %s\n", ddmin(argv[1], argv[2], atof(argv[3]), atof(argv[4]))) ;
 	return 0;
 }

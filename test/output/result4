@@ -1,144 +1,144 @@
-len[0]: 93
-len[1]: 93
-len[2]: 93
-len[3]: 98
-size correct
-
-len[0]: 93
-len[1]: 93
-len[2]: 93
-len[3]: 98
-size correct
-
-len[0]: 93
-len[1]: 92
-len[2]: 93
-len[3]: 99
-size correct
-
-len[0]: 94
-len[1]: 92
-len[2]: 93
-len[3]: 98
-size correct
-
-len[0]: 94
-len[1]: 92
-len[2]: 93
-len[3]: 98
-size correct
-
-len[0]: 94
-len[1]: 92
-len[2]: 93
-len[3]: 98
-size correct
-
-len[0]: 94
-len[1]: 91
-len[2]: 92
-len[3]: 100
-size correct
-
 len[0]: 95
-len[1]: 91
-len[2]: 92
-len[3]: 99
-size correct
-
-len[0]: 95
-len[1]: 91
-len[2]: 92
-len[3]: 99
-size correct
-
-len[0]: 95
-len[1]: 90
-len[2]: 92
-len[3]: 100
+len[1]: 95
+len[2]: 95
+len[3]: 92
 size correct
 
 len[0]: 96
+len[1]: 94
+len[2]: 95
+len[3]: 92
+size correct
+
+len[0]: 97
+len[1]: 93
+len[2]: 95
+len[3]: 92
+size correct
+
+len[0]: 98
+len[1]: 92
+len[2]: 95
+len[3]: 92
+size correct
+
+len[0]: 99
+len[1]: 91
+len[2]: 95
+len[3]: 92
+size correct
+
+len[0]: 100
 len[1]: 90
-len[2]: 92
-len[3]: 99
+len[2]: 94
+len[3]: 93
 size correct
 
-len[0]: 102
-len[1]: 99
-len[2]: 79
-len[3]: 97
-size correct
-
-len[0]: 102
-len[1]: 100
-len[2]: 78
-len[3]: 97
-size correct
-
-len[0]: 108
-len[1]: 104
-len[2]: 69
-len[3]: 96
-size correct
-
-len[0]: 114
-len[1]: 108
-len[2]: 58
-len[3]: 97
-size correct
-
-len[0]: 120
-len[1]: 112
-len[2]: 49
-len[3]: 96
-size correct
-
-len[0]: 125
-len[1]: 116
-len[2]: 41
-len[3]: 95
-size correct
-
-len[0]: 130
-len[1]: 119
-len[2]: 33
-len[3]: 95
-size correct
-
-len[0]: 134
-len[1]: 122
-len[2]: 27
+len[0]: 100
+len[1]: 89
+len[2]: 94
 len[3]: 94
 size correct
 
-len[0]: 138
-len[1]: 125
-len[2]: 20
-len[3]: 94
+len[0]: 86
+len[1]: 94
+len[2]: 95
+len[3]: 102
 size correct
 
-len[0]: 142
-len[1]: 128
-len[2]: 14
-len[3]: 93
+len[0]: 84
+len[1]: 94
+len[2]: 95
+len[3]: 104
 size correct
 
-len[0]: 145
-len[1]: 130
-len[2]: 9
-len[3]: 93
+len[0]: 83
+len[1]: 94
+len[2]: 95
+len[3]: 105
 size correct
 
-len[0]: 148
-len[1]: 132
-len[2]: 4
-len[3]: 93
+len[0]: 82
+len[1]: 94
+len[2]: 95
+len[3]: 106
 size correct
 
-len[0]: 151
-len[1]: 134
-len[2]: 1
-len[3]: 91
+len[0]: 80
+len[1]: 94
+len[2]: 95
+len[3]: 108
+size correct
+
+len[0]: 79
+len[1]: 94
+len[2]: 95
+len[3]: 109
+size correct
+
+len[0]: 68
+len[1]: 93
+len[2]: 96
+len[3]: 120
+size correct
+
+len[0]: 55
+len[1]: 92
+len[2]: 96
+len[3]: 134
+size correct
+
+len[0]: 42
+len[1]: 90
+len[2]: 96
+len[3]: 149
+size correct
+
+len[0]: 28
+len[1]: 89
+len[2]: 96
+len[3]: 164
+size correct
+
+len[0]: 15
+len[1]: 88
+len[2]: 97
+len[3]: 177
+size correct
+
+len[0]: 2
+len[1]: 87
+len[2]: 97
+len[3]: 191
+size correct
+
+len[0]: 1
+len[1]: 86
+len[2]: 97
+len[3]: 193
+size correct
+
+len[0]: 1
+len[1]: 85
+len[2]: 98
+len[3]: 193
+size correct
+
+len[0]: 1
+len[1]: 84
+len[2]: 98
+len[3]: 194
+size correct
+
+len[0]: 1
+len[1]: 82
+len[2]: 98
+len[3]: 196
+size correct
+
+len[0]: 1
+len[1]: 81
+len[2]: 98
+len[3]: 197
 size correct
 

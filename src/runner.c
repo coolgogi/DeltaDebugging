@@ -83,7 +83,6 @@ runner (char * exec, char * input, char * output) {
         	}
 
         	rt.code_num = WEXITSTATUS(status);
-			fprintf(stderr, "exitcode: %d\n", rt.code_num) ;
         	if (rt.code_num == EACCES) {
            		rt.valid = UNRESOLVED;
         	}

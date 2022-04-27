@@ -10,11 +10,10 @@
 #include <math.h>
 
 char *
-reduce_to_complement(char * executeFile_path, char * input_file_path, int n) {
+reduce_to_complement(char * executeFile_path, char * input_file_path, int n, int * len) {
 
 	struct stat st;
 	stat(input_file_path, &st);
-	int size = (int) ceil((double)st.st_size / n);
 	char * complement = (char *) malloc (21);
 	
 	char ans[3][15] ;
@@ -32,7 +31,7 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n) {
 		remove(complement) ;
 		FILE * write_file = fopen(complement, "w+");
 		for (int j = 0 ; j < n ; j ++) {
-			for (int k = 0 ; k < size ; k ++) {
+			for (int k = 0 ; k < len[j] ; k ++) {
 				unsigned char buf ;
 				if(fread(&buf, 1, 1, read_file) != 1) {
 					break ;
@@ -50,7 +49,6 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n) {
 		if (total == st.st_size)
 			continue ;
 
-		//EXITCODE rt = 
 		runner(executeFile_path, complement, "output/ddmin_output.txt");
 
 		FILE * stderr_ptr = fopen("stderr", "r") ;
@@ -67,7 +65,6 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n) {
 	        fgets(std[2], 60, stderr_ptr) ;
 		fclose(stderr_ptr) ;
 		remove("stderr") ;
-	       	printf("%s, %s, %s\n" , std[0], std[1], std[2]) ; 
 		if (strstr(std[0], "33") != NULL && strstr(std[1], "44") != NULL && strstr(std[2], "120") != NULL) {	
 			remove("temp") ;
 			FILE * new_temp = fopen("temp", "w+") ;

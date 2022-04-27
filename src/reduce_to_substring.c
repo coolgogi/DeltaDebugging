@@ -10,13 +10,11 @@
 #include <unistd.h>
 
 char *
-reduce_to_substring (char * executeFile_path, char * input_file_path, int n) {
+reduce_to_substring (char * executeFile_path, char * input_file_path, int n, int * len) {
 
 	struct stat st;
 	stat(input_file_path, &st);
-	int size = (int) ceil((double)st.st_size / n);
 	char * substring = (char *) malloc (21);
-
 	char ans[3][15] ;
         memset(ans[0], 0, 15) ;
         memset(ans[1], 0, 15) ;
@@ -25,24 +23,24 @@ reduce_to_substring (char * executeFile_path, char * input_file_path, int n) {
         strcpy(ans[1], "jsondump.c:44") ;
         strcpy(ans[2], "jsondump.c:120") ;
 
+	int begin = 0 ;
 	for (int i = 0 ; i < n ; i ++ ) {
 		sprintf(substring, "substring");
 		FILE * read_file = fopen(input_file_path, "r") ;
 		remove(substring) ;
 		FILE * write_file = fopen(substring, "w+");
-		fseek(read_file, i*size, SEEK_SET) ; 
-		for (int j = 0 ; j < size ; j ++) {
+		fseek(read_file, begin, SEEK_SET) ; 
+		for (int j = 0 ; j < len[i] ; j ++) {
 			unsigned char buf ;
 			if (fread(&buf, 1, 1, read_file) != 1) {
 				break;
 			}
 			fwrite(&buf, 1, 1, write_file);
-
 		}
+		begin = begin + len[i] ;
 		fclose(write_file) ;
 		fclose(read_file) ;
 
-//		EXITCODE rt = 
 		runner(executeFile_path, substring, "output/ddmin_output.txt");
 	        
 		FILE * stderr_ptr = fopen("stderr", "r") ;
@@ -59,7 +57,6 @@ reduce_to_substring (char * executeFile_path, char * input_file_path, int n) {
                 fgets(std[2], 60, stderr_ptr) ;
                 fclose(stderr_ptr) ;
                 remove("stderr") ;
-                printf("%s, %s, %s\n" , std[0], std[1], std[2]) ;
                 if (strstr(std[0], "33") != NULL && strstr(std[1], "44") != NULL && strstr(std[2], "120") != NULL) {
 			remove("temp") ;
 			FILE * new_temp = fopen("temp", "w+") ;

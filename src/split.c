@@ -12,12 +12,12 @@
 #include <time.h>
 #include "../include/runner.h"
 #include "../include/ddmin.h"
+#include <math.h>
 
 int *
-split (int file_size, int n, double stddev) {
+split (int file_size, int n, double sigma) {
 	
-	double mean = (double) file_size / (double) n ;
-	fprintf(stderr, "mean: %lf\n", mean) ;
+	double mean = ceil(((double) file_size - (double) n) / (double) n) ;
 	const gsl_rng_type * T ;
 	gsl_rng * r ;
 	gsl_rng_env_setup() ;
@@ -25,45 +25,33 @@ split (int file_size, int n, double stddev) {
 	r = gsl_rng_alloc(T) ;
 	gsl_rng_set(r, (int) time(NULL)) ;
 
-	double dist[n] ;
-	int * len = (int *) malloc (sizeof(int) * n) ;
+	int * len = calloc(sizeof(int), n) ;
 	memset(len, 0, sizeof(int) * n) ;
-	double prop = 0.0 ;
-	double total = 0.0 ;
-	int maxBound = file_size - n ;
 	
-	for (int i = 0 ; i < n ; i ++) {
-		dist[i] = gsl_ran_gaussian(r, stddev) + mean ;
-		fprintf(stderr, "dist[%d]: %lf\n", i, dist[i]) ;
-		if (dist[i] <= 1) {
-			dist[i] = 1.0 ;
-			len[i] = 1 ;
-//			maxBound = maxBound - 1 ;
-		}
-		total = total + dist[i] ;
-	}
-	fprintf(stderr, "\n") ;
-	
-	int checker = 0 ;
-	for (int i = 0 ; i < n ; i ++) {
-		if (i == n-1) {
-			len[i] = file_size - checker ;	
-			continue ;
-		}
+	int sum_allots = 0 ;
+	for (int i = 0 ; i < n - 1 ; i ++) {
+		int allot ;
+		allot = round(gsl_ran_gaussian(r, sigma) + mean) ;
 
-		if (len[i] == 0) {
-			prop = dist[i] / total ;
-			int prop_len = (int) floor (maxBound * prop) ;
-			if (prop_len + 1 > 1) {
-				len[i] = prop_len + 1;
-			}
-			else {
-				len[i] = 1 ;
+		if (allot < 0 ) {
+			allot = 0 ;
+		}
+		else {
+			if (allot + sum_allots > file_size - n) {
+				if (sum_allots == file_size - n) {
+					allot = 0 ;
+				}
+				else {
+					allot = file_size - n - sum_allots ; 
+				}
 			}
 		}
-		checker = checker + len[i] ;
+		len[i] = 1 + allot ;
+		sum_allots = sum_allots + allot ;
 	}
+	len[n - 1] = (file_size - n) - sum_allots + 1 ;
+		
 	gsl_rng_free(r) ;
 	
-	return len ;	
+	return len ;
 }

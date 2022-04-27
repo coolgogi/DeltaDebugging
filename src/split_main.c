@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include "../include/ddmin.h"
+#include <time.h>
 
 int
 main (int argc, char * argv[]) {
@@ -15,6 +16,10 @@ main (int argc, char * argv[]) {
     int file_size = atoi(argv[1]) ;
     int n = atoi(argv[2]) ;
     double stddev = atof(argv[3]) ;
+
+    srand(time(NULL)) ;
+    double rand_num = (double) rand() / (double) RAND_MAX ;
+    fprintf(stderr, "%lf\n", rand_num) ;
 
     int * len = split(file_size, n, stddev);
     int total = 0 ;

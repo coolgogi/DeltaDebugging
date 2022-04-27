@@ -26,9 +26,9 @@ $(BINDIR):
 
 clean:
 	rm $(BINFILES) $(BINDIR)/$(TARGET)
-	rm $(BINDIR)/$(SPLIT)
+
 split_clean:
-	rm $(BINDIR)/split_main
+	rm $(BINDIR)/$(SPLIT)
 	rm test/result2
 	rm test/result4
 	rm test/result8

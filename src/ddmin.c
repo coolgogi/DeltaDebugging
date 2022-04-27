@@ -8,9 +8,10 @@
 #include <sys/stat.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 
 char *
-ddmin (char * executeFile_path, char * inputFile_path) {
+ddmin (char * executeFile_path, char * inputFile_path, double p, double sigma) {
 	
 	int n = 2 ;
 	int file_size;
@@ -30,22 +31,29 @@ ddmin (char * executeFile_path, char * inputFile_path) {
 	struct stat st;
 
 	do {
+		double rand_num ;
+
 		stat("temp", &st);
 		file_size = st.st_size;
 		if (n > file_size) {
 			n = file_size;
 		}
-        
-		result_file_path = reduce_to_substring(executeFile_path, "temp", n);
-		if (strcmp(result_file_path, "temp") != 0) {
+       		int * len = split(file_size, n, sigma) ; 
+		
+		srand(time(NULL)) ;
+		rand_num = (double) rand() / (double) RAND_MAX;
+		result_file_path = reduce_to_substring(executeFile_path, "temp", n, len);
+		if ((strcmp(result_file_path, "temp") != 0) && (p >= rand_num)) {
 			fprintf(stderr, "result of substring\n");
 			n = 2;
 			free(result_file_path);
 			continue ;
 		}
 			
-		result_file_path = reduce_to_complement(executeFile_path, "temp", n);
-		if (strcmp(result_file_path, "temp") != 0) {
+		srand(time(NULL)) ;
+		rand_num = (double) rand() / (double) RAND_MAX;
+		result_file_path = reduce_to_complement(executeFile_path, "temp", n, len);
+		if ((strcmp(result_file_path, "temp") != 0) && (p >= rand_num)) {
 			fprintf(stderr, "result of complement\n");
 			n = 2;
 			free(result_file_path);
@@ -53,7 +61,7 @@ ddmin (char * executeFile_path, char * inputFile_path) {
 		else {
 			n = n * 2;
 		}
-		fprintf(stderr, "[%d %d]\n", file_size, n) ;
+		fprintf(stderr, "[%d %d], %lf\n", file_size, n, sigma) ;
 	} 
     	while ((file_size > 1) && (file_size * 2 != n));
 	
