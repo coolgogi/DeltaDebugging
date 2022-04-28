@@ -11,7 +11,7 @@
 #include <time.h>
 
 char *
-ddmin (char * executeFile_path, char * inputFile_path, double p, double sigma) {
+ddmin (char * executeFile_path, char * inputFile_path, double p, double p2, double sigma) {
 	
 	int n = 2 ;
 	int file_size;
@@ -42,26 +42,28 @@ ddmin (char * executeFile_path, char * inputFile_path, double p, double sigma) {
 		
 		srand(time(NULL)) ;
 		rand_num = (double) rand() / (double) RAND_MAX;
-		result_file_path = reduce_to_substring(executeFile_path, "temp", n, len);
-		if ((strcmp(result_file_path, "temp") != 0) && (p >= rand_num)) {
-			fprintf(stderr, "result of substring\n");
-			n = 2;
-			free(result_file_path);
-			continue ;
+		if (p >= rand_num) {
+			result_file_path = reduce_to_substring(executeFile_path, "temp", n, len, p2);
+			if (strcmp(result_file_path, "temp") != 0) {
+				n = 2;
+				free(result_file_path);
+				continue ;
+			}
 		}
 			
 		srand(time(NULL)) ;
 		rand_num = (double) rand() / (double) RAND_MAX;
-		result_file_path = reduce_to_complement(executeFile_path, "temp", n, len);
-		if ((strcmp(result_file_path, "temp") != 0) && (p >= rand_num)) {
-			fprintf(stderr, "result of complement\n");
-			n = 2;
-			free(result_file_path);
+		if (p >= rand_num) {
+			result_file_path = reduce_to_complement(executeFile_path, "temp", n, len, p2);
+			if (strcmp(result_file_path, "temp") != 0) {
+				n = 2;
+				free(result_file_path);
+			}
+			else {
+				n = n * 2;
+			}
 		}
-		else {
-			n = n * 2;
-		}
-		fprintf(stderr, "[%d %d], %lf\n", file_size, n, sigma) ;
+		fprintf(stderr, "|T|: %d, n: %d\n", file_size, n) ;
 	} 
     	while ((file_size > 1) && (file_size * 2 != n));
 	

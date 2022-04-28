@@ -11,7 +11,7 @@
 int
 main (int argc, char * argv[]) {
 
-	if (argc != 5) {
+	if (argc != 6) {
 		fprintf(stderr, "invalid arguments");
 		exit(EXIT_FAILURE);
 	}
@@ -26,6 +26,6 @@ main (int argc, char * argv[]) {
 		exit(errno);
 	}
 	
-	printf("result : %s\n", ddmin(argv[1], argv[2], atof(argv[3]), atof(argv[4]))) ;
+	printf("result : %s\n", ddmin(argv[1], argv[2], atof(argv[3]), atof(argv[4]), atof(argv[5]))) ;
 	return 0;
 }
