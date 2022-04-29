@@ -23,3 +23,8 @@ libxml2 error 311 link: https://gitlab.gnome.org/GNOME/libxml2/-/issues/311
 
 git version: dea91c97debeac7c1aaf9c19f79029809e23a353
 
+
+google/fuzzer-test-suite : https://github.com/google/fuzzer-test-suite
+
+git clone https://github.com/google/fuzzer-test-suite.git
+
