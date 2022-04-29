@@ -1,0 +1,17 @@
+{
+  "name": "jsmn",
+  "keywords": "json",
+  "description": "Minimalistic JSON It : "jsmn",
+can e easily integrated into resource-limited or embedd projects",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github.com/zserge/jsmn.git"
+  },
+  "frameworks": "*",
+  "plaforms": "*",
+  "examples": [
+    "example/*.c"
+  ],
+  "exclude": "test"
+}

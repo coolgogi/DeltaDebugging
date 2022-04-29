@@ -9,7 +9,7 @@
 #include <string.h>
 #include <math.h>
 #include <time.h>
-
+#include <sys/time.h>
 char *
 ddmin (char * executeFile_path, char * inputFile_path, double p, double p2, double sigma) {
 	
@@ -32,6 +32,7 @@ ddmin (char * executeFile_path, char * inputFile_path, double p, double p2, doub
 
 	do {
 		double rand_num ;
+		struct timeval tv ;
 
 		stat("temp", &st);
 		file_size = st.st_size;
@@ -40,7 +41,9 @@ ddmin (char * executeFile_path, char * inputFile_path, double p, double p2, doub
 		}
        		int * len = split(file_size, n, sigma) ; 
 		
-		srand(time(NULL)) ;
+		
+		gettimeofday(&tv, NULL) ;	
+		srand(tv.tv_usec) ;
 		rand_num = (double) rand() / (double) RAND_MAX;
 		if (p >= rand_num) {
 			result_file_path = reduce_to_substring(executeFile_path, "temp", n, len, p2);
@@ -50,8 +53,9 @@ ddmin (char * executeFile_path, char * inputFile_path, double p, double p2, doub
 				continue ;
 			}
 		}
-			
-		srand(time(NULL)) ;
+		
+		gettimeofday(&tv, NULL)	;
+		srand(tv.tv_usec) ;
 		rand_num = (double) rand() / (double) RAND_MAX;
 		if (p >= rand_num) {
 			result_file_path = reduce_to_complement(executeFile_path, "temp", n, len, p2);

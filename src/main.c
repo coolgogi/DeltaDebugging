@@ -7,10 +7,11 @@
 #include <limits.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <time.h>
 
 int
 main (int argc, char * argv[]) {
-
+	time_t begin = time(NULL);
 	if (argc != 6) {
 		fprintf(stderr, "invalid arguments");
 		exit(EXIT_FAILURE);
@@ -27,5 +28,7 @@ main (int argc, char * argv[]) {
 	}
 	
 	printf("result : %s\n", ddmin(argv[1], argv[2], atof(argv[3]), atof(argv[4]), atof(argv[5]))) ;
+	time_t end = time(NULL) ;
+	printf("running time: %ld\n", end - begin) ;
 	return 0;
 }

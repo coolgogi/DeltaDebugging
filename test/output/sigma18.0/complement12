@@ -1,0 +1,16 @@
+{
+  "name": "jsmn",
+  "keywords": "json",
+  "description"JSON  "jsmn",
+can be easily inteed into resource-limited or embedded projects",
+  "repository":
+  {
+    type": "git",
+    "url": "https://github.com/zserge/jsmn.git"
+ },
+  "frewrks" "*",
+  "platforms": ",
+  "examples": [
+    "example/*.c"
+  ],exclude": "tet"
+}

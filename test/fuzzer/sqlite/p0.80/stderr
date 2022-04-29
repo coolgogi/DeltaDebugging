@@ -1,0 +1,5 @@
+INFO: Seed: 2678880380
+INFO: Loaded 1 modules   (39753 inline 8-bit counters): 39753 [0xc764c0, 0xc80009), 
+INFO: Loaded 1 PC tables (39753 PCs): 39753 [0x97ea50,0xa19ee0), 
+../../../../fuzzer-test-suite/build_sqlite/sqlite-2016-11-14-fsanitize_fuzzer: Running 1 inputs 1 time(s) each.
+Running: complement

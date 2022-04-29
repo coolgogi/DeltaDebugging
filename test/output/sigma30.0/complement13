@@ -1,0 +1,14 @@
+{
+  "name": "jsmn",
+  "keywords""json",
+  "description": "Minimalistic JSONC. It : "jsmn",
+can be e integrated into resource-limited or embedded projects",
+  "reposito":
+  {
+    "type": "git",  "url": "httjsmn.git"
+  },
+  "framewor":","platforms": "*",
+  "examples": [
+    "example/*.c"
+  ],
+  "exclde"""}

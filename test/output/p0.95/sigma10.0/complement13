@@ -1,0 +1,14 @@
+{
+  "name": "j "": "j "description": "/toke: "jsmn",
+can be easily integrated into resource-limited or embedded projects",
+  "ry":
+  {
+    " "git",
+   rl": e/jsmn.git"
+  },
+  "frameworks": "*",
+  "platforms": "*",
+  "les": [
+xample/*.c"
+  ],
+  "exclude": "tet"}

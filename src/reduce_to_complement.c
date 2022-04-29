@@ -17,14 +17,6 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n, int
 	stat(input_file_path, &st);
 	char * complement = (char *) malloc (21);
 	
-	char ans[3][15] ;
-	memset(ans[0], 0, 15) ;
-    	memset(ans[1], 0, 15) ;
-    	memset(ans[2], 0, 15) ;
-	strcpy(ans[0], "jsondump.c:33") ;
-	strcpy(ans[1], "jsondump.c:44") ;
-	strcpy(ans[2], "jsondump.c:120") ;
-	
 	int file_index = 0 ;
 
 	for (int i = 0 ; i < n ; i ++) {
@@ -53,27 +45,28 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n, int
 			continue ;
 
 		EXITCODE rt = runner(executeFile_path, complement, "output/ddmin_output.txt");
-		if (rt.code_num != 1) {
+		if (rt.code_num != 77) {
 			remove("stderr") ;
 			continue ;
 		}
 
 		FILE * stderr_ptr = fopen("stderr", "r") ;
-		char temp[200] ;
-	        char std[3][60] ;
-	        memset(std[0], 0, 60) ;
-	        memset(std[1], 0, 60) ;
-       		memset(std[2], 0, 60) ;
-	        fgets(temp, 200, stderr_ptr) ;
-	        fgets(temp, 200, stderr_ptr) ;
-	        fgets(temp, 200, stderr_ptr) ;
-	        fgets(std[0], 60, stderr_ptr) ;
-	        fgets(std[1], 60, stderr_ptr) ;
-	        fgets(std[2], 60, stderr_ptr) ;
+	        char std[3][300] ;
+	        memset(std[0], 0, 300) ;
+
+		while (!feof(stderr_ptr)) {
+			fgets(std[0], 300, stderr_ptr) ;
+			if (strstr(std[0], "sqlite3MemMalloc") != NULL) {
+				break ;
+			}
+		}
 		fclose(stderr_ptr) ;
 		remove("stderr") ;
-		if (strstr(std[0], "33") != NULL && strstr(std[1], "44") != NULL && strstr(std[2], "120") != NULL) {	
-                        // store
+
+//		if (strstr(std[0], "33") != NULL && strstr(std[1], "c:44") != NULL && strstr(std[2], "120") != NULL) {	
+		if (strstr(std[0], "sqlite3MemMalloc") != NULL) {
+//		if (rt.code_num == 1) {
+			// store
                        	 
                         char save_complement[20] ;
                         memset(save_complement, 0, 20) ;
