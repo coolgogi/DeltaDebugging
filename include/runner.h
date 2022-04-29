@@ -27,3 +27,4 @@ typedef struct exitcode {
 } EXITCODE;
 
 EXITCODE runner (char *, char *, char *);
+EXITCODE o_runner (char *, char *, char *);
