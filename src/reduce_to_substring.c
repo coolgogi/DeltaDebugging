@@ -11,7 +11,7 @@
 #include <time.h>
 
 char *
-reduce_to_substring (char * executeFile_path, char * input_file_path, int n, int * len, double p2) {
+reduce_to_substring (char * executeFile_path, char * input_file_path, int n, int * len, double p2, char * ans) {
 
 	struct stat st;
 	stat(input_file_path, &st);
@@ -49,18 +49,14 @@ reduce_to_substring (char * executeFile_path, char * input_file_path, int n, int
 		
 		while (!feof(stderr_ptr)) {
 			fgets(std[0], 300, stderr_ptr) ;
-			if (strstr(std[0], "sqlite3MemMalloc") != NULL) {
+			if (strstr(std[0], ans) != NULL) {
 				break ;
 			}
 		}
 		fclose(stderr_ptr) ;
                 remove("stderr") ;
 
-// 		if (strstr(std[0], "33") != NULL && strstr(std[1], "c:44") != NULL && strstr(std[2], "120") != NULL) {
-		if (strstr(std[0], "sqlite3MemMalloc") != NULL) {
-//		if (rt.code_num == 1) {
-// store
-			
+		if (strstr(std[0], ans) != NULL) {
 			char save_substring[20] ;
 			memset(save_substring, 0, 20) ;
 			sprintf(save_substring, "substring%d", file_index) ;
@@ -78,30 +74,14 @@ reduce_to_substring (char * executeFile_path, char * input_file_path, int n, int
 			fclose(result_file) ;
 			fclose(file_candidate) ;
 			
-			//
-			/*		
-			remove("temp") ;
-			FILE * new_temp = fopen("temp", "w+") ;
-			FILE * result_file = fopen(substring, "r") ;
-			unsigned char buf ;
-			while (fread(&buf, 1, 1, result_file)) {
-				fwrite(&buf, 1, 1, new_temp);
-			}
-			fclose(result_file);
-			fclose(new_temp);
-			return substring;
-			*/	
 		}
 		
 	}
-	// random select
 	
 	if (file_index != 0) {
-//		fprintf(stderr, "substring: %d\n", file_index) ;
 		srand(time(NULL)) ;
 		int rand_num = rand() % file_index ;
 		sprintf(substring, "substring%d", rand_num) ;
-		// change temp
 		remove("temp") ;
 		FILE * new_temp = fopen("temp", "w+") ;
 		FILE * result_file = fopen(substring, "r") ;
@@ -116,7 +96,6 @@ reduce_to_substring (char * executeFile_path, char * input_file_path, int n, int
 		return substring ;	
 	}
 	
-	//
 	free(substring);
 	return input_file_path;
 }

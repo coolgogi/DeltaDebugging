@@ -12,6 +12,14 @@ VPATH = src
 TARGET = main
 SPLIT = split_main
 
+O_OBJS = o_runner o_ddmin o_substring o_complement o_split
+O_BINS = $(addsuffix .o, $(O_OBJS))
+O_BINFILES = $(addprefix bin/, $(O_BINS))
+O_SRCS = $(addsuffix, .c, $(O_OBJS))
+O_SRCFILES = $(addprefix src/, $(O_SRCS))
+O_TARGET = o_main
+
+
 all: $(OBJS)
 	$(CC) $(CFLAGS) -L/usr/local/lib $(SRCDIR)/$(TARGET).c -lgsl -lgslcblas $(BINFILES) -lm -o $(BINDIR)/$(TARGET) 
 
@@ -23,6 +31,12 @@ $(SPLIT) : split
 
 $(BINDIR):
 	mkdir $(BINDIR)
+
+origin: $(O_OBJS)
+	$(CC) $(CFLAGS) $(SRCDIR)/$(O_TARGET).c $(O_BINFILES) -o $(BINDIR)/$(O_TARGET)
+
+$(O_OBJS): | $(BINDIR)
+	$(CC) -c $(CFLAGS) $(SRCDIR)/$@.c -o $(BINDIR)/$@.o
 
 clean:
 	rm $(BINFILES) $(BINDIR)/$(TARGET)
