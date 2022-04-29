@@ -104,7 +104,7 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n, int
         // random select
         
         if (file_index != 0) {
-		fprintf(stderr, "complement: %d\n", file_index) ;
+//		fprintf(stderr, "complement: %d\n", file_index) ;
                 srand(time(NULL)) ;
                 int rand_num = rand() % file_index ;
                 sprintf(complement, "complement%d", rand_num) ;

@@ -10,7 +10,7 @@
 ,1)| 194<8888888 | dattime(1,1 
 ,1)|8 | datetime(88
 ,1)|8 | datetime(11,1 
-,1)| ( SELECT 878888 | datetime(1,1 
+,1)| ( SELECT 8878888 | datetime(1,1 
 ,1)|8 | datetime(1,1 
 ,1)| 388<8888888 | datetime(1,1 
 ,1,1 
@@ -30,7 +30,7 @@
 ,1)|8 | datetime(1,1 
 ,1)| ( SELECT 8878888 | datetime(1,1 
 ,1)|8 | datetime(1,1 
-,1)| 388<8888888 | datetime(1,1 
+,1)| 388<8888888 | dtetime(1,1 
 ,1)|8 | datetime(1,1 
 ,1)| ( (E1 
 ,1 

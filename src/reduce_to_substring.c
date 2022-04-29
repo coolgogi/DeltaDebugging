@@ -97,7 +97,7 @@ reduce_to_substring (char * executeFile_path, char * input_file_path, int n, int
 	// random select
 	
 	if (file_index != 0) {
-		fprintf(stderr, "substring: %d\n", file_index) ;
+//		fprintf(stderr, "substring: %d\n", file_index) ;
 		srand(time(NULL)) ;
 		int rand_num = rand() % file_index ;
 		sprintf(substring, "substring%d", rand_num) ;

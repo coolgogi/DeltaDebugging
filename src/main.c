@@ -27,7 +27,7 @@ main (int argc, char * argv[]) {
 		exit(errno);
 	}
 	
-	printf("result : %s\n", ddmin(argv[1], argv[2], atof(argv[3]), atof(argv[4]), atof(argv[5]))) ;
+	ddmin(argv[1], argv[2], atof(argv[3]), atof(argv[4]), atof(argv[5])) ;
 	time_t end = time(NULL) ;
 	printf("running time: %ld\n", end - begin) ;
 	return 0;

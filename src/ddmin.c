@@ -67,7 +67,7 @@ ddmin (char * executeFile_path, char * inputFile_path, double p, double p2, doub
 				n = n * 2;
 			}
 		}
-		fprintf(stderr, "|T|: %d, n: %d\n", file_size, n) ;
+//		fprintf(stderr, "|T|: %d, n: %d\n", file_size, n) ;
 	} 
     	while ((file_size > 1) && (file_size * 2 != n));
 	
