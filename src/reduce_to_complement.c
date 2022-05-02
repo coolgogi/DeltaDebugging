@@ -45,10 +45,6 @@ reduce_to_complement(char * executeFile_path, char * input_file_path, int n, int
 			continue ;
 
 		EXITCODE rt = runner(executeFile_path, complement, "output/ddmin_output.txt");
-		if (rt.code_num != 77) {
-			remove("stderr") ;
-			continue ;
-		}
 
 		FILE * stderr_ptr = fopen("stderr", "r") ;
 	        char std[3][300] ;

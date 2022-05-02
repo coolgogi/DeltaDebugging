@@ -38,10 +38,6 @@ reduce_to_substring (char * executeFile_path, char * input_file_path, int n, int
 		fclose(read_file) ;
 
 		EXITCODE rt = runner(executeFile_path, substring, "output/ddmin_output.txt");
-		if (rt.code_num != 77) {
-			remove("stderr") ;
-			continue ;
-		}		
 
 		FILE * stderr_ptr = fopen("stderr", "r") ;
                 char std[3][300] ;

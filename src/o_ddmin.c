@@ -10,6 +10,7 @@
 #include <math.h>
 #include <time.h>
 #include <sys/time.h>
+#include <sys/param.h>
 
 char *
 o_ddmin (char * executeFile_path, char * inputFile_path, char * ans) {
@@ -51,7 +52,7 @@ o_ddmin (char * executeFile_path, char * inputFile_path, char * ans) {
 		
 		result_file_path = o_complement(executeFile_path, "temp", n, len, ans);
 		if (strcmp(result_file_path, "temp") != 0) {
-			n = 2;
+			n = MAX(n - 1, 2) ;
 			free(result_file_path);
 		}
 		else {
