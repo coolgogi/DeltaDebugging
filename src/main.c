@@ -26,7 +26,7 @@ main (int argc, char * argv[]) {
 		perror("main.c argv[2]: ");
 		exit(errno);
 	}
-	
+		
 	ddmin(argv[1], argv[2], atof(argv[3]), atof(argv[4]), atof(argv[5]), argv[6]) ;
 	time_t end = time(NULL) ;
 	printf("running time: %ld\n", end - begin) ;
