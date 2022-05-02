@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 INFO: libFuzzer ignores flags that start with '--'
 INFO: Seed: 1963190293
 INFO: Loaded 1 modules   (39753 inline 8-bit counters): 39753 [0xa774c0, 0xa81009), 
@@ -10,3 +11,6 @@ Executed substring in 0 ms
 ***       executed the target code on a fixed set of inputs.
 ***
 ==2517077== libFuzzer: run interrupted; exiting
+=======
+INFO: Seed: 1418213254
+>>>>>>> 029ba3281a5ac77c3f6681185e6bbf75c7967a52

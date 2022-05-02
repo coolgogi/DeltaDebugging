@@ -69,6 +69,7 @@ ddmin (char * executeFile_path, char * inputFile_path, double p, double p2, doub
 				n = n * 2;
 			}
 		}
+		free(len) ;
 	} 
     	while ((file_size > 1) && (file_size * 2 != n));
 	
