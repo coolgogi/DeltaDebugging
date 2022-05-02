@@ -1,6 +1,6 @@
 p1=1.00
 p2=1.00
-sigma=5.0
+sigma=5.00
 ans=__asan_memcpy
 home=/home/suhyun/DeltaDebugging
 r_ddmin=$home/bin/main
@@ -27,7 +27,7 @@ done
 
 wc -c $outDIR/* > $outDIR/result_wc
 
-sigma=30.0
+sigma=30.00
 outDIR=$PWD/p${p1}/sigma${sigma}/
 
 if [ ! -d $PWD/p${p1} ]; then

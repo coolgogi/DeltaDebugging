@@ -20,7 +20,11 @@ fi
 
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 export LD_LIBRARY_PATH
+<<<<<<< HEAD
 for i in {751..1000}; do
+=======
+for i in {251..500}; do
+>>>>>>> 614b7f1800eebed24f04298f5cd509601e50cda7
         $r_ddmin $target $input $p1 $p2 $sigma $ans
         mv temp $outDIR/$i
 done
@@ -41,7 +45,11 @@ fi
 
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 export LD_LIBRARY_PATH
+<<<<<<< HEAD
 for i in {751..1000}; do
+=======
+for i in {251..500}; do
+>>>>>>> 614b7f1800eebed24f04298f5cd509601e50cda7
         $r_ddmin $target $input $p1 $p2 $sigma $ans
         mv temp $outDIR/$i
 done
