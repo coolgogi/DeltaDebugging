@@ -10,6 +10,7 @@
 #include <math.h>
 #include <time.h>
 #include <sys/time.h>
+#include <sys/param.h>
 char *
 ddmin (char * executeFile_path, char * inputFile_path, double p, double p2, double sigma, char * ans) {
 	
@@ -45,6 +46,7 @@ ddmin (char * executeFile_path, char * inputFile_path, double p, double p2, doub
 		gettimeofday(&tv, NULL) ;	
 		srand(tv.tv_usec) ;
 		rand_num = (double) rand() / (double) RAND_MAX;
+		fprintf(stderr, "p, rand_num : %lf, %lf\n", p, rand_num) ;
 		if (p >= rand_num) {
 			result_file_path = reduce_to_substring(executeFile_path, "temp", n, len, p2, ans);
 			if (strcmp(result_file_path, "temp") != 0) {
@@ -60,13 +62,14 @@ ddmin (char * executeFile_path, char * inputFile_path, double p, double p2, doub
 		if (p >= rand_num) {
 			result_file_path = reduce_to_complement(executeFile_path, "temp", n, len, p2, ans);
 			if (strcmp(result_file_path, "temp") != 0) {
-				n = 2;
+				n = MAX(n-1, 2) ;
 				free(result_file_path);
 			}
 			else {
 				n = n * 2;
 			}
 		}
+		free(len) ;
 	} 
     	while ((file_size > 1) && (file_size * 2 != n));
 	

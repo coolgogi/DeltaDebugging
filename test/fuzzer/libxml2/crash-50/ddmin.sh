@@ -20,7 +20,7 @@ fi
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 export LD_LIBRARY_PATH
 for i in {1..1000}; do
-	ASAN_OPTIONS=detect_leaks=0 $r_ddmin $target $input $p1 $p2 $sigma $ans
+	$r_ddmin $target $input $p1 $p2 $sigma $ans
 	mv temp $outDIR/$i
 done
 
@@ -42,7 +42,7 @@ fi
 LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 export LD_LIBRARY_PATH
 for i in {1..1000}; do
-	ASAN_OPTIONS=detect_leaks=0 $r_ddmin $target $input $p1 $p2 $sigma $ans
+	$r_ddmin $target $input $p1 $p2 $sigma $ans
 	mv temp $outDIR/$i
 done
 

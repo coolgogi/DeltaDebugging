@@ -1,6 +1,25 @@
+<<<<<<< HEAD
 INFO: Seed: 2140664990
 INFO: Loaded 1 modules   (38212 inline 8-bit counters): 38212 [0xa494e0, 0xa52a24), 
 INFO: Loaded 1 PC tables (38212 PCs): 38212 [0x956910,0x9ebd50), 
 /home/suhyun/DeltaDebugging/fuzzer-test-suite/build_sqlite/sqlite-2016-11-14-fsanitize_fuzzer: Running 1 inputs 1 time(s) each.
 Running: complement
 ==2140525== libFuzzer: run interrupted; exiting
+=======
+<<<<<<< HEAD
+INFO: libFuzzer ignores flags that start with '--'
+INFO: Seed: 1963190293
+INFO: Loaded 1 modules   (39753 inline 8-bit counters): 39753 [0xa774c0, 0xa81009), 
+INFO: Loaded 1 PC tables (39753 PCs): 39753 [0x97f050,0xa1a4e0), 
+/home/suhyun/DeltaDebugging/fuzzer-test-suite/build_sqlite/sqlite-2016-11-14-fsanitize_fuzzer: Running 1 inputs 1 time(s) each.
+Running: substring
+Executed substring in 0 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
+==2517077== libFuzzer: run interrupted; exiting
+=======
+INFO: Seed: 1418213254
+>>>>>>> 029ba3281a5ac77c3f6681185e6bbf75c7967a52
+>>>>>>> c5199ce16a5399f2ccffb40e505d2c9390963f20

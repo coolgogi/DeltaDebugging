@@ -1,3 +1,6 @@
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+export LD_LIBRARY_PATH
+
 ASAN_OPTIONS=detect_leaks=0 ../../../../bin/main ../../../../libxml2/xmllint ../../../input/poc 0.8 1.0 5.0
 mv temp sigma5.0/0
 ASAN_OPTIONS=detect_leaks=0 ../../../../bin/main ../../../../libxml2/xmllint ../../../input/poc 0.8 1.0 5.0
