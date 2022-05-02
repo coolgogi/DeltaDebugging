@@ -1,6 +1,6 @@
 import sys
-
-f = open("result_wc",'r')
+file_name = sys.argv[1] + "result_wc"
+f = open(file_name,'r')
 
 minimum=sys.maxsize
 maximum=0

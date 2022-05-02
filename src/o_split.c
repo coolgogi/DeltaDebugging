@@ -17,7 +17,7 @@ o_split (int file_size, int n) {
 	
 	int mean = (int) ceil(((double) file_size - (double) n) / (double) n) ;
 	int sum_len = 0 ;
-	for (int i = 0 ; i < n - 2 ; i ++) {
+	for (int i = 0 ; i < n - 1 ; i ++) {
 		int allot = mean ;
 		if (allot + sum_len > file_size - n) {
 			if (sum_len == file_size - n) {
