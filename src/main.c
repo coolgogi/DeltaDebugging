@@ -13,7 +13,7 @@ int
 main (int argc, char * argv[]) {
 	time_t begin = time(NULL);
 	if (argc != 7) {
-		fprintf(stderr, "invalid arguments");
+		fprintf(stderr, "invalid arguments\n");
 		exit(EXIT_FAILURE);
 	}
 
