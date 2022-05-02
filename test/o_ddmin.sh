@@ -15,7 +15,7 @@
 #echo "result of libxml2 uaf"
 #wc -c temp
 
-../bin/o_main ../fuzzer-test-suite/build_sqlite/sqlite-2016-11-14-fsanitize_fuzzer ../fuzzer-test-suite/sqlite-2016-11-14/leak-b0276985af5aa23c98d9abf33856ce069ef600e2 sqlite3MemMalloc
+../bin/o_main ../fuzzer-test-suite/build_sqlite/sqlite-2016-11-14-fsanitize_fuzzer leak sqlite3MemMalloc
 echo "result of sqlite leak-b0"
 wc -c temp
 #../bin/o_main ../fuzzer-test-suite/build_sqlite/sqlite-2016-11-14-fsanitize_fuzzer ../fuzzer-test-suite/sqlite-2016-11-14/crash-0adc497ccfcc1a4d5e031b735c599df0cae3f4eb heap-use-after-free
