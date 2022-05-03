@@ -1,0 +1,2 @@
+INFO: libFuzzer ignores flags that start with '--'
+INFO: Seed: 2692195664
