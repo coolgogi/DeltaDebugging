@@ -27,20 +27,20 @@ o_runner (char * exec, char * input, char * output) {
 		int fp[3] ;
 		mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH ;
 		fp[0] = open(input, O_RDONLY);
-	//	fp[1] = open(output, O_WRONLY | O_CREAT, mode) ;
+//		fp[1] = open(output, O_WRONLY | O_CREAT, mode) ;
 		fp[2] = open("stderr", O_WRONLY | O_CREAT, mode) ;
 		if (dup2(fp[0], STDIN_FILENO) == -1) {
 			fprintf(stderr, "STDIN dup2 error in runner\n");
    	      		rt.code_num = errno;	
 	    		exit(errno);
        		}
-		/*
+/*		
 		if (dup2(fp[1], STDOUT_FILENO) == -1 ) {
 			fprintf(stderr, "STDOUT dup2 error in runner\n");
  	      		rt.code_num = errno;	
 	    		exit(errno);
 		}
-		*/	
+*/			
 		if (dup2(fp[2], STDERR_FILENO) == -1) {
             		fprintf(stderr, "STDERR dup2 error in runner\n");
             		rt.code_num = errno;
