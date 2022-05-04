@@ -21,8 +21,8 @@ o_substring (char * executeFile_path, char * input_file_path, int n, int * len, 
 	for (int i = 0 ; i < n ; i ++ ) {
 		sprintf(substring, "substring");
 		remove(substring) ;
-		FILE * write_file = fopen(substring, "w+");
-		FILE * read_file = fopen(input_file_path, "r") ;
+		FILE * write_file = fopen(substring, "wb+");
+		FILE * read_file = fopen(input_file_path, "rb") ;
 		fseek(read_file, sum, SEEK_SET) ; 
 		for (int j = 0 ; j < len[i] ; j ++) {
 			unsigned char buf ;
@@ -52,8 +52,8 @@ o_substring (char * executeFile_path, char * input_file_path, int n, int * len, 
 
 		if (strstr(output, ans) != NULL) {
 			remove("temp") ;
-			FILE * new_temp = fopen("temp", "w+") ;
-			FILE * result_file = fopen(substring, "r") ;
+			FILE * new_temp = fopen("temp", "wb+") ;
+			FILE * result_file = fopen(substring, "rb") ;
 			unsigned char buf ;
 			while (fread(&buf, 1, 1, result_file)) {
 				fwrite(&buf, 1, 1, new_temp);

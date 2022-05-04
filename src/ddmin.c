@@ -46,7 +46,6 @@ ddmin (char * executeFile_path, char * inputFile_path, double p, double p2, doub
 		gettimeofday(&tv, NULL) ;	
 		srand(tv.tv_usec) ;
 		rand_num = (double) rand() / (double) RAND_MAX;
-		fprintf(stderr, "p, rand_num : %lf, %lf\n", p, rand_num) ;
 		if (p >= rand_num) {
 			result_file_path = reduce_to_substring(executeFile_path, "temp", n, len, p2, ans);
 			if (strcmp(result_file_path, "temp") != 0) {

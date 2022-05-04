@@ -16,6 +16,7 @@ char *
 o_ddmin (char * executeFile_path, char * inputFile_path, char * ans) {
 	
 	int n = 2 ;
+	int index = 0 ;
 	int file_size;
 	char * current_file_path = (char *) malloc (100);
 	strcpy(current_file_path, "temp");

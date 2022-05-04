@@ -3,7 +3,7 @@ INCLDIR = include
 BINDIR = bin
 SRCDIR = src
 CFLAGS = -g -O0 -fsanitize=address 
-OBJS = runner ddmin reduce reduce_to_substring reduce_to_complement trace-pc-guard split
+OBJS = runner ddmin reduce_to_substring reduce_to_complement trace-pc-guard split
 BINS = $(addsuffix .o, $(OBJS))
 BINFILES = $(addprefix bin/, $(BINS))
 SRCS = $(addsuffix .c, $(OBJS))
@@ -18,6 +18,13 @@ O_BINFILES = $(addprefix bin/, $(O_BINS))
 O_SRCS = $(addsuffix, .c, $(O_OBJS))
 O_SRCFILES = $(addprefix src/, $(O_SRCS))
 O_TARGET = o_main
+
+R_OBJS = r_runner r_ddmin range r_substring r_complement r_split
+R_BINS = $(addsuffix .o, $(R_OBJS))
+R_BINFILES = $(addprefix bin/, $(R_BINS))
+R_SRCS = $(addsuffix, .c, $(R_OBJS))
+R_SRCFILES = $(addprefix src/, $(R_SRCS))
+R_TARGET = r_main
 
 
 all: $(OBJS)
@@ -35,11 +42,19 @@ $(BINDIR):
 origin: $(O_OBJS)
 	$(CC) $(CFLAGS) $(SRCDIR)/$(O_TARGET).c $(O_BINFILES) -o $(BINDIR)/$(O_TARGET)
 
+r: $(R_OBJS)
+	$(CC) $(CFLAGS) $(SRCDIR)/$(R_TARGET).c $(R_BINFILES) -o $(BINDIR)/$(R_TARGET)
+
 $(O_OBJS): | $(BINDIR)
+	$(CC) -c $(CFLAGS) $(SRCDIR)/$@.c -o $(BINDIR)/$@.o
+
+$(R_OBJS): | $(BINDIR)
 	$(CC) -c $(CFLAGS) $(SRCDIR)/$@.c -o $(BINDIR)/$@.o
 
 clean:
 	rm $(BINFILES) $(BINDIR)/$(TARGET)
+	rm $(O_BINFILES) $(BINDIR)/$(O_TARGET)
+	rm $(R_BINFILES) $(BINDIR)/$(R_TARGET)
 
 split_clean:
 	rm $(BINDIR)/$(SPLIT)

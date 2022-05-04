@@ -27,7 +27,8 @@ main (int argc, char * argv[]) {
 		exit(errno);
 	}
 	
-	o_ddmin(argv[1], argv[2], argv[3]) ;
+	char * rt = o_ddmin(argv[1], argv[2], argv[3]) ;
+	free(rt) ; 
 	time_t end = time(NULL) ;
 	printf("running time: %ld\n", end - begin) ;
 	return 0;
