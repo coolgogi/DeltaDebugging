@@ -1,0 +1,777 @@
+len: 2716, n: 2, path: ../fuzzer-test-suite/sqlite-2016-11-14/leak-b0276985af5aa23c98d9abf33856ce069ef600e2, file_no: 0
+len: 2716, n: 4, path: ../fuzzer-test-suite/sqlite-2016-11-14/leak-b0276985af5aa23c98d9abf33856ce069ef600e2, file_no: 0
+len: 2716, n: 8, path: ../fuzzer-test-suite/sqlite-2016-11-14/leak-b0276985af5aa23c98d9abf33856ce069ef600e2, file_no: 0
+last minimized: ../fuzzer-test-suite/sqlite-2016-11-14/leak-b0276985af5aa23c98d9abf33856ce069ef600e2
+len: 2377, n: 7, path: ./3.part, file_no: 0
+last minimized: ./3.part
+len: 2037, n: 6, path: ./4.part, file_no: 0
+len: 2037, n: 12, path: ./4.part, file_no: 0
+last minimized: ./4.part
+len: 1867, n: 11, path: ./6.part, file_no: 0
+last minimized: ./6.part
+len: 1698, n: 10, path: ./7.part, file_no: 0
+len: 1698, n: 20, path: ./7.part, file_no: 0
+last minimized: ./7.part
+len: 1613, n: 19, path: ./9.part, file_no: 0
+last minimized: ./9.part
+len: 1529, n: 18, path: ./10.part, file_no: 0
+len: 1529, n: 36, path: ./10.part, file_no: 0
+last minimized: ./10.part
+len: 1486, n: 35, path: ./12.part, file_no: 0
+last minimized: ./12.part
+len: 1444, n: 34, path: ./13.part, file_no: 0
+len: 1444, n: 68, path: ./13.part, file_no: 0
+len: 1444, n: 136, path: ./13.part, file_no: 0
+last minimized: ./13.part
+len: 1433, n: 135, path: ./16.part, file_no: 0
+last minimized: ./16.part
+len: 1422, n: 134, path: ./17.part, file_no: 0
+last minimized: ./17.part
+len: 1412, n: 133, path: ./18.part, file_no: 0
+len: 1412, n: 266, path: ./18.part, file_no: 0
+last minimized: ./18.part
+len: 1406, n: 265, path: ./20.part, file_no: 0
+last minimized: ./20.part
+len: 1400, n: 264, path: ./21.part, file_no: 0
+last minimized: ./21.part
+len: 1394, n: 263, path: ./22.part, file_no: 0
+last minimized: ./22.part
+len: 1388, n: 262, path: ./23.part, file_no: 0
+last minimized: ./23.part
+len: 1382, n: 261, path: ./24.part, file_no: 0
+last minimized: ./24.part
+len: 1376, n: 260, path: ./25.part, file_no: 0
+last minimized: ./25.part
+len: 1370, n: 259, path: ./26.part, file_no: 0
+last minimized: ./26.part
+len: 1364, n: 258, path: ./27.part, file_no: 0
+last minimized: ./27.part
+len: 1358, n: 257, path: ./28.part, file_no: 0
+last minimized: ./28.part
+len: 1352, n: 256, path: ./29.part, file_no: 0
+last minimized: ./29.part
+len: 1346, n: 255, path: ./30.part, file_no: 0
+last minimized: ./30.part
+len: 1340, n: 254, path: ./31.part, file_no: 0
+last minimized: ./31.part
+len: 1334, n: 253, path: ./32.part, file_no: 0
+last minimized: ./32.part
+len: 1328, n: 252, path: ./33.part, file_no: 0
+last minimized: ./33.part
+len: 1322, n: 251, path: ./34.part, file_no: 0
+last minimized: ./34.part
+len: 1317, n: 250, path: ./35.part, file_no: 0
+last minimized: ./35.part
+len: 1311, n: 249, path: ./36.part, file_no: 0
+last minimized: ./36.part
+len: 1306, n: 248, path: ./37.part, file_no: 0
+last minimized: ./37.part
+len: 1301, n: 247, path: ./38.part, file_no: 0
+last minimized: ./38.part
+len: 1296, n: 246, path: ./39.part, file_no: 0
+last minimized: ./39.part
+len: 1291, n: 245, path: ./40.part, file_no: 0
+last minimized: ./40.part
+len: 1286, n: 244, path: ./41.part, file_no: 0
+last minimized: ./41.part
+len: 1281, n: 243, path: ./42.part, file_no: 0
+last minimized: ./42.part
+len: 1276, n: 242, path: ./43.part, file_no: 0
+last minimized: ./43.part
+len: 1271, n: 241, path: ./44.part, file_no: 0
+last minimized: ./44.part
+len: 1266, n: 240, path: ./45.part, file_no: 0
+last minimized: ./45.part
+len: 1261, n: 239, path: ./46.part, file_no: 0
+last minimized: ./46.part
+len: 1256, n: 238, path: ./47.part, file_no: 0
+last minimized: ./47.part
+len: 1251, n: 237, path: ./48.part, file_no: 0
+last minimized: ./48.part
+len: 1246, n: 236, path: ./49.part, file_no: 0
+last minimized: ./49.part
+len: 1241, n: 235, path: ./50.part, file_no: 0
+last minimized: ./50.part
+len: 1236, n: 234, path: ./51.part, file_no: 0
+last minimized: ./51.part
+len: 1231, n: 233, path: ./52.part, file_no: 0
+last minimized: ./52.part
+len: 1226, n: 232, path: ./53.part, file_no: 0
+last minimized: ./53.part
+len: 1221, n: 231, path: ./54.part, file_no: 0
+last minimized: ./54.part
+len: 1216, n: 230, path: ./55.part, file_no: 0
+last minimized: ./55.part
+len: 1211, n: 229, path: ./56.part, file_no: 0
+last minimized: ./56.part
+len: 1206, n: 228, path: ./57.part, file_no: 0
+last minimized: ./57.part
+len: 1201, n: 227, path: ./58.part, file_no: 0
+last minimized: ./58.part
+len: 1196, n: 226, path: ./59.part, file_no: 0
+last minimized: ./59.part
+len: 1191, n: 225, path: ./60.part, file_no: 0
+last minimized: ./60.part
+len: 1186, n: 224, path: ./61.part, file_no: 0
+last minimized: ./61.part
+len: 1181, n: 223, path: ./62.part, file_no: 0
+last minimized: ./62.part
+len: 1176, n: 222, path: ./63.part, file_no: 0
+last minimized: ./63.part
+len: 1171, n: 221, path: ./64.part, file_no: 0
+last minimized: ./64.part
+len: 1166, n: 220, path: ./65.part, file_no: 0
+last minimized: ./65.part
+len: 1161, n: 219, path: ./66.part, file_no: 0
+last minimized: ./66.part
+len: 1156, n: 218, path: ./67.part, file_no: 0
+last minimized: ./67.part
+len: 1151, n: 217, path: ./68.part, file_no: 0
+last minimized: ./68.part
+len: 1146, n: 216, path: ./69.part, file_no: 0
+last minimized: ./69.part
+len: 1141, n: 215, path: ./70.part, file_no: 0
+last minimized: ./70.part
+len: 1136, n: 214, path: ./71.part, file_no: 0
+len: 1136, n: 428, path: ./71.part, file_no: 0
+last minimized: ./71.part
+len: 1133, n: 427, path: ./73.part, file_no: 0
+last minimized: ./73.part
+len: 1130, n: 426, path: ./74.part, file_no: 0
+last minimized: ./74.part
+len: 1127, n: 425, path: ./75.part, file_no: 0
+last minimized: ./75.part
+len: 1124, n: 424, path: ./76.part, file_no: 0
+last minimized: ./76.part
+len: 1121, n: 423, path: ./77.part, file_no: 0
+last minimized: ./77.part
+len: 1118, n: 422, path: ./78.part, file_no: 0
+last minimized: ./78.part
+len: 1115, n: 421, path: ./79.part, file_no: 0
+last minimized: ./79.part
+len: 1112, n: 420, path: ./80.part, file_no: 0
+last minimized: ./80.part
+len: 1109, n: 419, path: ./81.part, file_no: 0
+last minimized: ./81.part
+len: 1106, n: 418, path: ./82.part, file_no: 0
+last minimized: ./82.part
+len: 1103, n: 417, path: ./83.part, file_no: 0
+last minimized: ./83.part
+len: 1100, n: 416, path: ./84.part, file_no: 0
+last minimized: ./84.part
+len: 1097, n: 415, path: ./85.part, file_no: 0
+last minimized: ./85.part
+len: 1094, n: 414, path: ./86.part, file_no: 0
+last minimized: ./86.part
+len: 1091, n: 413, path: ./87.part, file_no: 0
+last minimized: ./87.part
+len: 1088, n: 412, path: ./88.part, file_no: 0
+last minimized: ./88.part
+len: 1085, n: 411, path: ./89.part, file_no: 0
+last minimized: ./89.part
+len: 1082, n: 410, path: ./90.part, file_no: 0
+last minimized: ./90.part
+len: 1079, n: 409, path: ./91.part, file_no: 0
+last minimized: ./91.part
+len: 1076, n: 408, path: ./92.part, file_no: 0
+last minimized: ./92.part
+len: 1073, n: 407, path: ./93.part, file_no: 0
+last minimized: ./93.part
+len: 1070, n: 406, path: ./94.part, file_no: 0
+last minimized: ./94.part
+len: 1067, n: 405, path: ./95.part, file_no: 0
+last minimized: ./95.part
+len: 1064, n: 404, path: ./96.part, file_no: 0
+last minimized: ./96.part
+len: 1061, n: 403, path: ./97.part, file_no: 0
+last minimized: ./97.part
+len: 1058, n: 402, path: ./98.part, file_no: 0
+last minimized: ./98.part
+len: 1055, n: 401, path: ./99.part, file_no: 0
+last minimized: ./99.part
+len: 1052, n: 400, path: ./100.part, file_no: 0
+last minimized: ./100.part
+len: 1049, n: 399, path: ./101.part, file_no: 0
+last minimized: ./101.part
+len: 1046, n: 398, path: ./102.part, file_no: 0
+last minimized: ./102.part
+len: 1043, n: 397, path: ./103.part, file_no: 0
+last minimized: ./103.part
+len: 1040, n: 396, path: ./104.part, file_no: 0
+last minimized: ./104.part
+len: 1037, n: 395, path: ./105.part, file_no: 0
+last minimized: ./105.part
+len: 1034, n: 394, path: ./106.part, file_no: 0
+last minimized: ./106.part
+len: 1031, n: 393, path: ./107.part, file_no: 0
+last minimized: ./107.part
+len: 1028, n: 392, path: ./108.part, file_no: 0
+last minimized: ./108.part
+len: 1025, n: 391, path: ./109.part, file_no: 0
+last minimized: ./109.part
+len: 1022, n: 390, path: ./110.part, file_no: 0
+last minimized: ./110.part
+len: 1019, n: 389, path: ./111.part, file_no: 0
+last minimized: ./111.part
+len: 1016, n: 388, path: ./112.part, file_no: 0
+last minimized: ./112.part
+len: 1013, n: 387, path: ./113.part, file_no: 0
+last minimized: ./113.part
+len: 1010, n: 386, path: ./114.part, file_no: 0
+last minimized: ./114.part
+len: 1008, n: 385, path: ./115.part, file_no: 0
+last minimized: ./115.part
+len: 1005, n: 384, path: ./116.part, file_no: 0
+last minimized: ./116.part
+len: 1003, n: 383, path: ./117.part, file_no: 0
+last minimized: ./117.part
+len: 1001, n: 382, path: ./118.part, file_no: 0
+last minimized: ./118.part
+len: 999, n: 381, path: ./119.part, file_no: 0
+last minimized: ./119.part
+len: 997, n: 380, path: ./120.part, file_no: 0
+last minimized: ./120.part
+len: 995, n: 379, path: ./121.part, file_no: 0
+last minimized: ./121.part
+len: 993, n: 378, path: ./122.part, file_no: 0
+last minimized: ./122.part
+len: 991, n: 377, path: ./123.part, file_no: 0
+last minimized: ./123.part
+len: 989, n: 376, path: ./124.part, file_no: 0
+last minimized: ./124.part
+len: 987, n: 375, path: ./125.part, file_no: 0
+last minimized: ./125.part
+len: 985, n: 374, path: ./126.part, file_no: 0
+last minimized: ./126.part
+len: 983, n: 373, path: ./127.part, file_no: 0
+last minimized: ./127.part
+len: 981, n: 372, path: ./128.part, file_no: 0
+last minimized: ./128.part
+len: 979, n: 371, path: ./129.part, file_no: 0
+last minimized: ./129.part
+len: 977, n: 370, path: ./130.part, file_no: 0
+last minimized: ./130.part
+len: 975, n: 369, path: ./131.part, file_no: 0
+last minimized: ./131.part
+len: 973, n: 368, path: ./132.part, file_no: 0
+last minimized: ./132.part
+len: 971, n: 367, path: ./133.part, file_no: 0
+last minimized: ./133.part
+len: 969, n: 366, path: ./134.part, file_no: 0
+last minimized: ./134.part
+len: 967, n: 365, path: ./135.part, file_no: 0
+last minimized: ./135.part
+len: 965, n: 364, path: ./136.part, file_no: 0
+last minimized: ./136.part
+len: 963, n: 363, path: ./137.part, file_no: 0
+last minimized: ./137.part
+len: 961, n: 362, path: ./138.part, file_no: 0
+last minimized: ./138.part
+len: 959, n: 361, path: ./139.part, file_no: 0
+last minimized: ./139.part
+len: 957, n: 360, path: ./140.part, file_no: 0
+len: 957, n: 720, path: ./140.part, file_no: 0
+last minimized: ./140.part
+len: 955, n: 719, path: ./142.part, file_no: 0
+last minimized: ./142.part
+len: 953, n: 718, path: ./143.part, file_no: 0
+last minimized: ./143.part
+len: 951, n: 717, path: ./144.part, file_no: 0
+last minimized: ./144.part
+len: 949, n: 716, path: ./145.part, file_no: 0
+last minimized: ./145.part
+len: 947, n: 715, path: ./146.part, file_no: 0
+last minimized: ./146.part
+len: 945, n: 714, path: ./147.part, file_no: 0
+last minimized: ./147.part
+len: 943, n: 713, path: ./148.part, file_no: 0
+last minimized: ./148.part
+len: 941, n: 712, path: ./149.part, file_no: 0
+last minimized: ./149.part
+len: 939, n: 711, path: ./150.part, file_no: 0
+last minimized: ./150.part
+len: 937, n: 710, path: ./151.part, file_no: 0
+last minimized: ./151.part
+len: 935, n: 709, path: ./152.part, file_no: 0
+last minimized: ./152.part
+len: 933, n: 708, path: ./153.part, file_no: 0
+last minimized: ./153.part
+len: 931, n: 707, path: ./154.part, file_no: 0
+last minimized: ./154.part
+len: 929, n: 706, path: ./155.part, file_no: 0
+last minimized: ./155.part
+len: 927, n: 705, path: ./156.part, file_no: 0
+last minimized: ./156.part
+len: 925, n: 704, path: ./157.part, file_no: 0
+last minimized: ./157.part
+len: 923, n: 703, path: ./158.part, file_no: 0
+last minimized: ./158.part
+len: 921, n: 702, path: ./159.part, file_no: 0
+last minimized: ./159.part
+len: 919, n: 701, path: ./160.part, file_no: 0
+last minimized: ./160.part
+len: 917, n: 700, path: ./161.part, file_no: 0
+last minimized: ./161.part
+len: 915, n: 699, path: ./162.part, file_no: 0
+last minimized: ./162.part
+len: 913, n: 698, path: ./163.part, file_no: 0
+last minimized: ./163.part
+len: 911, n: 697, path: ./164.part, file_no: 0
+last minimized: ./164.part
+len: 909, n: 696, path: ./165.part, file_no: 0
+last minimized: ./165.part
+len: 907, n: 695, path: ./166.part, file_no: 0
+last minimized: ./166.part
+len: 905, n: 694, path: ./167.part, file_no: 0
+last minimized: ./167.part
+len: 903, n: 693, path: ./168.part, file_no: 0
+last minimized: ./168.part
+len: 901, n: 692, path: ./169.part, file_no: 0
+last minimized: ./169.part
+len: 899, n: 691, path: ./170.part, file_no: 0
+last minimized: ./170.part
+len: 897, n: 690, path: ./171.part, file_no: 0
+last minimized: ./171.part
+len: 895, n: 689, path: ./172.part, file_no: 0
+last minimized: ./172.part
+len: 893, n: 688, path: ./173.part, file_no: 0
+last minimized: ./173.part
+len: 891, n: 687, path: ./174.part, file_no: 0
+last minimized: ./174.part
+len: 889, n: 686, path: ./175.part, file_no: 0
+last minimized: ./175.part
+len: 888, n: 685, path: ./176.part, file_no: 0
+last minimized: ./176.part
+len: 886, n: 684, path: ./177.part, file_no: 0
+last minimized: ./177.part
+len: 884, n: 683, path: ./178.part, file_no: 0
+last minimized: ./178.part
+len: 883, n: 682, path: ./179.part, file_no: 0
+last minimized: ./179.part
+len: 882, n: 681, path: ./180.part, file_no: 0
+last minimized: ./180.part
+len: 881, n: 680, path: ./181.part, file_no: 0
+last minimized: ./181.part
+len: 880, n: 679, path: ./182.part, file_no: 0
+last minimized: ./182.part
+len: 879, n: 678, path: ./183.part, file_no: 0
+last minimized: ./183.part
+len: 878, n: 677, path: ./184.part, file_no: 0
+last minimized: ./184.part
+len: 877, n: 676, path: ./185.part, file_no: 0
+last minimized: ./185.part
+len: 876, n: 675, path: ./186.part, file_no: 0
+last minimized: ./186.part
+len: 875, n: 674, path: ./187.part, file_no: 0
+last minimized: ./187.part
+len: 874, n: 673, path: ./188.part, file_no: 0
+last minimized: ./188.part
+len: 873, n: 672, path: ./189.part, file_no: 0
+last minimized: ./189.part
+len: 872, n: 671, path: ./190.part, file_no: 0
+last minimized: ./190.part
+len: 871, n: 670, path: ./191.part, file_no: 0
+last minimized: ./191.part
+len: 870, n: 669, path: ./192.part, file_no: 0
+last minimized: ./192.part
+len: 869, n: 668, path: ./193.part, file_no: 0
+last minimized: ./193.part
+len: 868, n: 667, path: ./194.part, file_no: 0
+last minimized: ./194.part
+len: 867, n: 666, path: ./195.part, file_no: 0
+last minimized: ./195.part
+len: 866, n: 665, path: ./196.part, file_no: 0
+last minimized: ./196.part
+len: 865, n: 664, path: ./197.part, file_no: 0
+last minimized: ./197.part
+len: 864, n: 663, path: ./198.part, file_no: 0
+last minimized: ./198.part
+len: 863, n: 662, path: ./199.part, file_no: 0
+last minimized: ./199.part
+len: 862, n: 661, path: ./200.part, file_no: 0
+last minimized: ./200.part
+len: 861, n: 660, path: ./201.part, file_no: 0
+last minimized: ./201.part
+len: 860, n: 659, path: ./202.part, file_no: 0
+last minimized: ./202.part
+len: 859, n: 658, path: ./203.part, file_no: 0
+last minimized: ./203.part
+len: 858, n: 657, path: ./204.part, file_no: 0
+last minimized: ./204.part
+len: 857, n: 656, path: ./205.part, file_no: 0
+last minimized: ./205.part
+len: 856, n: 655, path: ./206.part, file_no: 0
+last minimized: ./206.part
+len: 855, n: 654, path: ./207.part, file_no: 0
+last minimized: ./207.part
+len: 854, n: 653, path: ./208.part, file_no: 0
+last minimized: ./208.part
+len: 853, n: 652, path: ./209.part, file_no: 0
+last minimized: ./209.part
+len: 852, n: 651, path: ./210.part, file_no: 0
+last minimized: ./210.part
+len: 851, n: 650, path: ./211.part, file_no: 0
+last minimized: ./211.part
+len: 850, n: 649, path: ./212.part, file_no: 0
+last minimized: ./212.part
+len: 849, n: 648, path: ./213.part, file_no: 0
+last minimized: ./213.part
+len: 848, n: 647, path: ./214.part, file_no: 0
+last minimized: ./214.part
+len: 847, n: 646, path: ./215.part, file_no: 0
+last minimized: ./215.part
+len: 846, n: 645, path: ./216.part, file_no: 0
+last minimized: ./216.part
+len: 845, n: 644, path: ./217.part, file_no: 0
+last minimized: ./217.part
+len: 844, n: 643, path: ./218.part, file_no: 0
+last minimized: ./218.part
+len: 843, n: 642, path: ./219.part, file_no: 0
+last minimized: ./219.part
+len: 842, n: 641, path: ./220.part, file_no: 0
+last minimized: ./220.part
+len: 841, n: 640, path: ./221.part, file_no: 0
+last minimized: ./221.part
+len: 840, n: 639, path: ./222.part, file_no: 0
+last minimized: ./222.part
+len: 839, n: 638, path: ./223.part, file_no: 0
+last minimized: ./223.part
+len: 838, n: 637, path: ./224.part, file_no: 0
+last minimized: ./224.part
+len: 837, n: 636, path: ./225.part, file_no: 0
+last minimized: ./225.part
+len: 836, n: 635, path: ./226.part, file_no: 0
+last minimized: ./226.part
+len: 835, n: 634, path: ./227.part, file_no: 0
+last minimized: ./227.part
+len: 834, n: 633, path: ./228.part, file_no: 0
+last minimized: ./228.part
+len: 833, n: 632, path: ./229.part, file_no: 0
+last minimized: ./229.part
+len: 832, n: 631, path: ./230.part, file_no: 0
+last minimized: ./230.part
+len: 831, n: 630, path: ./231.part, file_no: 0
+last minimized: ./231.part
+len: 830, n: 629, path: ./232.part, file_no: 0
+last minimized: ./232.part
+len: 829, n: 628, path: ./233.part, file_no: 0
+last minimized: ./233.part
+len: 828, n: 627, path: ./234.part, file_no: 0
+last minimized: ./234.part
+len: 827, n: 626, path: ./235.part, file_no: 0
+last minimized: ./235.part
+len: 826, n: 625, path: ./236.part, file_no: 0
+last minimized: ./236.part
+len: 825, n: 624, path: ./237.part, file_no: 0
+last minimized: ./237.part
+len: 824, n: 623, path: ./238.part, file_no: 0
+last minimized: ./238.part
+len: 823, n: 622, path: ./239.part, file_no: 0
+last minimized: ./239.part
+len: 822, n: 621, path: ./240.part, file_no: 0
+last minimized: ./240.part
+len: 821, n: 620, path: ./241.part, file_no: 0
+last minimized: ./241.part
+len: 820, n: 619, path: ./242.part, file_no: 0
+last minimized: ./242.part
+len: 819, n: 618, path: ./243.part, file_no: 0
+last minimized: ./243.part
+len: 818, n: 617, path: ./244.part, file_no: 0
+last minimized: ./244.part
+len: 817, n: 616, path: ./245.part, file_no: 0
+last minimized: ./245.part
+len: 816, n: 615, path: ./246.part, file_no: 0
+last minimized: ./246.part
+len: 815, n: 614, path: ./247.part, file_no: 0
+last minimized: ./247.part
+len: 814, n: 613, path: ./248.part, file_no: 0
+last minimized: ./248.part
+len: 813, n: 612, path: ./249.part, file_no: 0
+last minimized: ./249.part
+len: 812, n: 611, path: ./250.part, file_no: 0
+last minimized: ./250.part
+len: 811, n: 610, path: ./251.part, file_no: 0
+last minimized: ./251.part
+len: 810, n: 609, path: ./252.part, file_no: 0
+last minimized: ./252.part
+len: 809, n: 608, path: ./253.part, file_no: 0
+last minimized: ./253.part
+len: 808, n: 607, path: ./254.part, file_no: 0
+last minimized: ./254.part
+len: 807, n: 606, path: ./255.part, file_no: 0
+last minimized: ./255.part
+len: 806, n: 605, path: ./256.part, file_no: 0
+last minimized: ./256.part
+len: 805, n: 604, path: ./257.part, file_no: 0
+last minimized: ./257.part
+len: 804, n: 603, path: ./258.part, file_no: 0
+last minimized: ./258.part
+len: 803, n: 602, path: ./259.part, file_no: 0
+last minimized: ./259.part
+len: 802, n: 601, path: ./260.part, file_no: 0
+last minimized: ./260.part
+len: 801, n: 600, path: ./261.part, file_no: 0
+last minimized: ./261.part
+len: 800, n: 599, path: ./262.part, file_no: 0
+last minimized: ./262.part
+len: 799, n: 598, path: ./263.part, file_no: 0
+last minimized: ./263.part
+len: 798, n: 597, path: ./264.part, file_no: 0
+last minimized: ./264.part
+len: 797, n: 596, path: ./265.part, file_no: 0
+last minimized: ./265.part
+len: 796, n: 595, path: ./266.part, file_no: 0
+last minimized: ./266.part
+len: 795, n: 594, path: ./267.part, file_no: 0
+last minimized: ./267.part
+len: 794, n: 593, path: ./268.part, file_no: 0
+last minimized: ./268.part
+len: 793, n: 592, path: ./269.part, file_no: 0
+last minimized: ./269.part
+len: 792, n: 591, path: ./270.part, file_no: 0
+last minimized: ./270.part
+len: 791, n: 590, path: ./271.part, file_no: 0
+last minimized: ./271.part
+len: 790, n: 589, path: ./272.part, file_no: 0
+last minimized: ./272.part
+len: 789, n: 588, path: ./273.part, file_no: 0
+last minimized: ./273.part
+len: 788, n: 587, path: ./274.part, file_no: 0
+last minimized: ./274.part
+len: 787, n: 586, path: ./275.part, file_no: 0
+last minimized: ./275.part
+len: 786, n: 585, path: ./276.part, file_no: 0
+last minimized: ./276.part
+len: 785, n: 584, path: ./277.part, file_no: 0
+last minimized: ./277.part
+len: 784, n: 583, path: ./278.part, file_no: 0
+last minimized: ./278.part
+len: 783, n: 582, path: ./279.part, file_no: 0
+last minimized: ./279.part
+len: 782, n: 581, path: ./280.part, file_no: 0
+last minimized: ./280.part
+len: 781, n: 580, path: ./281.part, file_no: 0
+last minimized: ./281.part
+len: 780, n: 579, path: ./282.part, file_no: 0
+last minimized: ./282.part
+len: 779, n: 578, path: ./283.part, file_no: 0
+last minimized: ./283.part
+len: 778, n: 577, path: ./284.part, file_no: 0
+last minimized: ./284.part
+len: 777, n: 576, path: ./285.part, file_no: 0
+last minimized: ./285.part
+len: 776, n: 575, path: ./286.part, file_no: 0
+last minimized: ./286.part
+len: 775, n: 574, path: ./287.part, file_no: 0
+last minimized: ./287.part
+len: 774, n: 573, path: ./288.part, file_no: 0
+last minimized: ./288.part
+len: 773, n: 572, path: ./289.part, file_no: 0
+last minimized: ./289.part
+len: 772, n: 571, path: ./290.part, file_no: 0
+last minimized: ./290.part
+len: 771, n: 570, path: ./291.part, file_no: 0
+last minimized: ./291.part
+len: 770, n: 569, path: ./292.part, file_no: 0
+last minimized: ./292.part
+len: 769, n: 568, path: ./293.part, file_no: 0
+last minimized: ./293.part
+len: 768, n: 567, path: ./294.part, file_no: 0
+last minimized: ./294.part
+len: 767, n: 566, path: ./295.part, file_no: 0
+last minimized: ./295.part
+len: 766, n: 565, path: ./296.part, file_no: 0
+last minimized: ./296.part
+len: 765, n: 564, path: ./297.part, file_no: 0
+last minimized: ./297.part
+len: 764, n: 563, path: ./298.part, file_no: 0
+last minimized: ./298.part
+len: 763, n: 562, path: ./299.part, file_no: 0
+last minimized: ./299.part
+len: 762, n: 561, path: ./300.part, file_no: 0
+last minimized: ./300.part
+len: 761, n: 560, path: ./301.part, file_no: 0
+len: 761, n: 761, path: ./301.part, file_no: 0
+last minimized: ./301.part
+len: 760, n: 760, path: ./303.part, file_no: 0
+last minimized: ./303.part
+len: 759, n: 759, path: ./304.part, file_no: 0
+last minimized: ./304.part
+len: 758, n: 758, path: ./305.part, file_no: 0
+last minimized: ./305.part
+len: 757, n: 757, path: ./306.part, file_no: 0
+last minimized: ./306.part
+len: 756, n: 756, path: ./307.part, file_no: 0
+last minimized: ./307.part
+len: 755, n: 755, path: ./308.part, file_no: 0
+last minimized: ./308.part
+len: 754, n: 754, path: ./309.part, file_no: 0
+last minimized: ./309.part
+len: 753, n: 753, path: ./310.part, file_no: 0
+last minimized: ./310.part
+len: 752, n: 752, path: ./311.part, file_no: 0
+last minimized: ./311.part
+len: 751, n: 751, path: ./312.part, file_no: 0
+last minimized: ./312.part
+len: 750, n: 750, path: ./313.part, file_no: 0
+last minimized: ./313.part
+len: 749, n: 749, path: ./314.part, file_no: 0
+last minimized: ./314.part
+len: 748, n: 748, path: ./315.part, file_no: 0
+last minimized: ./315.part
+len: 747, n: 747, path: ./316.part, file_no: 0
+last minimized: ./316.part
+len: 746, n: 746, path: ./317.part, file_no: 0
+last minimized: ./317.part
+len: 745, n: 745, path: ./318.part, file_no: 0
+last minimized: ./318.part
+len: 744, n: 744, path: ./319.part, file_no: 0
+last minimized: ./319.part
+len: 743, n: 743, path: ./320.part, file_no: 0
+last minimized: ./320.part
+len: 742, n: 742, path: ./321.part, file_no: 0
+last minimized: ./321.part
+len: 741, n: 741, path: ./322.part, file_no: 0
+last minimized: ./322.part
+len: 740, n: 740, path: ./323.part, file_no: 0
+last minimized: ./323.part
+len: 739, n: 739, path: ./324.part, file_no: 0
+last minimized: ./324.part
+len: 738, n: 738, path: ./325.part, file_no: 0
+last minimized: ./325.part
+len: 737, n: 737, path: ./326.part, file_no: 0
+last minimized: ./326.part
+len: 736, n: 736, path: ./327.part, file_no: 0
+last minimized: ./327.part
+len: 735, n: 735, path: ./328.part, file_no: 0
+last minimized: ./328.part
+len: 734, n: 734, path: ./329.part, file_no: 0
+last minimized: ./329.part
+len: 733, n: 733, path: ./330.part, file_no: 0
+last minimized: ./330.part
+len: 732, n: 732, path: ./331.part, file_no: 0
+last minimized: ./331.part
+len: 731, n: 731, path: ./332.part, file_no: 0
+last minimized: ./332.part
+len: 730, n: 730, path: ./333.part, file_no: 0
+last minimized: ./333.part
+len: 729, n: 729, path: ./334.part, file_no: 0
+last minimized: ./334.part
+len: 728, n: 728, path: ./335.part, file_no: 0
+last minimized: ./335.part
+len: 727, n: 727, path: ./336.part, file_no: 0
+last minimized: ./336.part
+len: 726, n: 726, path: ./337.part, file_no: 0
+last minimized: ./337.part
+len: 725, n: 725, path: ./338.part, file_no: 0
+last minimized: ./338.part
+len: 724, n: 724, path: ./339.part, file_no: 0
+last minimized: ./339.part
+len: 723, n: 723, path: ./340.part, file_no: 0
+last minimized: ./340.part
+len: 722, n: 722, path: ./341.part, file_no: 0
+last minimized: ./341.part
+len: 721, n: 721, path: ./342.part, file_no: 0
+last minimized: ./342.part
+len: 720, n: 720, path: ./343.part, file_no: 0
+last minimized: ./343.part
+len: 719, n: 719, path: ./344.part, file_no: 0
+last minimized: ./344.part
+len: 718, n: 718, path: ./345.part, file_no: 0
+last minimized: ./345.part
+len: 717, n: 717, path: ./346.part, file_no: 0
+last minimized: ./346.part
+len: 716, n: 716, path: ./347.part, file_no: 0
+last minimized: ./347.part
+len: 715, n: 715, path: ./348.part, file_no: 0
+last minimized: ./348.part
+len: 714, n: 714, path: ./349.part, file_no: 0
+last minimized: ./349.part
+len: 713, n: 713, path: ./350.part, file_no: 0
+last minimized: ./350.part
+len: 712, n: 712, path: ./351.part, file_no: 0
+last minimized: ./351.part
+len: 711, n: 711, path: ./352.part, file_no: 0
+last minimized: ./352.part
+len: 710, n: 710, path: ./353.part, file_no: 0
+last minimized: ./353.part
+len: 709, n: 709, path: ./354.part, file_no: 0
+last minimized: ./354.part
+len: 708, n: 708, path: ./355.part, file_no: 0
+last minimized: ./355.part
+len: 707, n: 707, path: ./356.part, file_no: 0
+last minimized: ./356.part
+len: 706, n: 706, path: ./357.part, file_no: 0
+last minimized: ./357.part
+len: 705, n: 705, path: ./358.part, file_no: 0
+last minimized: ./358.part
+len: 704, n: 704, path: ./359.part, file_no: 0
+last minimized: ./359.part
+len: 703, n: 703, path: ./360.part, file_no: 0
+last minimized: ./360.part
+len: 702, n: 702, path: ./361.part, file_no: 0
+last minimized: ./361.part
+len: 701, n: 701, path: ./362.part, file_no: 0
+last minimized: ./362.part
+len: 700, n: 700, path: ./363.part, file_no: 0
+last minimized: ./363.part
+len: 699, n: 699, path: ./364.part, file_no: 0
+last minimized: ./364.part
+len: 698, n: 698, path: ./365.part, file_no: 0
+last minimized: ./365.part
+len: 697, n: 697, path: ./366.part, file_no: 0
+last minimized: ./366.part
+len: 696, n: 696, path: ./367.part, file_no: 0
+last minimized: ./367.part
+len: 695, n: 695, path: ./368.part, file_no: 0
+last minimized: ./368.part
+len: 694, n: 694, path: ./369.part, file_no: 0
+last minimized: ./369.part
+len: 693, n: 693, path: ./370.part, file_no: 0
+last minimized: ./370.part
+len: 692, n: 692, path: ./371.part, file_no: 0
+last minimized: ./371.part
+len: 691, n: 691, path: ./372.part, file_no: 0
+last minimized: ./372.part
+len: 690, n: 690, path: ./373.part, file_no: 0
+last minimized: ./373.part
+len: 689, n: 689, path: ./374.part, file_no: 0
+last minimized: ./374.part
+len: 688, n: 688, path: ./375.part, file_no: 0
+last minimized: ./375.part
+len: 687, n: 687, path: ./376.part, file_no: 0
+last minimized: ./376.part
+len: 686, n: 686, path: ./377.part, file_no: 0
+last minimized: ./377.part
+len: 685, n: 685, path: ./378.part, file_no: 0
+last minimized: ./378.part
+len: 684, n: 684, path: ./379.part, file_no: 0
+last minimized: ./379.part
+len: 683, n: 683, path: ./380.part, file_no: 0
+last minimized: ./380.part
+len: 682, n: 682, path: ./381.part, file_no: 0
+last minimized: ./381.part
+len: 681, n: 681, path: ./382.part, file_no: 0
+last minimized: ./382.part
+len: 680, n: 680, path: ./383.part, file_no: 0
+last minimized: ./383.part
+len: 679, n: 679, path: ./384.part, file_no: 0
+last minimized: ./384.part
+len: 678, n: 678, path: ./385.part, file_no: 0
+last minimized: ./385.part
+len: 677, n: 677, path: ./386.part, file_no: 0
+last minimized: ./386.part
+len: 676, n: 676, path: ./387.part, file_no: 0
+last minimized: ./387.part
+len: 675, n: 675, path: ./388.part, file_no: 0
+last minimized: ./388.part
+len: 674, n: 674, path: ./389.part, file_no: 0
+last minimized: ./389.part
+len: 673, n: 673, path: ./390.part, file_no: 0
+last minimized: ./390.part
+len: 672, n: 672, path: ./391.part, file_no: 0
+last minimized: ./391.part
+len: 671, n: 671, path: ./392.part, file_no: 0
+len: 671, n: 671
+The times of execute 393, iteration: 0 
+applied ddmin result: ./392.part

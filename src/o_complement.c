@@ -21,8 +21,8 @@ o_complement(char * executeFile_path, char * input_file_path, int n, int * len, 
 	for (int i = 0 ; i < n ; i ++) {
 		sprintf(complement, "complement");
 		remove(complement) ;
-		FILE * write_file = fopen(complement, "w+");
-		FILE * read_file = fopen(input_file_path, "r");
+		FILE * write_file = fopen(complement, "wb+");
+		FILE * read_file = fopen(input_file_path, "rb");
 		for (int j = 0 ; j < n ; j ++) {
 			for (int k = 0 ; k < len[j] ; k ++) {
 				unsigned char buf ;
@@ -55,8 +55,8 @@ o_complement(char * executeFile_path, char * input_file_path, int n, int * len, 
 
 		if (strstr(output, ans) != NULL) {
 			remove("temp") ;
-			FILE * new_temp = fopen("temp", "w+") ;
-			FILE * result_file = fopen(complement, "r") ;
+			FILE * new_temp = fopen("temp", "wb+") ;
+			FILE * result_file = fopen(complement, "rb") ;
 			unsigned char buf ;
 			while (fread(&buf, 1, 1, result_file) == 1) {
 				fwrite(&buf, 1, 1, new_temp) ;
