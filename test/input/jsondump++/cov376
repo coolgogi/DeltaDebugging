@@ -5,7 +5,7 @@
     #1 0x4c37c7 in dump /home/suhyun/DIY-fuzzer/jsmn/example/jsondump.c:44:9
     #2 0x4c2ef4 in main /home/suhyun/DIY-fuzzer/jsmn/example/jsondump.c:120:4
     #2 0x4c2f7e in main /home/suhyun/DIY-fuzzer/jsmn/example/jsondump.c:113:11
-    #3 0x7fc980714c86 in __libc_start_main /build/glibc-uZu3wS/glibc-2.27/csu/../csu/libc-start.c:310
+    #3 0x7f4f298efc86 in __libc_start_main /build/glibc-uZu3wS/glibc-2.27/csu/../csu/libc-start.c:310
     #4 0x41ae59 in _start (/home/suhyun/DeltaDebugging/test/input/jsondump++/jsondump+0x41ae59)
   0x0c2a7fff8000: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
   0x0c2a7fff8010: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
@@ -83,8 +83,8 @@
 0x4c53bb
 0x4c568d
 0x615000000280 is located 0 bytes to the right of 512-byte region [0x615000000080,0x615000000280)
-==806==ABORTING
-==806==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x615000000280 at pc 0x0000004c387d bp 0x7ffdc126a5b0 sp 0x7ffdc126a5a8
+==16208==ABORTING
+==16208==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x615000000280 at pc 0x0000004c387d bp 0x7ffcdd40f5d0 sp 0x7ffcdd40f5c8
 =================================================================
 =>0x0c2a7fff8050:[fa]fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
 READ of size 4 at 0x615000000280 thread T0

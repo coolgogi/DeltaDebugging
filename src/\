@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "../include/runner.h"
+#include "../include/ddmin.h"
+#include "../include/token.h"
+#include <errno.h>
+#include <unistd.h>
+#include <limits.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <math.h>
+#include <time.h>
+#include <sys/time.h>
+#include <sys/param.h>
+
+
+int
+t_ddmin (char * executeFile_path, char * inputFile_path, char * ans, char * offsetFile_path) {
+	//size
+	struct stat st ;
+	stat(inputFile_path, &st) ;
+	int size = st.st_size ;
+	char * data = (char *) calloc (sizeof(char), size) ;
+
+	//data
+	FILE * inputFile = fopen(inputFile_path, "r") ;
+	fread(data, size, 1, inputFile) ;
+	fclose(inputFile) ;
+	
+	//offset
+	int num_of_offset = 0 ;
+	FILE * offsetFile = fopen(offsetFile_path, "r") ;
+	int * offset = (int *) calloc (sizeof(int), size) ;
+	char offset_temp[20] ;
+	memset(offset, 0, sizeof(int) * size) ;
+	memset(offset_temp, 0, 20) ;
+	while (!feof(offsetFile)) {
+		fgets(offset_temp, 20, offsetFile) ;
+		int index = atoi(offset_temp) ;
+		offset[index] = 1 ;
+	}
+	//number of offset
+	for (int i = 1 ; i < size ; i ++) {
+		if (offset[i] == 1) {
+			if (offset[i - 1] == 0) {
+				num_of_offset ++ ;
+			}
+			num_of_offset ++ ;
+		}
+		else {
+			if (i == size - 1) {
+				num_of_offset ++ ; 
+			}
+		}
+	}
+
+	//token
+	char * token[num_of_offset] ;
+		
+
+
+
+}
+

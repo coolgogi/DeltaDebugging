@@ -3,6 +3,7 @@ INCLDIR = include
 BINDIR = bin
 SRCDIR = src
 CFLAGS = -g -O0 -fsanitize=address 
+
 OBJS = runner ddmin reduce_to_substring reduce_to_complement trace-pc-guard split
 BINS = $(addsuffix .o, $(OBJS))
 BINFILES = $(addprefix bin/, $(BINS))
@@ -26,6 +27,12 @@ R_SRCS = $(addsuffix, .c, $(R_OBJS))
 R_SRCFILES = $(addprefix src/, $(R_SRCS))
 R_TARGET = r_main
 
+T_OBJS = t_runner t_ddmin t_substring t_complement t_split t_range
+T_BINS = $(addsuffix .o, $(T_OBJS))
+T_BINFILES = $(addprefix bin/, $(T_BINS))
+T_SRCS = $(addsuffix, .c, $(T_OBJS))
+T_SRCFILES = $(addprefix src/, $(T_SRCS))
+T_TARGET = t_main
 
 all: $(OBJS)
 	$(CC) $(CFLAGS) -L/usr/local/lib $(SRCDIR)/$(TARGET).c -lgsl -lgslcblas $(BINFILES) -lm -o $(BINDIR)/$(TARGET) 
@@ -45,11 +52,18 @@ origin: $(O_OBJS)
 r: $(R_OBJS)
 	$(CC) $(CFLAGS) $(SRCDIR)/$(R_TARGET).c $(R_BINFILES) -o $(BINDIR)/$(R_TARGET)
 
+token: $(T_OBJS)
+	$(CC) $(CFLAGS) $(SRCDIR)/$(T_TARGET).c $(T_BINFILES) -o $(BINDIR)/$(T_TARGET)
+
 $(O_OBJS): | $(BINDIR)
 	$(CC) -c $(CFLAGS) $(SRCDIR)/$@.c -o $(BINDIR)/$@.o
 
 $(R_OBJS): | $(BINDIR)
 	$(CC) -c $(CFLAGS) $(SRCDIR)/$@.c -o $(BINDIR)/$@.o
+
+$(T_OBJS): | $(BINDIR)
+	$(CC) -c $(CFLAGS) $(SRCDIR)/$@.c -o $(BINDIR)/$@.o
+
 
 clean:
 	rm $(BINFILES) $(BINDIR)/$(TARGET)

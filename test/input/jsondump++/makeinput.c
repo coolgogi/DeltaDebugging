@@ -14,7 +14,7 @@ main (int argc, char * argv[]) {
 
 	for (int i = 0 ; i < n ; i ++ ) {
 		char * file_name = (char *) malloc (10) ;
-		sprintf(file_name, "%d", i) ;
+		sprintf(file_name, "%03d", i) ;
 		FILE * write_file = fopen(file_name , "w+") ;
 		
 		fseek(origin_file, 0, SEEK_SET) ;
