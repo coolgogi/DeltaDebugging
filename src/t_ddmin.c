@@ -96,9 +96,7 @@ t_ddmin (char * executeFile_path, char * inputFile_path, char * offsetFile_path,
 
 	int cnt = 0 ;
 	for (int rs = token_size - 1 ; rs > 0 ; rs --) {
-//	for (int rs = 1 ; rs > 0 ; rs -- ) {
 		for (int begin = 0 ; begin <= token_size - rs ; begin ++) {
-//		for (int begin = token_size - rs - 2 ; begin <= token_size - rs ; begin ++) {
 			//temp_token
 			char * temp_token[token_size - rs] ;
 			int temp_index = 0 ;
@@ -165,12 +163,9 @@ t_ddmin (char * executeFile_path, char * inputFile_path, char * offsetFile_path,
 			if (strstr(output, ans) != NULL) {
 				strcpy(answer, target_input) ;
 				int temp_num = sizeof(temp_token) / sizeof(temp_token[0]) ;
-/*
-*				for (int i = 0 ; i < temp_index ; i ++ ) {
-*					fprintf(stderr, "[%s]", temp_token[i]) ;
-*
-*				}
-*/
+				FILE * answer_temp = fopen("answer_temp", "w+") ;
+				fwrite(answer, strlen(answer), 1, answer_temp) ;
+				fclose(answer_temp) ;
 				for (int i = 0 ; i < temp_index ; i ++ ) {
 					token[i] = (char *) realloc (token[i], strlen(temp_token[i]) + 1) ;
 					for (int j = 0 ; j < strlen(temp_token[i]) ; j ++ ) {
@@ -180,10 +175,7 @@ t_ddmin (char * executeFile_path, char * inputFile_path, char * offsetFile_path,
 				}		
 
 				token_size = token_size - rs ;
-				rs = token_size ;
-				begin = -1 ;
-//				rs = 1 ;
-//				begin = token_size - rs - 2 ;	
+				begin = MAX(-1, begin - rs);
 			}
 			for (int i = 0 ; i < temp_index ; i ++) {
 				free(temp_token[i]) ; 
