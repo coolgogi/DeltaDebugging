@@ -1,5 +1,0 @@
-{""*,
-  xamples: [
-    xample/*.c
-  ],
-  ""t}

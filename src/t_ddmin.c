@@ -59,7 +59,6 @@ t_ddmin (char * executeFile_path, char * inputFile_path, char * offsetFile_path,
 	int total = 0 ;
 	for (int i = 0 ; i < size ; i ++) {
 		int temp = 0 ;
-		fprintf(stderr, "i: %d\n", i) ;
 		if (offset[i] == 1) {
 			token_len[token_len_index] = 1 ;
 			total = total + 1 ;
@@ -89,14 +88,22 @@ t_ddmin (char * executeFile_path, char * inputFile_path, char * offsetFile_path,
 			token[i][j] = data[d_index] ;
 			d_index ++ ;
 		}
+		fprintf(stderr, "token[%d]:\n%s\n", i, token[i]) ;
 	}
 	
 	//range
 	int token_size = sizeof(token) / sizeof(token[0]) ;
 
 	int cnt = 0 ;
+	int flag = 0 ;
+	int min_index = -1 ;
+	int min_size = size ;
+
 	for (int rs = token_size - 1 ; rs > 0 ; rs --) {
 		for (int begin = 0 ; begin <= token_size - rs ; begin ++) {
+			if (flag == 1) {
+				begin = min_index ; 
+			}
 			//temp_token
 			char * temp_token[token_size - rs] ;
 			int temp_index = 0 ;
@@ -161,27 +168,39 @@ t_ddmin (char * executeFile_path, char * inputFile_path, char * offsetFile_path,
 			remove("stderr") ;
 
 			if (strstr(output, ans) != NULL) {
-				strcpy(answer, target_input) ;
-				int temp_num = sizeof(temp_token) / sizeof(temp_token[0]) ;
-				FILE * answer_temp = fopen("answer_temp", "w+") ;
-				fwrite(answer, strlen(answer), 1, answer_temp) ;
-				fclose(answer_temp) ;
-				for (int i = 0 ; i < temp_index ; i ++ ) {
-					token[i] = (char *) realloc (token[i], strlen(temp_token[i]) + 1) ;
-					for (int j = 0 ; j < strlen(temp_token[i]) ; j ++ ) {
-						token[i][j] = temp_token[i][j] ; 
-					}
-					token[i][strlen(temp_token[i])] = '\0' ; 
-				}		
-
-				token_size = token_size - rs ;
-				begin = MAX(-1, begin - rs);
+				if (min_size > strlen(target_input)) {
+					min_size = strlen(target_input) ;
+					min_index = begin ;
+				}
+				if (flag == 1) {	
+					strcpy(answer, target_input) ;
+					int temp_num = sizeof(temp_token) / sizeof(temp_token[0]) ;
+					FILE * answer_temp = fopen("answer_temp", "w+") ;
+					fwrite(answer, strlen(answer), 1, answer_temp) ;
+					fclose(answer_temp) ;
+					for (int i = 0 ; i < temp_index ; i ++ ) {
+						token[i] = (char *) realloc (token[i], strlen(temp_token[i]) + 1) ;
+						for (int j = 0 ; j < strlen(temp_token[i]) ; j ++ ) {
+							token[i][j] = temp_token[i][j] ; 
+						}
+						token[i][strlen(temp_token[i])] = '\0' ; 
+					}		
+					min_index = -1 ;
+					flag = 0 ;
+					token_size = token_size - rs ;
+					begin = MAX(-1, begin - rs);
+				}
 			}
 			for (int i = 0 ; i < temp_index ; i ++) {
 				free(temp_token[i]) ; 
 			}
 			free(target_input) ;
 		}
+		if (min_index != -1) {
+			rs ++ ;
+			flag = 1 ;
+		}
+		
 	}	
 	
 	FILE * output = fopen("token_range_result", "w+") ;

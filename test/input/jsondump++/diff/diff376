@@ -1,0 +1,72 @@
+0a1,38
+> 
+>     #0 0x4938b9 in realloc (/home/suhyun/DeltaDebugging/test/input/jsondump++/jsondump+0x4938b9)
+>     #0 0x4c387c in dump /home/suhyun/DIY-fuzzer/jsmn/example/jsondump.c:33:9
+>     #1 0x4c2f7e in realloc_it /home/suhyun/DIY-fuzzer/jsmn/example/jsondump.c:15:12
+>     #1 0x4c37c7 in dump /home/suhyun/DIY-fuzzer/jsmn/example/jsondump.c:44:9
+>     #2 0x4c2ef4 in main /home/suhyun/DIY-fuzzer/jsmn/example/jsondump.c:120:4
+>     #2 0x4c2f7e in main /home/suhyun/DIY-fuzzer/jsmn/example/jsondump.c:113:11
+>     #3 0x7f4f298efc86 in __libc_start_main /build/glibc-uZu3wS/glibc-2.27/csu/../csu/libc-start.c:310
+>     #4 0x41ae59 in _start (/home/suhyun/DeltaDebugging/test/input/jsondump++/jsondump+0x41ae59)
+>   0x0c2a7fff8000: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+>   0x0c2a7fff8010: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>   0x0c2a7fff8020: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>   0x0c2a7fff8030: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>   0x0c2a7fff8040: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>   0x0c2a7fff8060: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+>   0x0c2a7fff8070: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+>   0x0c2a7fff8080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+>   0x0c2a7fff8090: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+>   0x0c2a7fff80a0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+>   ASan internal:           fe
+>   Addressable:           00
+>   Array cookie:            ac
+>   Container overflow:      fc
+>   Freed heap region:       fd
+>   Global init order:       f6
+>   Global redzone:          f9
+>   Heap left redzone:       fa
+>   Intra object redzone:    bb
+>   Left alloca redzone:     ca
+>   Partially addressable: 01 02 03 04 05 06 07 
+>   Poisoned by user:        f7
+>   Right alloca redzone:    cb
+>   Shadow gap:              cc
+>   Stack after return:      f5
+>   Stack left redzone:      f1
+>   Stack mid redzone:       f2
+>   Stack right redzone:     f3
+>   Stack use after scope:   f8
+2d39
+< 0x4c2f40
+4,5c41,48
+< 0x4c2fc4
+< 0x4c3259
+---
+> 0x4c2fe4
+> 0x4c3354
+> 0x4c34a0
+> 0x4c34de
+> 0x4c3535
+> 0x4c36c2
+> 0x4c378a
+> 0x4c3824
+28a72
+> 0x4c4c57
+36c80
+< 0x4c5235
+---
+> 0x4c5217
+41c85,94
+< fread(): unexpected EOF
+---
+> 0x615000000280 is located 0 bytes to the right of 512-byte region [0x615000000080,0x615000000280)
+> ==16208==ABORTING
+> ==16208==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x615000000280 at pc 0x0000004c387d bp 0x7ffcdd40f5d0 sp 0x7ffcdd40f5c8
+> =================================================================
+> =>0x0c2a7fff8050:[fa]fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+> READ of size 4 at 0x615000000280 thread T0
+> SUMMARY: AddressSanitizer: heap-buffer-overflow /home/suhyun/DIY-fuzzer/jsmn/example/jsondump.c:33:9 in dump
+> Shadow byte legend (one shadow byte represents 8 application bytes):
+> Shadow bytes around the buggy address:
+> allocated by thread T0 here:
