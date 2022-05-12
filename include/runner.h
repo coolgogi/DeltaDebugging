@@ -30,3 +30,4 @@ EXITCODE runner (char *, char *, char *);
 EXITCODE o_runner (char *, char *, char *);
 EXITCODE r_runner (char *, char *, char *);
 EXITCODE t_runner (char *, char *, char *);
+EXITCODE thd_runner (char *, char *, char *);

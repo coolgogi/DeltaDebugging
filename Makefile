@@ -34,6 +34,13 @@ T_SRCS = $(addsuffix, .c, $(T_OBJS))
 T_SRCFILES = $(addprefix src/, $(T_SRCS))
 T_TARGET = t_main
 
+THD_OBJS = thd_runner thd_ddmin thd_range
+THD_BINS = $(addsuffix .o, $(THD_OBJS))
+THD_BINFILES = $(addprefix bin/thread/, $(THD_BINS))
+THD_SRCS = $(addsuffx, .c (THD_OBJS))
+THD_SRCFILES = $(addprefix src/thread/, $(THD_SRCFILES)) 
+THD_TARGET = thd_main
+
 all: $(OBJS)
 	$(CC) $(CFLAGS) -L/usr/local/lib $(SRCDIR)/$(TARGET).c -lgsl -lgslcblas $(BINFILES) -lm -o $(BINDIR)/$(TARGET) 
 
@@ -55,6 +62,9 @@ r: $(R_OBJS)
 token: $(T_OBJS)
 	$(CC) $(CFLAGS) $(SRCDIR)/$(T_TARGET).c $(T_BINFILES) -o $(BINDIR)/$(T_TARGET)
 
+thread: $(THD_OBJS)
+	$(CC) $(CFLAGS) $(SRCDIR)/thread/$(THD_TARGET).c $(THD_BINFILES) -pthread -o $(BINDIR)/thread/$(THD_TARGET)
+
 $(O_OBJS): | $(BINDIR)
 	$(CC) -c $(CFLAGS) $(SRCDIR)/$@.c -o $(BINDIR)/$@.o
 
@@ -64,6 +74,8 @@ $(R_OBJS): | $(BINDIR)
 $(T_OBJS): | $(BINDIR)
 	$(CC) -c $(CFLAGS) $(SRCDIR)/$@.c -o $(BINDIR)/$@.o
 
+$(THD_OBJS): | $(BINDIR)
+	$(CC) -c $(CFLAGS) $(SRCDIR)/thread/$@.c -o $(BINDIR)/thread/$@.o
 
 clean:
 	rm $(BINFILES) $(BINDIR)/$(TARGET)

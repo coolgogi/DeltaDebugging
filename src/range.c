@@ -8,7 +8,7 @@
 #include "../include/ddmin.h"
 #include <sys/stat.h>
 #include <time.h>
-
+#include <sys/param.h>
 void
 range (char * executeFile_path, char * input_file_path, char * ans) {
 	
@@ -20,18 +20,19 @@ range (char * executeFile_path, char * input_file_path, char * ans) {
 	int file_size = st.st_size ;
 	
 	int cnt = 0 ;
-
+	int begin = 0 ;
 	for (int range_size = file_size - 1 ; range_size > 0 ; range_size --) {
-		for (int begin = 0 ; begin <= file_size - range_size ; begin ++) {
+		for ( ; begin <= file_size - range_size ; begin ++) {
 			int end = begin + range_size ;
 			FILE * read_file = fopen(input_file_path, "r") ;
 			FILE * write_file = fopen(complement, "w+") ;
 
-			if (begin != 0 ) {
+			if (begin != 0) {
 				int num = begin ;
 				unsigned char * buf = (unsigned char *) malloc (num) ;
 				fread(buf, num, 1, read_file) ;
 				fwrite(buf, num, 1, write_file) ;
+				free(buf) ;
 			}
 			fseek(read_file, end, SEEK_SET) ;
 			if (end != file_size) {
@@ -39,6 +40,7 @@ range (char * executeFile_path, char * input_file_path, char * ans) {
 				unsigned char * buf = (unsigned char *) malloc (num) ;
 				fread(buf, num, 1, read_file) ;
 				fwrite(buf, num, 1, write_file) ;
+				free(buf) ;
 			}
 
 			fclose(write_file) ;
@@ -74,10 +76,15 @@ range (char * executeFile_path, char * input_file_path, char * ans) {
 				fclose(new_temp) ;
 				stat("temp", &st) ;
 				file_size = st.st_size ;
-				range_size = st.st_size ;
+				range_size = MIN(range_size + 1, file_size) ;
+				begin = MAX(0, begin - range_size + 1)  ;
 				break ;
 			}
 		}
+		if (begin > file_size - range_size) {
+			begin = 0 ;
+		}
+		
 	}
 	free(complement) ;
 	printf("cnt: %d\n",cnt) ;

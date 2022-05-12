@@ -19,3 +19,5 @@ int * t_split (int file_size, int n, char * offset_path) ;
 char * t_substring (char * execute_path, char * input_path, int n, int * len, char * ans);
 char * t_complement (char * execute_path, char * input_path, int n, int * len, char * ans);
 
+char * thd_ddmin (char * path, char * inputFile_path, char * ans) ;
+void thd_range (char * execute_file_path, char * input_file_path, char * ans) ;
