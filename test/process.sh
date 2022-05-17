@@ -1,4 +1,4 @@
-THREAD=../bin/thread/thd_main
+THREAD=../bin/process/pcs_main
 TARGET=../jsmn/jsondump
 INPUT=input/dd.json
 MSG=jsondump.c:44
@@ -16,7 +16,11 @@ MSG=jsondump.c:44
 #TARGET=../fuzzer-test-suite/build_sqlite/sqlite-2016-11-14-fsanitize_fuzzer
 #INPUT=../fuzzer-test-suite/sqlite-2016-11-14/crash-1066e42866aad3a04e6851dc494ad54bc31b9f78
 #MSG=__asan_memcpy
+#INPUT=../fuzzer-test-suite/sqlite-2016-11-14/crash-0adc497ccfcc1a4d5e031b735c599df0cae3f4eb
+#MSG=exprAnalyze
+echo "process test"
 
-echo "thread test"
-
-$THREAD $TARGET $INPUT $MSG
+#$THREAD $TARGET $INPUT $MSG
+#wc -c temp
+ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG
+wc -c temp

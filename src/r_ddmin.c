@@ -12,68 +12,41 @@
 #include <sys/time.h>
 #include <sys/param.h>
 
+void
+writeFile (FILE * read_file, FILE * write_file, int len, unsigned char * buf) {
+        int buf_size = sizeof(&buf) / sizeof(unsigned char) ;
+        int loop = len / buf_size ;
+        int mod = len % buf_size ;
+        for (int i = 0 ; i < loop ; i ++) {
+                if (fread(buf, buf_size, 1, read_file) == 1) {
+                        fwrite(buf, buf_size, 1, write_file) ;
+                }
+        }
+        if (fread(buf, mod, 1, read_file) == 1) {
+                fwrite(buf, mod, 1, write_file) ;
+        }
+}
+
+
 char *
 r_ddmin (char * executeFile_path, char * inputFile_path, char * ans, double p) {
 	
-	int n = 2 ;
-	int file_size;
-	int initial_size;
-	char * current_file_path = (char *) malloc (100);
+	struct stat st ;
+	stat(inputFile_path, &st) ;
+	int file_size = st.st_size ;
+	char * current_file_path = (char *) malloc(5);
 	strcpy(current_file_path, "temp");
 	
-	FILE * temp_file = fopen("temp", "w+") ;
+	FILE * temp_file = fopen(current_file_path, "w+") ;
 	FILE * input_file = fopen(inputFile_path, "r") ;
-	unsigned char buf ; 
-	while (fread(&buf, 1, 1, input_file)) {
-		fwrite(&buf, 1, 1, temp_file) ;
-	}
+	unsigned char * buf = (unsigned char *) malloc(1024) ;
+	memset(buf, 0, 1024) ;
+	writeFile(input_file, temp_file, file_size, buf) ;
+	free(buf) ;
 	fclose(input_file) ;
 	fclose(temp_file) ;
 
-     	char * result_file_path ;
-	struct stat st;
-	stat("temp", &st);
-	initial_size = st.st_size ;
-
-	do {
-
-		stat("temp", &st);
-		file_size = st.st_size;
-		double prop = (double) file_size / (double) initial_size ;
-
-		if (n > file_size) {
-			n = file_size;
-		}
-		
-		if (prop <= p) {
-			// range algorithm
-			range(executeFile_path, "temp", ans) ;
-			break ;
-		}
-
-      	 	int * len ;
-		len = o_split(file_size, n) ; 
-			
-		result_file_path = r_substring(executeFile_path, "temp", n, len, ans);
-		if (strcmp(result_file_path, "temp") != 0) {
-			n = 2;
-			free(result_file_path);
-			continue ;
-		}
-		
-		result_file_path = r_complement(executeFile_path, "temp", n, len, ans);
-		if (strcmp(result_file_path, "temp") != 0) {
-			n = MAX(n - 1, 2) ;
-			free(result_file_path);
-		}
-		else {
-			n = n * 2;
-		}
-		free(len) ;
-	
-	
-	} 
-    	while ((file_size > 1) && (file_size * 2 != n));
+	range(executeFile_path, current_file_path, ans) ;
 	
 	return current_file_path;
 }

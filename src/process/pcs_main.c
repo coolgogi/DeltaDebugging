@@ -43,9 +43,10 @@ main (int argc, char * argv[]) {
 		perror("main.c argv[2]: ");
 		exit(errno);
 	}
+
         struct stat st;
         stat(argv[2], &st) ;
-        int file_size= st.st_size ;
+        int file_size = st.st_size ;
         char * temp = (char *) malloc(5) ;
         sprintf(temp, "temp") ;
 
@@ -60,7 +61,7 @@ main (int argc, char * argv[]) {
         fclose(temp_file) ;
         free(buf) ;
 
-	thd_range(argv[1], temp, argv[3]) ;
+	pcs_range(argv[1], temp, argv[3]) ;
 
         free(temp) ;
 	time_t end = time(NULL) ;

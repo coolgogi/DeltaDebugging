@@ -1,37 +1,46 @@
 
-': ': *"
+'': *
 s: 
    - c
 
-': ': 
+'': 
 : 
 : 
+
+
+
+ 
 
 : 
 
 : 
 
 
+t": 
 : 
-: 
-
-
 
  
 a'
+: 
+: 
+
+'test': 
+: 'test'
+
+
  
+ projects': 'repository'
 
-c JSON parser/tokenizer in C. It : '
-jsmn": can
-be: easily
-integrated: into
-resource-limited: or
-embedded: projects"
-'repository': 
   'type': 'git'
-  'url': https
+  'url': 'https://github.com/zserge/jsmn.git'
+: 'frameworks'
+'*': 'platforms'
+'*': 'examples'
 
-//github.com/zserge/jsmn.git": 'frameworks'
+   - 'example/*.c'
+: 'exclude'
+'test': 
+
 '*': 'platforms'
 '*': 'examples'
 
@@ -41,8 +50,10 @@ embedded: projects"
 : 
 : 
 : 
+: 
+: 
+: 
+: 
 
-: 
-: 
-: 
+
 : 

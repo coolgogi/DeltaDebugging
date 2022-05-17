@@ -1,0 +1,43 @@
+fts/libxml2/crash-50b12d37d6968a2cd9eb3665d158d9a2fb1f6e28
+cnt: 727
+running time: 11
+25 temp
+running time: 12
+25 temp
+fts/libxml2/leak-bdbb2857b7a086f003db1c418e1d124181341fb1
+cnt: 1378
+running time: 21
+31 temp
+running time: 22
+32 temp
+fts/libxml2/uaf-1153fbf466b9474e6e3c48c72e86a4726b449ef7
+fts/sqlite/crash-0adc497ccfcc1a4d5e031b735c599df0cae3f4eb
+cnt: 3915
+running time: 60
+88 temp
+running time: 65
+88 temp
+fts/sqlite/leak-b0276985af5aa23c98d9abf33856ce069ef600e2
+cnt: 2878905
+running time: 72441
+658 temp
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==22990==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x7f3e53337c01 bp 0x7f3e48e80e70 sp 0x7f3e48e80ab0 T426161)
+==22990==The signal is caused by a READ memory access.
+==22990==Hint: address points to the zero page.
+    #0 0x7f3e53337c01 in fseek /build/glibc-uZu3wS/glibc-2.27/libio/fseek.c:35
+    #1 0x4c4e66 in thread /home/suhyun/DeltaDebugging/src/thread/thd_range.c:45:2
+    #2 0x7f3e5406a6da in start_thread /build/glibc-uZu3wS/glibc-2.27/nptl/pthread_create.c:463
+    #3 0x7f3e533d161e in clone /build/glibc-uZu3wS/glibc-2.27/misc/../sysdeps/unix/sysv/linux/x86_64/clone.S:95
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV /build/glibc-uZu3wS/glibc-2.27/libio/fseek.c:35 in fseek
+Thread T426161 created by T0 here:
+    #0 0x47e67a in pthread_create (/home/suhyun/DeltaDebugging/bin/thread/thd_main+0x47e67a)
+    #1 0x4c5972 in thd_range /home/suhyun/DeltaDebugging/src/thread/thd_range.c:133:4
+    #2 0x4c49b6 in thd_ddmin /home/suhyun/DeltaDebugging/src/thread/thd_ddmin.c:38:2
+    #3 0x4c325d in main /home/suhyun/DeltaDebugging/src/thread/thd_main.c:30:14
+    #4 0x7f3e532d1c86 in __libc_start_main /build/glibc-uZu3wS/glibc-2.27/csu/../csu/libc-start.c:310
+
+==22990==ABORTING

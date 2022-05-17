@@ -20,7 +20,7 @@ O_SRCS = $(addsuffix, .c, $(O_OBJS))
 O_SRCFILES = $(addprefix src/, $(O_SRCS))
 O_TARGET = o_main
 
-R_OBJS = r_runner r_ddmin range r_substring r_complement r_split
+R_OBJS = r_runner range 
 R_BINS = $(addsuffix .o, $(R_OBJS))
 R_BINFILES = $(addprefix bin/, $(R_BINS))
 R_SRCS = $(addsuffix, .c, $(R_OBJS))
@@ -34,12 +34,19 @@ T_SRCS = $(addsuffix, .c, $(T_OBJS))
 T_SRCFILES = $(addprefix src/, $(T_SRCS))
 T_TARGET = t_main
 
-THD_OBJS = thd_runner thd_ddmin thd_range
+THD_OBJS = thd_runner thd_range
 THD_BINS = $(addsuffix .o, $(THD_OBJS))
 THD_BINFILES = $(addprefix bin/thread/, $(THD_BINS))
 THD_SRCS = $(addsuffx, .c (THD_OBJS))
 THD_SRCFILES = $(addprefix src/thread/, $(THD_SRCFILES)) 
 THD_TARGET = thd_main
+
+PCS_OBJS = pcs_runner pcs_range
+PCS_BINS = $(addsuffix .o, $(PCS_OBJS))
+PCS_BINFILES = $(addprefix bin/process/, $(PCS_BINS))
+PCS_SRCS = $(addsuffx, .c (PCS_OBJS))
+PCS_SRCFILES = $(addprefix src/process/, $(PCS_SRCFILES)) 
+PCS_TARGET = pcs_main
 
 all: $(OBJS)
 	$(CC) $(CFLAGS) -L/usr/local/lib $(SRCDIR)/$(TARGET).c -lgsl -lgslcblas $(BINFILES) -lm -o $(BINDIR)/$(TARGET) 
@@ -65,6 +72,9 @@ token: $(T_OBJS)
 thread: $(THD_OBJS)
 	$(CC) $(CFLAGS) $(SRCDIR)/thread/$(THD_TARGET).c $(THD_BINFILES) -pthread -o $(BINDIR)/thread/$(THD_TARGET)
 
+process: $(PCS_OBJS)
+	$(CC) $(CFLAGS) $(SRCDIR)/process/$(PCS_TARGET).c $(PCS_BINFILES) -pthread -o $(BINDIR)/process/$(PCS_TARGET)
+
 $(O_OBJS): | $(BINDIR)
 	$(CC) -c $(CFLAGS) $(SRCDIR)/$@.c -o $(BINDIR)/$@.o
 
@@ -76,6 +86,9 @@ $(T_OBJS): | $(BINDIR)
 
 $(THD_OBJS): | $(BINDIR)
 	$(CC) -c $(CFLAGS) $(SRCDIR)/thread/$@.c -o $(BINDIR)/thread/$@.o
+
+$(PCS_OBJS): | $(BINDIR)
+	$(CC) -c $(CFLAGS) $(SRCDIR)/process/$@.c -o $(BINDIR)/process/$@.o
 
 clean:
 	rm $(BINFILES) $(BINDIR)/$(TARGET)
