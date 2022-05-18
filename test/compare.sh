@@ -1,5 +1,5 @@
 RANGE=../bin/r_main
-THREAD=../bin/thread/pcs_main
+THREAD=../bin/process/pcs_main
 OUTPUT=output/range_output
 TARGET=../jsmn/jsondump
 INPUT=input/dd.json
@@ -43,20 +43,20 @@ MSG=xmlDictComputeFastKey
 #wc -c temp >> compare
 
 TARGET=../fuzzer-test-suite/build_sqlite/sqlite-2016-11-14-fsanitize_fuzzer
-INPUT=../fuzzer-test-suite/sqlite-2016-11-14/crash-0adc497ccfcc1a4d5e031b735c599df0cae3f4eb
-MSG=exprAnalyze
+#INPUT=../fuzzer-test-suite/sqlite-2016-11-14/crash-0adc497ccfcc1a4d5e031b735c599df0cae3f4eb
+#MSG=exprAnalyze
 
-echo "fts/sqlite/crash-0adc497ccfcc1a4d5e031b735c599df0cae3f4eb" >> compare
-$RANGE $TARGET $INPUT $MSG $P &>> compare
-wc -c temp >> compare
-$THREAD $TARGET $INPUT $MSG &>> compare
-wc -c temp >> compare
+#echo "fts/sqlite/crash-0adc497ccfcc1a4d5e031b735c599df0cae3f4eb" >> compare
+#$RANGE $TARGET $INPUT $MSG $P &>> compare
+#wc -c temp >> compare
+#$THREAD $TARGET $INPUT $MSG &>> compare
+#wc -c temp >> compare
 
 INPUT=../fuzzer-test-suite/sqlite-2016-11-14/leak-b0276985af5aa23c98d9abf33856ce069ef600e2
 MSG=sqlite3MemMalloc
 
 echo "fts/sqlite/leak-b0276985af5aa23c98d9abf33856ce069ef600e2" >> compare
-$RANGE $TARGET $INPUT $MSG $P &>> compare
-wc -c temp >> compare
+#$RANGE $TARGET $INPUT $MSG $P &>> compare
+#wc -c temp >> compare
 $THREAD $TARGET $INPUT $MSG &>> compare
 wc -c temp >> compare

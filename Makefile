@@ -27,7 +27,7 @@ R_SRCS = $(addsuffix, .c, $(R_OBJS))
 R_SRCFILES = $(addprefix src/, $(R_SRCS))
 R_TARGET = r_main
 
-T_OBJS = t_runner t_ddmin t_substring t_complement t_split t_range
+T_OBJS = t_runner t_range
 T_BINS = $(addsuffix .o, $(T_OBJS))
 T_BINFILES = $(addprefix bin/, $(T_BINS))
 T_SRCS = $(addsuffix, .c, $(T_OBJS))

@@ -81,10 +81,12 @@ thread (void * arg) {
                                 sprintf(temp_path, "temp%d", answer_index) ;
                                 FILE * temp_file = fopen(temp_path, "w+") ;
                                 FILE * result_file = fopen(complement, "r") ;
+				// copyFile
                                 struct stat st ;
                                 stat(complement, &st) ;
                                 writeFile(result_file, temp_file, st.st_size, buf) ;
-                                fclose(result_file) ;
+                                
+				fclose(result_file) ;
                                 fclose(temp_file) ;
                                 free(temp_path) ;
                                 answer_index ++ ;
@@ -153,9 +155,11 @@ pcs_range (char * executeFile_path, char * inputFile_path, char * answer) {
                         sprintf(selected_path, "temp%d", rnum) ;
                         FILE * selected_file = fopen(selected_path, "r") ;
                         FILE * temp_file = fopen("temp", "w+") ;
+			//copyFile
                         stat(selected_path, &st) ;
                         file_size = st.st_size ;
                         writeFile(selected_file, temp_file, file_size, range_buf) ;
+
                         answer_index = 0 ;
                         range_size = MIN(file_size, range_size + 1) ;
                         fclose(temp_file) ;

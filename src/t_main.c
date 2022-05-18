@@ -28,7 +28,7 @@ main (int argc, char * argv[]) {
         }
 
 	time_t begin = time(NULL) ;
-	int cnt = t_ddmin(argv[1], argv[2], argv[3], argv[4]) ;
+	int cnt = t_range(argv[1], argv[2], argv[3], argv[4]) ;
 	time_t end = time(NULL) ;
 	fprintf(stderr, "executing time: %ld\ncnt: %d\n", end - begin, cnt) ;
 	return 0 ;

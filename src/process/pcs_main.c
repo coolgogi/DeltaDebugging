@@ -11,6 +11,15 @@
 #include <string.h>
 
 void
+copyFile (FILE * read_file, FILE * write_file, unsigned char * buf) {
+	int fd = fileno(read_file) ;
+	struct stat st ;
+	fstat(fd, &st) ;
+	int file_size = st.st_size ;
+	writeFile (read_file, write_file, file_size, buf) ;
+}
+
+void
 writeFile (FILE * read_file, FILE * write_file, int len, unsigned char * buf) {
         int buf_size = sizeof(&buf) / sizeof(unsigned char) ;
         int div = len / buf_size ;
@@ -44,9 +53,6 @@ main (int argc, char * argv[]) {
 		exit(errno);
 	}
 
-        struct stat st;
-        stat(argv[2], &st) ;
-        int file_size = st.st_size ;
         char * temp = (char *) malloc(5) ;
         sprintf(temp, "temp") ;
 
@@ -54,7 +60,10 @@ main (int argc, char * argv[]) {
         FILE * input_file = fopen(argv[2], "r") ;
         unsigned char * buf = (unsigned char *) malloc(1024) ;
         memset(buf, 0, 1024) ;
-
+// convert to copyFile
+        struct stat st;
+        stat(argv[2], &st) ;
+        int file_size = st.st_size ;
         writeFile(input_file, temp_file, file_size, buf) ;
 
         fclose(input_file) ;
