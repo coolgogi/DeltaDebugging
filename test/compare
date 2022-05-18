@@ -45,3 +45,5 @@ fts/sqlite/leak-b0276985af5aa23c98d9abf33856ce069ef600e2
 ./compare.sh: line 61: ../bin/thread/pcs_main: No such file or directory
 14 temp
 fts/sqlite/leak-b0276985af5aa23c98d9abf33856ce069ef600e2
+running time: 68183
+658 temp

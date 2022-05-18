@@ -11,26 +11,37 @@
 #include <string.h>
 
 void
-copyFile (FILE * read_file, FILE * write_file, unsigned char * buf) {
-	int fd = fileno(read_file) ;
+copy_file (char * read_file_path, char * write_file_path) {
+
+	FILE * read_file_ptr = fopen(read_file_path, "r") ;
+	FILE * write_file_ptr = fopen(write_file_path, "w+") ;
 	struct stat st ;
-	fstat(fd, &st) ;
+	stat(read_file_path, &st) ;
 	int file_size = st.st_size ;
-	writeFile (read_file, write_file, file_size, buf) ;
+	write_file (read_file_ptr, write_file_ptr, 0, file_size) ;
+	fclose(write_file_ptr) ;
+	fclose(read_file_ptr) ;
 }
 
 void
-writeFile (FILE * read_file, FILE * write_file, int len, unsigned char * buf) {
-        int buf_size = sizeof(&buf) / sizeof(unsigned char) ;
-        int div = len / buf_size ;
-        int mod = len % buf_size ;
+write_file (FILE * read_file_ptr, FILE * write_file_ptr, int start, int end) {
+
+	int len = end - start ;
+	if (len == 0) {
+		return ;
+	}
+
+	fseek(read_file_ptr, start, SEEK_SET) ;
+	char buf[1024] ; 
+        int div = len / 1024 ;
+        int mod = len % 1024 ;
         for (int i = 0 ; i < div ; i ++) {
-                if (fread(buf, buf_size, 1, read_file) == 1) {
-                        fwrite(buf, buf_size, 1, write_file) ;
+                if (fread(buf, 1024, 1, read_file_ptr) == 1) {
+                        fwrite(buf, 1024, 1, write_file_ptr) ;
                 }
         }
-        if (fread(buf, mod, 1, read_file) == 1) {
-                fwrite(buf, mod, 1, write_file) ;
+        if (fread(buf, mod, 1, read_file_ptr) == 1) {
+                fwrite(buf, mod, 1, write_file_ptr) ;
         }
 }
 
@@ -52,23 +63,11 @@ main (int argc, char * argv[]) {
 		exit(errno);
 	}
 
-        char * temp = (char *) malloc(5) ;
-        sprintf(temp, "temp") ;
-        unsigned char * buf = (unsigned char *) malloc(1024) ;
-        memset(buf, 0, 1024) ;
-
-        FILE * temp_file = fopen(temp, "w+") ;
-        FILE * input_file = fopen(argv[2], "r") ;
 	
-	copyFile(input_file, temp_file, buf) ;
-        
-	fclose(input_file) ;
-        fclose(temp_file) ;
-        free(buf) ;
+	copy_file(argv[2], "temp") ;
 
-	pcs_range(argv[1], temp, argv[3]) ;
+	pcs_range(argv[1], "temp", argv[3]) ;
 
-        free(temp) ;
 	time_t end = time(NULL) ;
 	printf("running time: %ld\n", end - begin) ;
 	return 0;

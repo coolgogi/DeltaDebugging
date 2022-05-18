@@ -18,5 +18,5 @@ void thd_range (char * execute_file_path, char * input_file_path, char * ans) ;
 
 void pcs_range (char * execute_file_path, char * input_file_path, char * ans) ;
 
-void writeFile (FILE * read, FILE * write, int len, unsigned char * buf) ;
-void copyFile (FILE * read, FILE * write, unsigned char * buf) ;
+void copy_file (char * read, char * write) ;
+void write_file (FILE * read, FILE * write, int start, int len) ;

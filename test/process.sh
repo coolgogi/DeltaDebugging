@@ -22,5 +22,5 @@ echo "process test"
 
 #$THREAD $TARGET $INPUT $MSG
 #wc -c temp
-ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG
+$THREAD $TARGET $INPUT $MSG
 wc -c temp
