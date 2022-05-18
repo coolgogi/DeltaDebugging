@@ -1,1 +1,4 @@
-{""*,s [c""t}
+{": "*",
+  "example ],
+  "exclude": "test"
+}

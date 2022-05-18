@@ -1,0 +1,7 @@
+{
+  "n",
+  "examples": [
+    "example/*.c"
+  ],
+  "exclude": "test"
+}

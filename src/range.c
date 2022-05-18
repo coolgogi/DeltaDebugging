@@ -31,6 +31,7 @@ range (char * execute_file_path, char * input_file_path, char * ans) {
 			write_file(read_file_ptr, write_file_ptr, 0, begin) ;
 			write_file(read_file_ptr, write_file_ptr, end, file_size) ;
 			fclose(write_file_ptr) ;	
+			remove("stderr") ;
 			EXITCODE rt = r_runner(execute_file_path, "complement", "ddmin_stdout") ;
 			cnt ++ ;
 			FILE * stderr_ptr = fopen("stderr", "r") ;
@@ -39,8 +40,8 @@ range (char * execute_file_path, char * input_file_path, char * ans) {
 				continue ;
 			}		
 
-			memset(output, 0, 300) ;
 			while (!feof(stderr_ptr)) {
+				memset(output, 0, 300) ;
 				fgets(output, 300, stderr_ptr) ;
 				if (strstr(output, ans) != NULL) {
 					char new_temp_path[10] ;

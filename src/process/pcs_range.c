@@ -49,12 +49,10 @@ thread (void * arg) {
 		pthread_mutex_unlock(&begin_mutex) ;
 
 		int end = start + ip->range_size ;
-
                 FILE * write_file_ptr = fopen(ip->complement_path, "w+") ;
                 write_file(read_file_ptr, write_file_ptr, 0, start) ;
                 write_file(read_file_ptr, write_file_ptr, end, ip->file_size) ;
                 fclose(write_file_ptr) ;
-
                 remove(ip->stderr_path) ;
                 EXITCODE rt = pcs_runner(ip->execute_file_path, ip->complement_path, ip->stderr_path) ;
                 FILE * stderr_file_ptr = fopen(ip->stderr_path, "r") ;
@@ -62,16 +60,17 @@ thread (void * arg) {
 			fclose(stderr_file_ptr) ;
 			continue ;
 		}
-                memset(stderr_output, 0, 300) ;
                 while (!feof(stderr_file_ptr)) {
+                	memset(stderr_output, 0, 300) ;
                         fgets(stderr_output, 300, stderr_file_ptr) ;
                         if (strstr(stderr_output, ip->ans) != NULL) {
                                 pthread_mutex_lock(&answer_mutex) ;
-                                char temp_file_path[10] ;
-                                sprintf(temp_file_path, "temp%d", answer_index) ;
-                                answer_index ++ ;
+                                int index = answer_index ;
+				answer_index ++ ;
                                 pthread_mutex_unlock(&answer_mutex) ;
 
+                                char temp_file_path[10] ;
+                                sprintf(temp_file_path, "temp%d", index) ;
 				copy_file(ip->complement_path, temp_file_path) ;
                                 break ;
                         }

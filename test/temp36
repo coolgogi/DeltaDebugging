@@ -1,0 +1,6 @@
+{
+  "name": "jsmn",
+  "keywords": "js/*.c"
+  ],
+  "exclude": "test"
+}

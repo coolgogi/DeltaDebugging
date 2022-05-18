@@ -47,3 +47,30 @@ fts/sqlite/leak-b0276985af5aa23c98d9abf33856ce069ef600e2
 fts/sqlite/leak-b0276985af5aa23c98d9abf33856ce069ef600e2
 running time: 68183
 658 temp
+
+2022/05/18 20:26
+cnt: 4567
+running time: 68
+14 temp
+running time: 71
+14 temp
+cnt: 4567
+running time: 539
+14 temp
+running time: 421
+14 temp
+
+2022/05/18 22:29
+
+jsondump example with option
+cnt: 4567
+running time: 67
+14 temp
+running time: 66
+14 temp
+jsondump example no option
+cnt: 4567
+running time: 525
+14 temp
+running time: 420
+14 temp

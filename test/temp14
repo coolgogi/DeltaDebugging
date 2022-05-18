@@ -1,0 +1,6 @@
+{
+  "name": "jsmples": [
+    "example/*.c"
+  ],
+  "exclude": "test"
+}

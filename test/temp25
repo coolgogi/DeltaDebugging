@@ -1,0 +1,6 @@
+{
+  "name": "jsmn",
+  "key   "example/*.c"
+  ],
+  "exclude": "test"
+}
