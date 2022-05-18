@@ -34,7 +34,6 @@ writeFile (FILE * read_file, FILE * write_file, int len, unsigned char * buf) {
         }
 }
 
-
 int
 main (int argc, char * argv[]) {
 	time_t begin = time(NULL);
@@ -55,18 +54,15 @@ main (int argc, char * argv[]) {
 
         char * temp = (char *) malloc(5) ;
         sprintf(temp, "temp") ;
+        unsigned char * buf = (unsigned char *) malloc(1024) ;
+        memset(buf, 0, 1024) ;
 
         FILE * temp_file = fopen(temp, "w+") ;
         FILE * input_file = fopen(argv[2], "r") ;
-        unsigned char * buf = (unsigned char *) malloc(1024) ;
-        memset(buf, 0, 1024) ;
-// convert to copyFile
-        struct stat st;
-        stat(argv[2], &st) ;
-        int file_size = st.st_size ;
-        writeFile(input_file, temp_file, file_size, buf) ;
-
-        fclose(input_file) ;
+	
+	copyFile(input_file, temp_file, buf) ;
+        
+	fclose(input_file) ;
         fclose(temp_file) ;
         free(buf) ;
 
