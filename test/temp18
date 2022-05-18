@@ -1,6 +1,0 @@
-{
-  "name": "jsmn",s": [
-    "example/*.c"
-  ],
-  "exclude": "test"
-}

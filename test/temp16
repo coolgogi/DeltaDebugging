@@ -1,6 +1,0 @@
-{
-  "name": "jsmnles": [
-    "example/*.c"
-  ],
-  "exclude": "test"
-}

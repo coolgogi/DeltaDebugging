@@ -1,6 +1,0 @@
-{
-  "name": "jamples": [
-    "example/*.c"
-  ],
-  "exclude": "test"
-}

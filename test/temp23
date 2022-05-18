@@ -1,7 +1,0 @@
-{
-  "name": "jsmn",
-  "k
-    "example/*.c"
-  ],
-  "exclude": "test"
-}
