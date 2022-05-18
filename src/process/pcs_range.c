@@ -33,7 +33,6 @@ struct input {
 void *
 thread (void * arg) {
 	struct input * ip = (struct input *) arg ;
-        int loop = ip->file_size - ip->range_size ;
 
         FILE * read_file_ptr = fopen(ip->input_file_path, "r") ;
         char stderr_output[300] ;
@@ -66,7 +65,7 @@ thread (void * arg) {
                         if (strstr(stderr_output, ip->ans) != NULL) {
                                 pthread_mutex_lock(&answer_mutex) ;
                                 int index = answer_index ;
-				answer_index ++ ;
+				answer_index++ ;
                                 pthread_mutex_unlock(&answer_mutex) ;
 
                                 char temp_file_path[10] ;
@@ -92,7 +91,7 @@ pcs_range (char * execute_file_path, char * input_file_path, char * answer) {
         char * complement[8] ;
         char * stderr_path[8] ;
         struct input * ip[8] ;
-        for (int i = 0 ; i < 8 ; i ++) {
+        for (int i = 0 ; i < 8 ; i++) {
                 stderr_path[i] = (char *) malloc(10) ;
                 sprintf(stderr_path[i], "stderr%d", i) ;
                 complement[i] = (char *) malloc(15) ;
@@ -113,13 +112,13 @@ pcs_range (char * execute_file_path, char * input_file_path, char * answer) {
 	
 	for (int range_size = file_size - 1 ; range_size > 0 ; range_size --) {
 		begin = 0 ;
-                for (int i = 0 ; i < 8 ; i ++) {
+                for (int i = 0 ; i < 8 ; i++) {
                         ip[i]->file_size = file_size;
                         ip[i]->range_size = range_size;
 
                         pthread_create(&t[i], NULL, thread, (void *) ip[i]) ;
                 }
-                for (int i = 0 ; i < 8 ; i ++) {
+                for (int i = 0 ; i < 8 ; i++) {
                         pthread_join(t[i], NULL) ;
                 }
 
@@ -137,7 +136,7 @@ pcs_range (char * execute_file_path, char * input_file_path, char * answer) {
                         range_size = MIN(file_size, range_size + 1) ;
                 }
         }
-        for (int i = 0 ; i < 8 ; i ++) {
+        for (int i = 0 ; i < 8 ; i++) {
                 free(complement[i]) ;
                 free(stderr_path[i]) ;
                 free(ip[i]) ;

@@ -35,7 +35,7 @@ write_file (FILE * read_file_ptr, FILE * write_file_ptr, int start, int end) {
 	char buf[1024] ; 
         int div = len / 1024 ;
         int mod = len % 1024 ;
-        for (int i = 0 ; i < div ; i ++) {
+        for (int i = 0 ; i < div ; i++) {
                 if (fread(buf, 1024, 1, read_file_ptr) == 1) {
                         fwrite(buf, 1024, 1, write_file_ptr) ;
                 }
