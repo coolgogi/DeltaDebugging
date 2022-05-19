@@ -83,7 +83,6 @@ thread (void * arg) {
 
 void
 pcs_range (char * execute_file_path, char * input_file_path, char * answer) {
-
 	struct stat st;
         stat(input_file_path, &st);
         int file_size = st.st_size;

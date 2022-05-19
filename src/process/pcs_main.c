@@ -12,7 +12,6 @@
 
 void
 copy_file (char * read_file_path, char * write_file_path) {
-
 	FILE * read_file_ptr = fopen(read_file_path, "r");
 	FILE * write_file_ptr = fopen(write_file_path, "w+");
 	struct stat st;
@@ -25,7 +24,6 @@ copy_file (char * read_file_path, char * write_file_path) {
 
 void
 write_file (FILE * read_file_ptr, FILE * write_file_ptr, int start, int end) {
-
 	int len = end - start;
 	if (len == 0) {
 		return;
@@ -63,7 +61,6 @@ main (int argc, char * argv[]) {
 		exit(errno);
 	}
 
-	
 	copy_file(argv[2], "temp");
 
 	pcs_range(argv[1], "temp", argv[3]);
