@@ -24,6 +24,45 @@ struct input {
         char * ans;
 };
 
+int
+find_answer_string (char * stderr_path, char * ans) {
+	char buffer[1025];
+	memset(buffer, 0, 1025);
+	FILE * stderr_file_ptr = fopen(stderr_path, "r");	
+	struct stat st;
+	stat(stderr_path, &st);
+	
+	int div = st.st_size / 1024;
+	int mod = st.st_size % 1024;
+	for (int i = 0; i < div; i++) {
+		if (fread(buffer, 1024, 1, stderr_file_ptr) == 1) {
+			if (strstr(buffer, ans) != NULL) {
+				fclose(stderr_file_ptr);
+				return 1;
+			}
+		}		
+	}
+	if (fread(buffer, mod, 1, stderr_file_ptr) == 1) {
+		if (strstr(buffer, ans) != NULL) {
+			fclose(stderr_file_ptr);
+			return 1;
+		}
+	}
+	for (int i = 0; i < div; i++) {
+		int offset = 1024 * (i + 1);
+		fseek(stderr_file_ptr, offset - strlen(ans), SEEK_SET);
+		int len = MIN(strlen(ans) * 2, strlen(ans) + mod);
+		if (fread(buffer, len, 1, stderr_file_ptr) == 1) {
+			if (strstr(buffer, ans) != NULL) {
+				fclose(stderr_file_ptr);
+				return 1;
+			}
+		}
+	}
+	fclose(stderr_file_ptr);
+	return 0;
+}
+
 void *
 thread (void * arg) {
 	struct input * ip = (struct input *) arg;
@@ -40,7 +79,6 @@ thread (void * arg) {
 	size_t line_len;
 	ssize_t num_read;
 
-
         while (1) {
 		if (begin > st.st_size - ip->range_size) {
 			break;
@@ -56,13 +94,27 @@ thread (void * arg) {
                 
 		remove(stderr_path);
                 EXITCODE rt = pcs_runner(ip->execute_file_path, complement_path, stderr_path);
+		if (find_answer_string(stderr_path, ip->ans) == 1) {
+			int index = atomic_fetch_add(&answer_index, 1);
+                        char temp_file_path[10];
+                        sprintf(temp_file_path, "temp%d", index);
+		      	copy_file(complement_path, temp_file_path);
+		} 
+
+/*
                 FILE * stderr_file_ptr = fopen(stderr_path, "r");
 		if (stderr_file_ptr == NULL) {
 			fclose(stderr_file_ptr);
 			continue;
 		}
+*/
+/*
+		stat(stderr_path, &st);
+*/
+/*
                 while (!feof(stderr_file_ptr)) {
 			//fix
+			
 			num_read = getline(&stderr_line, &line_len, stderr_file_ptr);
                         if (strstr(stderr_line, ip->ans) != NULL) {
                                 int index = atomic_fetch_add(&answer_index, 1);
@@ -74,7 +126,8 @@ thread (void * arg) {
                         }
 			//
                 }
-                fclose(stderr_file_ptr);
+*/
+//		fclose(stderr_file_ptr);
         }
 	if (stderr_line != NULL) {
 		free(stderr_line);
@@ -107,7 +160,6 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 			begin = 0;
 	                for (int i = 0; i < process_num; i++) {
 	                        ip[i]->range_size = range_size;
-				
 	                        pthread_create(&t[i], NULL, thread, (void *) ip[i]);
 	                }
 	                for (int i = 0; i < process_num; i++) {
