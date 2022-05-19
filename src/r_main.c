@@ -11,7 +11,6 @@
 
 void
 copy_file (char * read_file_path, char * write_file_path) {
-
         FILE * read_file_ptr = fopen(read_file_path, "r");
         FILE * write_file_ptr = fopen(write_file_path, "w+");
         struct stat st;
@@ -24,7 +23,6 @@ copy_file (char * read_file_path, char * write_file_path) {
 
 void
 write_file (FILE * read_file_ptr, FILE * write_file_ptr, int start, int end) {
-
         int len = end - start;
         if (len == 0) {
                 return;
@@ -46,7 +44,6 @@ write_file (FILE * read_file_ptr, FILE * write_file_ptr, int start, int end) {
 
 int
 main (int argc, char * argv[]) {
-	time_t begin = time(NULL);
 	if (argc != 4) {
 		fprintf(stderr, "invalid arguments");
 		exit(EXIT_FAILURE);
@@ -62,8 +59,8 @@ main (int argc, char * argv[]) {
 		exit(errno);
 	}
 	
+	time_t begin = time(NULL);
 	range(argv[1], argv[2], argv[3]);
-
 	time_t end = time(NULL);
 	printf("running time: %ld\n", end - begin);
 	return 0;

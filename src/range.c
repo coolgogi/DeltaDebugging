@@ -13,24 +13,25 @@
 void
 range (char * execute_file_path, char * input_file_path, char * ans) {
 	
+	int cnt = 0;
+
 	copy_file(input_file_path, "temp");
 
 	struct stat st;
 	stat("temp", &st);
 	int file_size = st.st_size;
-	
-	int cnt = 0;
 	char output[300];
-	
 	int answer_index = 0;
 	for (int range_size = file_size - 1; range_size > 0; range_size--) {
 		FILE * read_file_ptr = fopen("temp", "r");
 		for (int begin = 0; begin <= file_size - range_size; begin++) {
 			int end = begin + range_size;
+			
 			FILE * write_file_ptr = fopen("complement", "w+");
 			write_file(read_file_ptr, write_file_ptr, 0, begin);
 			write_file(read_file_ptr, write_file_ptr, end, file_size);
 			fclose(write_file_ptr);	
+
 			remove("stderr");
 			EXITCODE rt = r_runner(execute_file_path, "complement", "ddmin_stdout");
 			cnt++;
