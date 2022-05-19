@@ -45,17 +45,14 @@ write_file (FILE * read_file_ptr, FILE * write_file_ptr, int start, int end) {
 
 int
 main (int argc, char * argv[]) {
-	time_t begin = time(NULL);
 	if (argc != 4) {
 		fprintf(stderr, "invalid arguments");
 		exit(EXIT_FAILURE);
 	}
-
 	if (access(argv[1], X_OK) == -1) {
 		perror("main.c argv[1]: ");
 		exit(errno);
 	}
-
 	if (access(argv[2], R_OK) == -1) {
 		perror("main.c argv[2]: ");
 		exit(errno);
@@ -63,8 +60,8 @@ main (int argc, char * argv[]) {
 
 	copy_file(argv[2], "temp");
 
+	time_t begin = time(NULL);
 	pcs_range(argv[1], "temp", argv[3]);
-
 	time_t end = time(NULL);
 	printf("running time: %ld\n", end - begin);
 	return 0;

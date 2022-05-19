@@ -48,11 +48,13 @@ thread (void * arg) {
 		pthread_mutex_unlock(&begin_mutex);
 
 		int end = start + ip->range_size;
+
                 FILE * write_file_ptr = fopen(ip->complement_path, "w+");
                 write_file(read_file_ptr, write_file_ptr, 0, start);
                 write_file(read_file_ptr, write_file_ptr, end, ip->file_size);
                 fclose(write_file_ptr);
-                remove(ip->stderr_path);
+                
+		remove(ip->stderr_path);
                 EXITCODE rt = pcs_runner(ip->execute_file_path, ip->complement_path, ip->stderr_path);
                 FILE * stderr_file_ptr = fopen(ip->stderr_path, "r");
 		if (stderr_file_ptr == NULL) {
@@ -83,10 +85,6 @@ thread (void * arg) {
 
 void
 pcs_range (char * execute_file_path, char * input_file_path, char * answer) {
-	struct stat st;
-        stat(input_file_path, &st);
-        int file_size = st.st_size;
-
         char * complement[8];
         char * stderr_path[8];
         struct input * ip[8];
@@ -109,6 +107,9 @@ pcs_range (char * execute_file_path, char * input_file_path, char * answer) {
        	pthread_mutex_init(&begin_mutex, NULL);	
         pthread_t t[8];
 	
+	struct stat st;
+        stat(input_file_path, &st);
+        int file_size = st.st_size;
 	for (int range_size = file_size - 1; range_size > 0; range_size--) {
 		begin = 0;
                 for (int i = 0; i < 8; i++) {
