@@ -100,34 +100,6 @@ thread (void * arg) {
                         sprintf(temp_file_path, "temp%d", index);
 		      	copy_file(complement_path, temp_file_path);
 		} 
-
-/*
-                FILE * stderr_file_ptr = fopen(stderr_path, "r");
-		if (stderr_file_ptr == NULL) {
-			fclose(stderr_file_ptr);
-			continue;
-		}
-*/
-/*
-		stat(stderr_path, &st);
-*/
-/*
-                while (!feof(stderr_file_ptr)) {
-			//fix
-			
-			num_read = getline(&stderr_line, &line_len, stderr_file_ptr);
-                        if (strstr(stderr_line, ip->ans) != NULL) {
-                                int index = atomic_fetch_add(&answer_index, 1);
-
-                                char temp_file_path[10];
-                                sprintf(temp_file_path, "temp%d", index);
-				copy_file(complement_path, temp_file_path);
-                                break;
-                        }
-			//
-                }
-*/
-//		fclose(stderr_file_ptr);
         }
 	if (stderr_line != NULL) {
 		free(stderr_line);

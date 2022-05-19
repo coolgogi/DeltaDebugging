@@ -10,6 +10,45 @@
 #include <time.h>
 #include <sys/param.h>
 
+int
+find_answer_string (char * stderr_path, char * ans) {
+	char buffer[1025];
+	memset(buffer, 0, 1025);
+	FILE * stderr_file_ptr = fopen(stderr_path, "r");
+	struct stat st;
+	stat(stderr_path, &st);
+
+	int div = st.st_size / 1024;
+	int mod = st.st_size % 1024;
+	for (int i = 0; i < div; i++) {
+		if (fread(buffer, 1024, 1, stderr_file_ptr) == 1) {
+			if (strstr(buffer, ans) != NULL) {
+				fclose(stderr_file_ptr);
+				return 1;
+			}
+		}
+	}
+	if (fread(buffer, mod, 1, stderr_file_ptr) == 1) {
+		if (strstr(buffer, ans) != NULL) {
+			fclose(stderr_file_ptr);
+			return 1;
+		}
+	}
+	for (int i = 0; i < div; i++) {
+		int offset = 1024 * (i + 1);
+		fseek(stderr_file_ptr, offset - strlen(ans), SEEK_SET);
+		int len = MIN(strlen(ans) * 2, strlen(ans) + mod);
+		if (fread(buffer, len, 1, stderr_file_ptr) == 1) {
+			if (strstr(buffer, ans) != NULL) {
+				fclose(stderr_file_ptr);
+				return 1;
+			}
+		}
+	}
+	fclose(stderr_file_ptr);
+	return 0;
+}
+
 void
 range (char * execute_file_path, char * input_file_path, char * ans) {
 	
@@ -35,24 +74,13 @@ range (char * execute_file_path, char * input_file_path, char * ans) {
 			remove("stderr");
 			EXITCODE rt = r_runner(execute_file_path, "complement", "ddmin_stdout");
 			cnt++;
-			FILE * stderr_ptr = fopen("stderr", "r");
-			if (stderr_ptr == NULL) {
-				fclose(stderr_ptr);
-				continue;
-			}		
-
-			while (!feof(stderr_ptr)) {
-				memset(output, 0, 300);
-				fgets(output, 300, stderr_ptr);
-				if (strstr(output, ans) != NULL) {
-					char new_temp_path[10];
-					sprintf(new_temp_path, "temp%d", answer_index);
-					answer_index++;
-					copy_file("complement", new_temp_path);
-					break;
-				}
-			}
-			fclose(stderr_ptr);
+			if (find_answer_string("stderr", ans) == 1) {
+				int index = answer_index;
+				answer_index++;
+				char temp_file_path[10];
+	                        sprintf(temp_file_path, "temp%d", index);
+			      	copy_file("complement", temp_file_path);
+			} 
 		}
 		fclose(read_file_ptr);
                 if (answer_index > 0) {
