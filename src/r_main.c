@@ -12,35 +12,35 @@
 void
 copy_file (char * read_file_path, char * write_file_path) {
 
-        FILE * read_file_ptr = fopen(read_file_path, "r") ;
-        FILE * write_file_ptr = fopen(write_file_path, "w+") ;
-        struct stat st ;
-        stat(read_file_path, &st) ;
-        int file_size = st.st_size ;
-        write_file (read_file_ptr, write_file_ptr, 0, file_size) ;
-        fclose(write_file_ptr) ;
-        fclose(read_file_ptr) ;
+        FILE * read_file_ptr = fopen(read_file_path, "r");
+        FILE * write_file_ptr = fopen(write_file_path, "w+");
+        struct stat st;
+        stat(read_file_path, &st);
+        int file_size = st.st_size;
+        write_file (read_file_ptr, write_file_ptr, 0, file_size);
+        fclose(write_file_ptr);
+        fclose(read_file_ptr);
 }
 
 void
 write_file (FILE * read_file_ptr, FILE * write_file_ptr, int start, int end) {
 
-        int len = end - start ;
+        int len = end - start;
         if (len == 0) {
-                return ;
+                return;
         }
 
-        fseek(read_file_ptr, start, SEEK_SET) ;
-        char buf[1024] ;
-        int div = len / 1024 ;
-        int mod = len % 1024 ;
-        for (int i = 0 ; i < div ; i ++) {
+        fseek(read_file_ptr, start, SEEK_SET);
+        char buf[1024];
+        int div = len / 1024;
+        int mod = len % 1024;
+        for (int i = 0; i < div; i++) {
                 if (fread(buf, 1024, 1, read_file_ptr) == 1) {
-                        fwrite(buf, 1024, 1, write_file_ptr) ;
+                        fwrite(buf, 1024, 1, write_file_ptr);
                 }
         }
         if (fread(buf, mod, 1, read_file_ptr) == 1) {
-                fwrite(buf, mod, 1, write_file_ptr) ;
+                fwrite(buf, mod, 1, write_file_ptr);
         }
 }
 
@@ -62,9 +62,9 @@ main (int argc, char * argv[]) {
 		exit(errno);
 	}
 	
-	range(argv[1], argv[2], argv[3]) ;
+	range(argv[1], argv[2], argv[3]);
 
-	time_t end = time(NULL) ;
-	printf("running time: %ld\n", end - begin) ;
+	time_t end = time(NULL);
+	printf("running time: %ld\n", end - begin);
 	return 0;
 }

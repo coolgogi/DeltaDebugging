@@ -110,7 +110,7 @@ pcs_range (char * execute_file_path, char * input_file_path, char * answer) {
        	pthread_mutex_init(&begin_mutex, NULL);	
         pthread_t t[8];
 	
-	for (int range_size = file_size - 1; range_size > 0; range_size --) {
+	for (int range_size = file_size - 1; range_size > 0; range_size--) {
 		begin = 0;
                 for (int i = 0; i < 8; i++) {
                         ip[i]->file_size = file_size;
