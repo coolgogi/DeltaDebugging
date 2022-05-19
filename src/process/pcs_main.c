@@ -45,7 +45,7 @@ write_file (FILE * read_file_ptr, FILE * write_file_ptr, int start, int end) {
 
 int
 main (int argc, char * argv[]) {
-	if (argc != 4) {
+	if (argc != 5) {
 		fprintf(stderr, "invalid arguments");
 		exit(EXIT_FAILURE);
 	}
@@ -57,11 +57,12 @@ main (int argc, char * argv[]) {
 		perror("main.c argv[2]: ");
 		exit(errno);
 	}
-
+	int process_num = atoi(argv[4]);
 	copy_file(argv[2], "temp");
 
+
 	time_t begin = time(NULL);
-	pcs_range(argv[1], "temp", argv[3]);
+	pcs_range(argv[1], argv[3], process_num);
 	time_t end = time(NULL);
 	printf("running time: %ld\n", end - begin);
 	return 0;

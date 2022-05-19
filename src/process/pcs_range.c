@@ -12,133 +12,124 @@
 #include <semaphore.h>
 #include <sys/wait.h>
 #include <sys/param.h>
+#include <stdatomic.h>
 
-int answer_index = 0;
-int begin = 0;
-
-pthread_mutex_t answer_mutex;
-pthread_mutex_t begin_mutex;
+atomic_int answer_index = 0;
+atomic_int begin = 0;
 
 struct input {
-        int file_size;
         int range_size;
         int index;
         char * execute_file_path;
-        char * input_file_path;
         char * ans;
-        char * stderr_path;
-        char * complement_path;
 };
 
 void *
 thread (void * arg) {
 	struct input * ip = (struct input *) arg;
+	char complement_path[15] ;
+	char stderr_path[10] ;
+	sprintf(complement_path, "complement%d", ip->index) ;
+	sprintf(stderr_path, "stderr%d", ip->index) ;
 
-        FILE * read_file_ptr = fopen(ip->input_file_path, "r");
-        char stderr_output[300];
+        FILE * read_file_ptr = fopen("temp", "r");
+	struct stat st;
+	stat("temp", &st); 
+
+        char * stderr_line = NULL;
+	size_t line_len;
+	ssize_t num_read;
+
 
         while (1) {
-		pthread_mutex_lock(&begin_mutex);
-		if (begin > ip->file_size - ip->range_size) {
-			pthread_mutex_unlock(&begin_mutex);
+		if (begin > st.st_size - ip->range_size) {
 			break;
 		}
-		int start = begin;
-		begin++;
-		pthread_mutex_unlock(&begin_mutex);
+		int start = atomic_fetch_add(&begin, 1);
 
 		int end = start + ip->range_size;
 
-                FILE * write_file_ptr = fopen(ip->complement_path, "w+");
+                FILE * write_file_ptr = fopen(complement_path, "w+");
                 write_file(read_file_ptr, write_file_ptr, 0, start);
-                write_file(read_file_ptr, write_file_ptr, end, ip->file_size);
+                write_file(read_file_ptr, write_file_ptr, end, st.st_size);
                 fclose(write_file_ptr);
                 
-		remove(ip->stderr_path);
-                EXITCODE rt = pcs_runner(ip->execute_file_path, ip->complement_path, ip->stderr_path);
-                FILE * stderr_file_ptr = fopen(ip->stderr_path, "r");
+		remove(stderr_path);
+                EXITCODE rt = pcs_runner(ip->execute_file_path, complement_path, stderr_path);
+                FILE * stderr_file_ptr = fopen(stderr_path, "r");
 		if (stderr_file_ptr == NULL) {
 			fclose(stderr_file_ptr);
 			continue;
 		}
                 while (!feof(stderr_file_ptr)) {
-                	memset(stderr_output, 0, 300);
-                        fgets(stderr_output, 300, stderr_file_ptr);
-                        if (strstr(stderr_output, ip->ans) != NULL) {
-                                pthread_mutex_lock(&answer_mutex);
-                                int index = answer_index;
-				answer_index++;
-                                pthread_mutex_unlock(&answer_mutex);
+			//fix
+			num_read = getline(&stderr_line, &line_len, stderr_file_ptr);
+                        if (strstr(stderr_line, ip->ans) != NULL) {
+                                int index = atomic_fetch_add(&answer_index, 1);
 
                                 char temp_file_path[10];
                                 sprintf(temp_file_path, "temp%d", index);
-				copy_file(ip->complement_path, temp_file_path);
+				copy_file(complement_path, temp_file_path);
                                 break;
                         }
+			//
                 }
                 fclose(stderr_file_ptr);
         }
+	if (stderr_line != NULL) {
+		free(stderr_line);
+	}
         fclose(read_file_ptr);
         void * p = NULL;
         return p;	
 }
 
 void
-pcs_range (char * execute_file_path, char * input_file_path, char * answer) {
-        char * complement[8];
-        char * stderr_path[8];
-        struct input * ip[8];
-        for (int i = 0; i < 8; i++) {
-                stderr_path[i] = (char *) malloc(10);
-                sprintf(stderr_path[i], "stderr%d", i);
-                complement[i] = (char *) malloc(15);
-                sprintf(complement[i], "complement%d", i);
+pcs_range (char * execute_file_path, char * answer, int process_num) {
+        srand(time(NULL));
 
+        struct input * ip[process_num];
+        for (int i = 0; i < process_num; i++) {
                 ip[i] = (struct input *) malloc(sizeof(struct input));
-
                 ip[i]->index = i;
 		ip[i]->execute_file_path = execute_file_path;
-		ip[i]->input_file_path = input_file_path;
 		ip[i]->ans = answer;
-		ip[i]->stderr_path = stderr_path[i];
-		ip[i]->complement_path = complement[i];
         }
-      	pthread_mutex_init(&answer_mutex, NULL);
-       	pthread_mutex_init(&begin_mutex, NULL);	
-        pthread_t t[8];
+        pthread_t t[process_num];
 	
 	struct stat st;
-        stat(input_file_path, &st);
-        int file_size = st.st_size;
-	for (int range_size = file_size - 1; range_size > 0; range_size--) {
-		begin = 0;
-                for (int i = 0; i < 8; i++) {
-                        ip[i]->file_size = file_size;
-                        ip[i]->range_size = range_size;
+        stat("temp", &st);
+	int start_size = st.st_size - 1;
+	int current_size = 0;
+	do {
+		answer_index = 0;
+		for (int range_size = start_size; range_size > 0; range_size--) {
+			begin = 0;
+	                for (int i = 0; i < process_num; i++) {
+	                        ip[i]->range_size = range_size;
+				
+	                        pthread_create(&t[i], NULL, thread, (void *) ip[i]);
+	                }
+	                for (int i = 0; i < process_num; i++) {
+	                        pthread_join(t[i], NULL);
+	                }
 
-                        pthread_create(&t[i], NULL, thread, (void *) ip[i]);
-                }
-                for (int i = 0; i < 8; i++) {
-                        pthread_join(t[i], NULL);
-                }
-
-                if (answer_index > 0) {
-                        srand(time(NULL));
-                        int rnum = rand() % answer_index;
-                        char selected_path[10];
-                        sprintf(selected_path, "temp%d", rnum);
-
-			copy_file(selected_path, "temp"); 
-
-                        answer_index = 0;
+	                if (answer_index > 0) {
+				current_size = range_size ;
+				break ; 
+	                }
+	        }
+		if (answer_index > 0) {
+			int rnum = rand() % answer_index;
+		 	char selected_path[10];
+	 		sprintf(selected_path, "temp%d", rnum);
+			copy_file(selected_path, "temp");
 			stat("temp", &st);
-			file_size = st.st_size; 
-                        range_size = MIN(file_size, range_size + 1);
-                }
-        }
-        for (int i = 0; i < 8; i++) {
-                free(complement[i]);
-                free(stderr_path[i]);
+			start_size = MIN(current_size, st.st_size - 1) ;
+		}
+	} while (answer_index != 0) ;
+
+        for (int i = 0; i < process_num; i++) {
                 free(ip[i]);
         }
 
