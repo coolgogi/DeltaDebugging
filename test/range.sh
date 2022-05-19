@@ -20,5 +20,5 @@ MSG=jsondump.c:44
 #INPUT=../fuzzer-test-suite/sqlite-2016-11-14/crash-0adc497ccfcc1a4d5e031b735c599df0cae3f4eb
 #MSG=exprAnalyze		
 
-ASAN_OPTIONS=detect_leaks=0 $RANGE $TARGET $INPUT $MSG
-#$RANGE $TARGET $INPUT $MSG
+#ASAN_OPTIONS=detect_leaks=0 $RANGE $TARGET $INPUT $MSG
+$RANGE $TARGET $INPUT $MSG
