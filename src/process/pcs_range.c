@@ -75,10 +75,6 @@ thread (void * arg) {
 	struct stat st;
 	stat("temp", &st); 
 
-        char * stderr_line = NULL;
-	size_t line_len;
-	ssize_t num_read;
-
         while (1) {
 		if (begin > st.st_size - ip->range_size) {
 			break;
@@ -101,9 +97,6 @@ thread (void * arg) {
 		      	copy_file(complement_path, temp_file_path);
 		} 
         }
-	if (stderr_line != NULL) {
-		free(stderr_line);
-	}
         fclose(read_file_ptr);
         void * p = NULL;
         return p;	

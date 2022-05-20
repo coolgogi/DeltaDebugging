@@ -1,0 +1,120 @@
+jsondump
+cnt: 4567
+running time: 213
+14 temp
+running time: 212
+14 temp
+running time: 113
+14 temp
+running time: 82
+14 temp
+running time: 67
+14 temp
+running time: 57
+14 temp
+running time: 53
+14 temp
+running time: 60
+14 temp
+running time: 66
+14 temp
+libxml2/crash-d8960e2
+cnt: 41309
+running time: 844
+153 temp
+running time: 843
+153 temp
+running time: 447
+153 temp
+running time: 343
+153 temp
+running time: 303
+153 temp
+running time: 274
+153 temp
+running time: 289
+153 temp
+running time: 352
+153 temp
+running time: 401
+153 temp
+libxml2/crash-50b12d3
+cnt: 752
+running time: 11
+25 temp
+running time: 11
+25 temp
+running time: 7
+25 temp
+running time: 5
+25 temp
+running time: 4
+25 temp
+running time: 4
+25 temp
+running time: 5
+25 temp
+running time: 5
+25 temp
+running time: 6
+25 temp
+libxml2/leak-bdbb285
+cnt: 1469
+running time: 21
+31 temp
+running time: 22
+31 temp
+running time: 12
+31 temp
+running time: 10
+31 temp
+running time: 7
+31 temp
+running time: 8
+31 temp
+running time: 10
+31 temp
+running time: 11
+31 temp
+running time: 11
+31 temp
+sqlite/crash-1066e42
+cnt: 1972
+running time: 29
+30 temp
+running time: 29
+30 temp
+running time: 16
+30 temp
+running time: 13
+30 temp
+running time: 11
+30 temp
+running time: 9
+30 temp
+running time: 13
+30 temp
+running time: 14
+30 temp
+running time: 15
+30 temp
+sqlite/crash-0adc497
+cnt: 3915
+running time: 56
+88 temp
+running time: 57
+88 temp
+running time: 31
+88 temp
+running time: 23
+88 temp
+running time: 20
+88 temp
+running time: 18
+88 temp
+running time: 25
+88 temp
+running time: 28
+88 temp
+running time: 30
+88 temp

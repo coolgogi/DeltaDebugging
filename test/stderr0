@@ -1,17 +1,10 @@
-
-=================================================================
-==225908==ERROR: LeakSanitizer: detected memory leaks
-
-Direct leak of 128 byte(s) in 1 object(s) allocated from:
-    #0 0x493d49 in realloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x493d49)
-    #1 0x4c340e in realloc_it /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:15:12
-    #2 0x4c340e in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:113:11
-    #3 0x7f10567130b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
-
-Direct leak of 14 byte(s) in 1 object(s) allocated from:
-    #0 0x493d49 in realloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x493d49)
-    #1 0x4c3307 in realloc_it /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:15:12
-    #2 0x4c3307 in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:101:8
-    #3 0x7f10567130b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
-
-SUMMARY: AddressSanitizer: 142 byte(s) leaked in 2 allocation(s).
+INFO: Seed: 896780855
+INFO: Loaded 1 modules   (39753 inline 8-bit counters): 39753 [0xa774c0, 0xa81009), 
+INFO: Loaded 1 PC tables (39753 PCs): 39753 [0x97f050,0xa1a4e0), 
+../fuzzer-test-suite/build_sqlite/sqlite-2016-11-14-fsanitize_fuzzer: Running 1 inputs 1 time(s) each.
+Running: complement0
+Executed complement0 in 0 ms
+***
+*** NOTE: fuzzing was not performed, you have only
+***       executed the target code on a fixed set of inputs.
+***
