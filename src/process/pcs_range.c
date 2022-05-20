@@ -126,8 +126,7 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
         stat("temp", &st);
 	int start_size = st.st_size - 1;
 	int current_size = 0;
-	do {
-		answer_index = 0;
+	while (1) {
 		for (int range_size = start_size; range_size > 0; range_size--) {
 			begin = 0;
 	                for (int i = 0; i < process_num; i++) {
@@ -143,6 +142,9 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 				break ; 
 	                }
 	        }
+		if (answer_index == 0) {
+			break ;
+		}
 		if (answer_index > 0) {
 			int rnum = rand() % answer_index;
 		 	char selected_path[10];
@@ -150,9 +152,9 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 			copy_file(selected_path, "temp");
 			stat("temp", &st);
 			start_size = MIN(current_size, st.st_size - 1) ;
+			answer_index = 0;
 		}
-	} while (answer_index != 0) ;
-
+	} 
         for (int i = 0; i < process_num; i++) {
                 free(ip[i]);
         }
