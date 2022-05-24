@@ -57,6 +57,7 @@ main (int argc, char * argv[]) {
 		perror("main.c argv[2]: ");
 		exit(errno);
 	}
+	srand(time(NULL));
 	int process_num = atoi(argv[4]);
 	copy_file(argv[2], "temp");
 
