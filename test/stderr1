@@ -1,0 +1,6 @@
+=================================================================
+==3927297==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x603000000030 at pc 0x0000004c3d0d bp 0x7ffe5366fa70 sp 0x7ffe5366fa68
+READ of size 4 at 0x603000000030 thread T0
+    #0 0x4c3d0c in dump /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:33:9
+    #1 0x4c3c81 in dump /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:46:9
+    #2 0x4c3384 in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:120:4
