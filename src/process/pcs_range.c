@@ -14,15 +14,24 @@
 #include <sys/param.h>
 #include <stdatomic.h>
 
+#define BUFFER_SIZE 100
+
 atomic_int answer_index = 0 ;
+atomic_int total_cnt = 0 ;
 int range_size ;
 struct stat st ;
-FILE * read_file_ptr ;
 
-int * begin_queue ;
-int queue_index = 0 ;
-
+sem_t full ;
+sem_t empty ;
 pthread_mutex_t mutex ;
+
+int begin_queue[BUFFER_SIZE] ;
+int front = 0 ;
+int rear = 0 ;
+
+FILE ** read_file_ptr ;
+
+int count = 0 ;
 
 struct input {
         int index ;
@@ -30,31 +39,18 @@ struct input {
         char * ans ;
 } ;
 
-int
-queue_push (int num, int process_num) {
-	if (queue_index < process_num) {
-		pthread_mutex_lock(&mutex) ;
-		begin_queue[queue_index] = num ;
-		queue_index++ ;
-		pthread_mutex_unlock(&mutex) ;
-		return 0 ;
-	}
-	return -1 ;
+void
+queue_push(int element) {
+	begin_queue[rear] = element ;
+	rear = (rear + 1) % BUFFER_SIZE ;
+	return ;
 }
 
 int
-queue_pop () {
-	if (queue_index > 0) {
-		pthread_mutex_lock(&mutex) ;
-		int rt = begin_queue[0] ;
-		queue_index-- ;
-		for (int i = 0 ; i < queue_index ; i++) {
-			begin_queue[i] = begin_queue[i + 1] ;
-		}
-		pthread_mutex_unlock(&mutex) ;
-		return rt ;
-	}
-	return -1 ;
+queue_pop() {
+	int rt = begin_queue[front] ;
+	front = (front + 1) % BUFFER_SIZE ;
+	return rt ;
 }
 
 int
@@ -103,32 +99,33 @@ thread (void * arg) {
 	char stderr_path[10] ;
 	sprintf(complement_path, "complement%d", ip->index) ;
 	sprintf(stderr_path, "stderr%d", ip->index) ;
-
+	int cnt = 0 ;
         while (1) {
-		int start ;
-		while (1) {
-			start = queue_pop() ;
-			fprintf(stderr, "index: %d, start: %d, queue_index: %d\n", ip->index, start, queue_index) ;
-			if (start != -1) {
-				break ;
-			}
-			if (range_size == 0) {
-				break ;
-			}
+		int start ; 
+		sem_wait(&full) ;
+		pthread_mutex_lock(&mutex) ;
+		start = queue_pop() ;
+		pthread_mutex_unlock(&mutex) ;
+		sem_post(&empty) ;
+		if (start == -1) {
+			atomic_fetch_add(&total_cnt, cnt) ;
+			cnt = 0 ;
+			continue ;
 		}
-		if (range_size == 0) {
+		if (start == -2) {
 			break ;
 		}
 
 		int end = start + range_size ;
 
                 FILE * write_file_ptr = fopen(complement_path, "w+") ;
-                write_file(read_file_ptr, write_file_ptr, 0, start) ;
-                write_file(read_file_ptr, write_file_ptr, end, st.st_size) ;
+                write_file(read_file_ptr[ip->index], write_file_ptr, 0, start) ;
+                write_file(read_file_ptr[ip->index], write_file_ptr, end, st.st_size) ;
                 fclose(write_file_ptr) ;
                 
 		remove(stderr_path) ;
                 EXITCODE rt = pcs_runner(ip->execute_file_path, complement_path, stderr_path) ;
+		cnt++ ;
 		if (find_answer_string(stderr_path, ip->ans) == 1) {
 			int index = atomic_fetch_add(&answer_index, 1) ;
                         char temp_file_path[10] ;
@@ -142,9 +139,16 @@ thread (void * arg) {
 void
 pcs_range (char * execute_file_path, char * answer, int process_num) {
 	pthread_mutex_init(&mutex, NULL) ;
-	begin_queue = (int *) malloc(sizeof(int) * process_num) ;
+	sem_init(&empty, 0, BUFFER_SIZE) ;
+	sem_init(&full, 0, 0) ;
 
-        read_file_ptr = fopen("temp", "r") ;
+	read_file_ptr = (FILE **) malloc(sizeof(FILE *) * process_num) ;
+
+        stat("temp", &st) ;
+	int start_size = st.st_size - 1 ;
+	int current_size = 0 ;
+	range_size = start_size ;
+
         pthread_t t[process_num] ;
         struct input * ip[process_num] ;
         for (int i = 0 ; i < process_num ; i++) {
@@ -152,28 +156,25 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
                 ip[i]->index = i ;
 		ip[i]->execute_file_path = execute_file_path ;
 		ip[i]->ans = answer ;
+        	read_file_ptr[i] = fopen("temp", "r") ;
+		pthread_create(&t[i], NULL, thread, (void *) ip[i]) ;
         }
 	
-        stat("temp", &st) ;
-	int start_size = st.st_size - 1 ;
-	int current_size = 0 ;
 
-        for (int i = 0 ; i < process_num ; i++) {
-		pthread_create(&t[i], NULL, thread, (void *) ip[i]) ;
-	}
 	while (1) {
 		for (range_size = start_size ; range_size > 0 ; range_size--) {
-			fprintf(stderr, "range_size: %d\n", range_size) ;
 			for (int begin = 0 ; begin <= st.st_size - range_size ; begin++) {
-				int rt ;
-				while (1) {
-					if (queue_push(begin, process_num) != -1) {
-						break ;
-					}
-				}	
+				sem_wait(&empty) ;
+				queue_push(begin) ;
+				sem_post(&full) ;
 			}
-
-	                if (answer_index > 0) {
+			while (total_cnt != st.st_size - range_size + 1) {
+				sem_wait(&empty) ;
+				queue_push(-1) ;
+				sem_post(&full) ;
+			}
+			total_cnt = 0 ;
+			if (answer_index > 0) {
 				current_size = range_size ;
 				break ; 
 	                }
@@ -186,21 +187,27 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 		 	char selected_path[10] ;
 	 		sprintf(selected_path, "temp%d", rnum) ;
 			copy_file(selected_path, "temp") ;
-			fclose(read_file_ptr) ;
-			read_file_ptr = fopen("temp", "r") ;
+			for (int i = 0 ; i < process_num ; i++) {
+				fclose(read_file_ptr[i]) ;
+				read_file_ptr[i] = fopen("temp", "r") ;
+			}
 
 			stat("temp", &st) ;
 			start_size = MIN(current_size, st.st_size - 1) ;
 			answer_index = 0 ;
 		}
 	}
-	range_size = 0 ;
+	for (int i = 0 ; i < process_num ; i++) {
+		sem_wait(&empty) ;
+		queue_push(-2) ;
+		sem_post(&full) ;
+	}
         for (int i = 0 ; i < process_num ; i++) {
 		pthread_join(t[i], NULL) ;
                 free(ip[i]) ;
+		fclose(read_file_ptr[i]) ;
         }
-	fclose(read_file_ptr) ;
-	free(begin_queue) ;
+	free(read_file_ptr) ;
 	pthread_mutex_destroy(&mutex) ;
 }
 

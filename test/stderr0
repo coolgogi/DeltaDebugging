@@ -1,3 +1,0 @@
-=================================================================
-==3926647==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x603000000030 at pc 0x0000004c3d0d bp 0x7fffd5e4b8f0 sp 0x7fffd5e4b8e8
-READ of size 4 at 0x603000000030 thread T0
