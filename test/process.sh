@@ -1,14 +1,14 @@
 THREAD=../bin/process/pcs_main
-#TARGET=../jsmn/jsondump
-#INPUT=input/dd.json
-#MSG=jsondump.c:44
+TARGET=../jsmn/jsondump
+INPUT=input/dd.json
+MSG=jsondump.c:44
 NUM=8
-TARGET=../fuzzer-test-suite/build_libxml2/libxml2-v2.9.2-fsanitize_fuzzer
-INPUT=../fuzzer-test-suite/libxml2-v2.9.2/crash-d8960e21ca40ea5dc60ad655000842376d4178a1
+#TARGET=../fuzzer-test-suite/build_libxml2/libxml2-v2.9.2-fsanitize_fuzzer
+#INPUT=../fuzzer-test-suite/libxml2-v2.9.2/crash-d8960e21ca40ea5dc60ad655000842376d4178a1
 #INPUT=../fuzzer-test-suite/libxml2-v2.9.2/crash-50b12d37d6968a2cd9eb3665d158d9a2fb1f6e28
 #INPUT=../fuzzer-test-suite/libxml2-v2.9.2/leak-bdbb2857b7a086f003db1c418e1d124181341fb1
 #INPUT=../fuzzer-test-suite/libxml2-v2.9.2/uaf-1153fbf466b9474e6e3c48c72e86a4726b449ef7
-MSG=xmlDictComputeFastQKey
+#MSG=xmlDictComputeFastQKey
 #MSG=xmlParseXMLDecl
 #MSG=xmlNewDocElementContent
 #MSG=xmlDictComputeFastKey
@@ -20,25 +20,22 @@ MSG=xmlDictComputeFastQKey
 #MSG=exprAnalyze
 echo "process test"
 
-#$THREAD $TARGET $INPUT $MSG
-#wc -c temp
 #$THREAD $TARGET $INPUT $MSG $NUM
 #wc -c temp
 
-$THREAD $TARGET $INPUT $MSG 1
-wc -c temp
-
-$THREAD $TARGET $INPUT $MSG 2
-wc -c temp
-$THREAD $TARGET $INPUT $MSG 3
-wc -c temp
-$THREAD $TARGET $INPUT $MSG 4
-wc -c temp
-$THREAD $TARGET $INPUT $MSG 5
-wc -c temp
-$THREAD $TARGET $INPUT $MSG 6
-wc -c temp
-$THREAD $TARGET $INPUT $MSG 7
-wc -c temp
+#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 1
+#wc -c temp
+#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 2
+#wc -c temp
+#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 3
+#wc -c temp
+#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 4
+#wc -c temp
+#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 5
+#wc -c temp
+#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 6
+#wc -c temp
+#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 7
+#wc -c temp
 $THREAD $TARGET $INPUT $MSG 8
 wc -c temp

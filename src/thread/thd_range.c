@@ -28,7 +28,48 @@ struct input {
 	char * complement_path ;
 } ;
 
-void* thread (void * arg) {
+int
+find_answer_string (char * stderr_path, char * ans) {
+	char buffer[1025] ;
+	memset(buffer, 0, 1025) ;
+	FILE * stderr_file_ptr = fopen(stderr_path, "r") ;	
+	struct stat stderr_st ;
+	stat(stderr_path, &stderr_st) ;
+	
+	int div = stderr_st.st_size / 1024 ;
+	int mod = stderr_st.st_size % 1024 ;
+	for (int i = 0 ; i < div ; i++) {
+		if (fread(buffer, 1024, 1, stderr_file_ptr) == 1) {
+			if (strstr(buffer, ans) != NULL) {
+				fclose(stderr_file_ptr) ;
+				return 1 ;
+			}
+		}		
+	}
+	if (fread(buffer, mod, 1, stderr_file_ptr) == 1) {
+		if (strstr(buffer, ans) != NULL) {
+			fclose(stderr_file_ptr) ;
+			return 1 ;
+		}
+	}
+	for (int i = 0 ; i < div ; i++) {
+		int offset = 1024 * (i + 1) ;
+		fseek(stderr_file_ptr, offset - strlen(ans), SEEK_SET) ;
+		int len = MIN(strlen(ans) * 2, strlen(ans) + mod) ;
+		if (fread(buffer, len, 1, stderr_file_ptr) == 1) {
+			if (strstr(buffer, ans) != NULL) {
+				fclose(stderr_file_ptr) ;
+				return 1 ;
+			}
+		}
+	}
+	fclose(stderr_file_ptr) ;
+	return 0 ;
+}
+
+
+void* 
+thread (void * arg) {
 
 	struct input * ip = (struct input *) arg ;
 	int file_size = ip->file_size ;
@@ -60,6 +101,17 @@ void* thread (void * arg) {
 
 		remove(stderr_path) ;
 		EXITCODE rt = thd_runner(exec, complement, stderr_path) ;
+/*
+ 		if (find_answer_string(stderr_path, ans) == 1) {
+			char temp_path[10] ;
+			int index ;
+			sem_wait(&mutex) ;
+			index = answer_index ;
+			answer_index ++ ;
+			sem_post(&mutex) ;
+
+		}
+*/
 		FILE * stderr_file = fopen(stderr_path, "r") ;	
 		while (!feof(stderr_file)) {
 			memset(stderr_output, 0, 300) ;

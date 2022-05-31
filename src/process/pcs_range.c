@@ -108,14 +108,15 @@ thread (void * arg) {
 		pthread_mutex_unlock(&mutex) ;
 		sem_post(&empty) ;
 		if (start == -1) {
-			atomic_fetch_add(&total_cnt, cnt) ;
-			cnt = 0 ;
+			if (cnt != 0) {
+				atomic_fetch_add(&total_cnt, cnt) ;
+				cnt = 0 ;
+			}
 			continue ;
 		}
 		if (start == -2) {
 			break ;
 		}
-
 		int end = start + range_size ;
 
                 FILE * write_file_ptr = fopen(complement_path, "w+") ;
@@ -131,9 +132,9 @@ thread (void * arg) {
                         char temp_file_path[10] ;
                         sprintf(temp_file_path, "temp%d", index) ;
 		      	copy_file(complement_path, temp_file_path) ;
-		} 
+		}
         }
-        return NULL ;	
+        return NULL ;
 }
 
 void
@@ -176,7 +177,7 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 			total_cnt = 0 ;
 			if (answer_index > 0) {
 				current_size = range_size ;
-				break ; 
+				break ;
 	                }
 	        }
 		if (answer_index == 0) {
