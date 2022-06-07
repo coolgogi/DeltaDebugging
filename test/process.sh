@@ -23,19 +23,19 @@ echo "process test"
 #$THREAD $TARGET $INPUT $MSG $NUM
 #wc -c temp
 
-#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 1
+#$THREAD $TARGET $INPUT $MSG 1
 #wc -c temp
-#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 2
+#$THREAD $TARGET $INPUT $MSG 2
 #wc -c temp
-#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 3
+#$THREAD $TARGET $INPUT $MSG 3
 #wc -c temp
-#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 4
+#$THREAD $TARGET $INPUT $MSG 4
 #wc -c temp
-#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 5
+#$THREAD $TARGET $INPUT $MSG 5
 #wc -c temp
-#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 6
+#$THREAD $TARGET $INPUT $MSG 6
 #wc -c temp
-#ASAN_OPTIONS=detect_leaks=0 $THREAD $TARGET $INPUT $MSG 7
+#$THREAD $TARGET $INPUT $MSG 7
 #wc -c temp
-$THREAD $TARGET $INPUT $MSG 8
-wc -c temp
+$THREAD $TARGET $INPUT $MSG 7
+#wc -c temp
