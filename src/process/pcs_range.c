@@ -15,7 +15,7 @@
 #include <stdatomic.h>
 #include <signal.h> 
 
-#define BUFFER_SIZE 100
+#define BUFFER_SIZE 200
 
 int * candidate ;
 atomic_int answer_index = 0 ;
@@ -52,8 +52,10 @@ queue_push(int element) {
 
 int
 queue_pop() {
+	pthread_mutex_lock(&mutex) ;
 	int rt = begin_queue[front] ;
 	front = (front + 1) % BUFFER_SIZE ;
+	pthread_mutex_unlock(&mutex) ;
 	return rt ;
 }
 
@@ -99,8 +101,8 @@ find_answer_string (char * stderr_path, char * ans) {
 void *
 thread (void * arg) {
 	struct input * ip = (struct input *) arg ;
-	char complement_path[20] ;
-	char stderr_path[10] ;
+	char complement_path[50] ;
+	char stderr_path[20] ;
 	int cur_index = ip->index ;
 	sprintf(complement_path, "complement%d", cur_index) ;
 	sprintf(stderr_path, "stderr%d", ip->index) ;
@@ -110,9 +112,7 @@ thread (void * arg) {
 		int start ; 
 		sem_wait(&buf) ;
 		sem_post(&executing_thread) ;
-		pthread_mutex_lock(&mutex) ;
 		start = queue_pop() ;
-		pthread_mutex_unlock(&mutex) ;
 
 		int end = start + range_size ;
                 FILE * write_file_ptr = fopen(complement_path, "w+") ;
@@ -130,7 +130,6 @@ thread (void * arg) {
 		}
 		sem_wait(&executing_thread) ;
         }
-        pthread_exit(0) ;
 }
 
 void
@@ -144,8 +143,8 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 	read_file_ptr = (FILE **) malloc(sizeof(FILE *) * process_num) ;
 
         stat("temp", &st) ;
+	int current_size ;
 	int start_size = st.st_size - 1 ;
-	int current_size = 0 ;
 	range_size = start_size ;
 
 	candidate = (int *) malloc(sizeof(int) * 100) ;
@@ -159,7 +158,6 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 		ip[i]->ans = answer ;
 		pthread_create(&t[i], NULL, thread, (void *) ip[i]) ;
         }
-	
 
 	while (1) {
 		for (range_size = start_size ; range_size > 0 ; range_size--) {
@@ -172,7 +170,7 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 			do {
 				sem_getvalue(&buf, &buf_size) ;
 				sem_getvalue(&executing_thread, &thread_num) ;
-			} while (buf_size != 0 && thread_num != 0) ;
+			} while (thread_num != 0 && buf_size != 0) ;
 
 			if (answer_index > 0) {
 				current_size = range_size ;
@@ -186,7 +184,7 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 			int rnum = rand() % answer_index ;
 			answer_index = 0 ;
 			int new_index = candidate[rnum] ;
-		 	char selected_path[20] ;
+		 	char selected_path[50] ;
 	 		sprintf(selected_path, "complement%d", new_index) ;
 			for (int i = 0 ; i < process_num ; i++) {
 				fclose(read_file_ptr[i]) ;
@@ -197,17 +195,15 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 			fprintf(stderr, "%s\n", selected_path) ;
 		}
 	}
-
-  	for (int i = 0 ; i < process_num ; i++) {
-		pthread_cancel(t[i]) ;
+	for (int i = 0 ; i < process_num ; i++) {
 		fclose(read_file_ptr[i]) ;
 		free(ip[i]) ;
+		pthread_cancel(t[i]) ;	
 		pthread_join(t[i], NULL) ;
         }
 	free(candidate) ;
 	free(read_file_ptr) ;
-	pthread_mutex_destroy(&mutex) ;
-	sem_close(&buf) ;
 	sem_close(&executing_thread) ;
+	sem_close(&buf) ;
+	pthread_mutex_destroy(&mutex) ;
 }
-

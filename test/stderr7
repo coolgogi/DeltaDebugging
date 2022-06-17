@@ -1,18 +1,18 @@
 fread(): unexpected EOF
 
 =================================================================
-==2824628==ERROR: LeakSanitizer: detected memory leaks
+==3728951==ERROR: LeakSanitizer: detected memory leaks
 
-Direct leak of 64 byte(s) in 1 object(s) allocated from:
+Direct leak of 128 byte(s) in 1 object(s) allocated from:
     #0 0x493d49 in realloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x493d49)
     #1 0x4c340e in realloc_it /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:15:12
     #2 0x4c340e in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:113:11
-    #3 0x7f3673a5b0b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
+    #3 0x7fe1d2e980b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
 
 Direct leak of 14 byte(s) in 1 object(s) allocated from:
     #0 0x493d49 in realloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x493d49)
     #1 0x4c3307 in realloc_it /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:15:12
     #2 0x4c3307 in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:101:8
-    #3 0x7f3673a5b0b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
+    #3 0x7fe1d2e980b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
 
-SUMMARY: AddressSanitizer: 78 byte(s) leaked in 2 allocation(s).
+SUMMARY: AddressSanitizer: 142 byte(s) leaked in 2 allocation(s).
