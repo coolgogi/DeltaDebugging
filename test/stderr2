@@ -1,17 +1,58 @@
+fread(): unexpected EOF
 
 =================================================================
-==3728952==ERROR: LeakSanitizer: detected memory leaks
+==15590==ERROR: LeakSanitizer: detected memory leaks
 
-Direct leak of 128 byte(s) in 1 object(s) allocated from:
+Direct leak of 64 byte(s) in 1 object(s) allocated from:
     #0 0x493d49 in realloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x493d49)
     #1 0x4c340e in realloc_it /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:15:12
     #2 0x4c340e in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:113:11
-    #3 0x7fa476e770b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
+    #3 0x7fb2907e10b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
 
 Direct leak of 14 byte(s) in 1 object(s) allocated from:
     #0 0x493d49 in realloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x493d49)
     #1 0x4c3307 in realloc_it /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:15:12
     #2 0x4c3307 in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:101:8
-    #3 0x7fa476e770b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
+    #3 0x7fb2907e10b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
 
-SUMMARY: AddressSanitizer: 142 byte(s) leaked in 2 allocation(s).
+SUMMARY: AddressSanitizer: 78 byte(s) leaked in 2 allocation(s).
+.
+dump.c:113:11
+    #3 0x7fe4ffe270b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
+
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:33:9 in dump
+Shadow bytes around the buggy address:
+  0x0c0c7fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c0c7fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c0c7fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c0c7fff8000: fa fa fa fa fd fd fd fd fd fd fd fa fa fa fa fa
+  0x0c0c7fff8010: 00 00 00 00 00 00 03 fa fa fa fa fa 00 00 00 00
+=>0x0c0c7fff8020: 00 00 00 00[fa]fa fa fa fa fa fa fa fa fa fa fa
+  0x0c0c7fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c0c7fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c0c7fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c0c7fff8060: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c0c7fff8070: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==10782==ABORTING
+ING
+

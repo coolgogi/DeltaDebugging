@@ -7,11 +7,53 @@
 #include <sys/wait.h>
 #include <signal.h>
 #include <errno.h>
+#include <sys/stat.h>
+#include <sys/param.h>
 #include "../../include/runner.h"
 
+#define BUFFER_SIZE 4096
 
-EXITCODE
-pcs_runner (char * exec, char * input, char * stderr_path) {
+int
+find_answer_string (char * stderr_path, char * ans) {
+        char buffer[BUFFER_SIZE + 1] ;
+        memset(buffer, 0, BUFFER_SIZE + 1) ;
+        FILE * stderr_file_ptr = fopen(stderr_path, "r") ;
+        struct stat stderr_st ;
+        stat(stderr_path, &stderr_st) ;
+
+        int div = stderr_st.st_size / BUFFER_SIZE ;
+        int mod = stderr_st.st_size % BUFFER_SIZE ;
+        for (int i = 0 ; i < div ; i++) {
+                if (fread(buffer, BUFFER_SIZE, 1, stderr_file_ptr) == 1) {
+                        if (strstr(buffer, ans) != NULL) {
+                                fclose(stderr_file_ptr) ;
+                                return 1 ;
+                        }
+                }
+        }
+        if (fread(buffer, mod, 1, stderr_file_ptr) == 1) {
+                if (strstr(buffer, ans) != NULL) {
+                        fclose(stderr_file_ptr) ;
+                        return 1 ;
+                }
+        }
+        for (int i = 0 ; i < div ; i++) {
+                int offset = BUFFER_SIZE * (i + 1) ;
+                fseek(stderr_file_ptr, offset - strlen(ans), SEEK_SET) ;
+                int len = MIN(strlen(ans) * 2, strlen(ans) + mod) ;
+                if (fread(buffer, len, 1, stderr_file_ptr) == 1) {
+                        if (strstr(buffer, ans) != NULL) {
+                                fclose(stderr_file_ptr) ;
+                                return 1 ;
+                        }
+                }
+        }
+        fclose(stderr_file_ptr) ;
+        return 0 ;
+}
+
+int
+pcs_runner (char * exec, char * input, char * stderr_path, char * ans) {
 
 	pid_t child_pid;
     	EXITCODE rt;
@@ -74,31 +116,16 @@ pcs_runner (char * exec, char * input, char * stderr_path) {
 			kill(child_pid, SIGKILL);
 	    	    	w = waitpid(child_pid, &status, 0);
 			rt.code_num = SIGKILL;
-			return rt;
+			return 0 ;
 		}
        
         	if (w == -1) {
            		perror("runner.c waitpid: ");
-           		rt.code_num = errno;
-           		return rt;
+           		return 0 ;
         	}
-
-        	rt.code_num = WEXITSTATUS(status);
-        	if (rt.code_num == EACCES) {
-           		rt.valid = UNRESOLVED;
-        	}
-        	else if (rt.code_num == EBADF) {
-           		rt.valid = UNRESOLVED;
-        	}
-        	else if (WIFEXITED(status)) {
-           		rt.valid = VALID;
-        	}
-        	else {
-           		rt.valid = INVALID;
-        	}
-		
     	}
-	rt.child_pid = child_pid;
-
-    	return rt;
+	if (find_answer_string(stderr_path, ans) == 1) {
+		return 1 ;
+	}
+	return 0 ;
 }
