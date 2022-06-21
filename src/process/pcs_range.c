@@ -16,11 +16,11 @@
 #include <signal.h> 
 
 #define QUEUE_SIZE 200
-#define BUFFER_SIZE 4096
 
 int * candidate ;
 atomic_int answer_index = 0 ;
 atomic_int total_cnt = 0 ;
+atomic_int thread_num = 0 ;
 
 int range_size ;
 struct stat st ;
@@ -32,6 +32,9 @@ pthread_mutex_t mutex ;
 int begin_queue[QUEUE_SIZE] ;
 int front = 0 ;
 int rear = 0 ;
+
+char * exec ;
+char * ans ;
 
 FILE ** read_file_ptr ;
 
@@ -59,13 +62,14 @@ queue_pop() {
 
 void *
 thread (void * arg) {
-	struct input * ip = (struct input *) arg ;
 	char complement_path[50] ;
 	char stderr_path[20] ;
-	int cur_index = ip->index ;
+
+	int thread_index = atomic_fetch_add(&thread_num, 1) ;
+	int cur_index = thread_index ;
 	sprintf(complement_path, "complement%d", cur_index) ;
-	sprintf(stderr_path, "stderr%d", ip->index) ;
-        read_file_ptr[ip->index] = fopen("temp", "r") ;
+	sprintf(stderr_path, "stderr%d", thread_index) ;
+        read_file_ptr[thread_index] = fopen("temp", "r") ;
 
         while (1) {
 		int start ; 
@@ -74,13 +78,13 @@ thread (void * arg) {
 		
 		int end = start + range_size ;
                 FILE * write_file_ptr = fopen(complement_path, "w+") ;
-                write_file(read_file_ptr[ip->index], write_file_ptr, 0, start) ;
-                write_file(read_file_ptr[ip->index], write_file_ptr, end, st.st_size) ;
+                write_file(read_file_ptr[thread_index], write_file_ptr, 0, start) ;
+                write_file(read_file_ptr[thread_index], write_file_ptr, end, st.st_size) ;
                 fclose(write_file_ptr) ;
                 
-                if(pcs_runner(ip->execute_file_path, complement_path, stderr_path, ip->ans) == 1) {
-			int index = atomic_fetch_add(&answer_index, 1) ;
-			candidate[index] = cur_index ;
+                if(pcs_runner(exec, complement_path, stderr_path, ans) == 1) {
+			int answer_cur_index = atomic_fetch_add(&answer_index, 1) ;
+			candidate[answer_cur_index] = cur_index ;
 			cur_index = cur_index + p_num ;
 			sprintf(complement_path, "complement%d", cur_index) ;
 		}
@@ -105,13 +109,11 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 	candidate = (int *) malloc(sizeof(int) * st.st_size) ;
 
         pthread_t t[process_num] ;
-        struct input * ip[process_num] ;
+	exec = execute_file_path ;
+	ans = answer ; 
+
         for (int i = 0 ; i < process_num ; i++) {
-                ip[i] = (struct input *) malloc(sizeof(struct input)) ;
-                ip[i]->index = i ;
-		ip[i]->execute_file_path = execute_file_path ;
-		ip[i]->ans = answer ;
-		pthread_create(&t[i], NULL, thread, (void *) ip[i]) ;
+		pthread_create(&t[i], NULL, thread, NULL) ;
         }
 
 	int main_cnt = 0 ;
@@ -151,7 +153,6 @@ pcs_range (char * execute_file_path, char * answer, int process_num) {
 
 	for (int i = 0 ; i < process_num ; i++) {
 		fclose(read_file_ptr[i]) ;
-		free(ip[i]) ;
 		pthread_cancel(t[i]) ;	
 		pthread_join(t[i], NULL) ;
         }
