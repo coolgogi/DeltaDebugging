@@ -6,7 +6,7 @@ can be easily integrated into resource-limited or embedded projects",
   "repository":
   {
     "type": "git",
-    "url": "https:/smn.git"
+    "url": "https://githit"
   },
   "frameworks": "*",
   "platforms": "*",

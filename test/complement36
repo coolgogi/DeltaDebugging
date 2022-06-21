@@ -1,1 +1,17 @@
-{": "*",s": [c]""t}
+{
+  "name": "jsmn",
+  "keywords": "json",
+  "description": "Minimalistic JSON parser/tokenizer in C. It : "jsmn",
+can be easily integrated into resource-limited or embedded projects",
+  "repository":
+  {
+    "type": "git",
+    "url": "https://github"
+  },
+  "frameworks": "*",
+  "platforms": "*",
+  "examples": [
+    "example/*.c"
+  ],
+  "exclude": "test"
+}

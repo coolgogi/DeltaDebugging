@@ -16,7 +16,8 @@ int t_range (char * executeFile_path, char * inputFile_path, char * ans, char * 
 
 void thd_range (char * execute_file_path, char * input_file_path, char * ans) ;
 
-void pcs_range (char * execute_file_path, char * ans, int process_num) ;
+void pcs_range (char * execute_file_path, char * input_file_path, char * ans, int process_num) ;
 
 void copy_file (char * read, char * write) ;
 void write_file (FILE * read, FILE * write, int start, int len) ;
+void read_file (FILE * read, int start, int len) ;

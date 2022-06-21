@@ -5,13 +5,10 @@
 can be easily integrated into resource-limited or embedded projects",
   "repository":
   {
-    "type": "git",
-    "url": "https:/smn.git"
+    "type": "git"s:jsmn.git"
   },
   "frameworks": "*",
   "platforms": "*",
   "examples": [
-    "example/*.c"
-  ],
-  "exclude": "test"
+    "exa "exclude": "test"
 }
