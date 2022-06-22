@@ -1,2 +1,6 @@
 {": "*",
-s [c]""t}
+  "examples": [
+    "example/*.c"
+  ],
+  "exclude": "test"
+}
