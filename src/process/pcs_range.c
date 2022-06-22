@@ -68,8 +68,6 @@ thread (void * arg) {
 	sprintf(stderr_path, "stderr%d", ip->index) ;
         read_file_ptr[ip->index] = fopen(ip->input_file_path, "r") ;
 
-	fprintf(stderr, "thread: %d\n", ip->index) ;
-
         while (1) {
 		int start ; 
 		sem_wait(&buf) ;
@@ -125,8 +123,8 @@ pcs_range (char * execute_file_path, char * input_file_path, char * answer, int 
 		for (range_size = start_size ; range_size > 0 ; range_size--) {
 			for (int begin = 0 ; begin <= st.st_size - range_size ; begin++) {
 				queue_push(begin) ;
-				main_cnt++ ;
 				sem_post(&buf) ;
+				main_cnt++ ;
 			}
 
 			while (main_cnt != worker_total) {

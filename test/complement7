@@ -1,5 +1,4 @@
 {": "*",
   "examples": [c"
-  ],
-  "exclude": "test"
+  ]": "test"
 }
