@@ -45,14 +45,20 @@ struct input {
 
 void
 queue_push(int element) {
-	begin_queue[rear] = element ;
-	rear = (rear + 1) % QUEUE_SIZE ;
+	while (rear - front >= QUEUE_SIZE) {
+	}
+	int temp = rear % QUEUE_SIZE ;
+	begin_queue[temp] = element ;
+	rear++ ;
 	return ;
 }
 
 int
 queue_pop() {
-	int temp = atomic_fetch_add(&q_index, 1) ;
+	pthread_mutex_lock(&mutex) ;
+	int temp = front ;
+	front++ ;
+	pthread_mutex_unlock(&mutex) ;
 	temp = temp % QUEUE_SIZE ;
 	int rt = begin_queue[temp] ;
 	return rt ;

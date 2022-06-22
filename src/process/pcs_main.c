@@ -78,8 +78,6 @@ main (int argc, char * argv[]) {
 	}
 	srand(time(NULL)) ;
 	int process_num = atoi(argv[4]) ;
-	copy_file(argv[2], "temp") ;
-
 
 	time_t begin = time(NULL) ;
 	pcs_range(argv[1], argv[2], argv[3], process_num) ;

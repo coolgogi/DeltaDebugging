@@ -1,18 +1,49 @@
-fread(): unexpected EOF
-
 =================================================================
-==2278007==ERROR: LeakSanitizer: detected memory leaks
+==2318374==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x603000000030 at pc 0x0000004c3d0d bp 0x7ffc442798d0 sp 0x7ffc442798c8
+READ of size 4 at 0x603000000030 thread T0
+    #0 0x4c3d0c in dump /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:33:9
+    #1 0x4c3c81 in dump /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:46:9
+    #2 0x4c3384 in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:120:4
+    #3 0x7fe21c6960b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
+    #4 0x41b2ed in _start (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x41b2ed)
 
-Direct leak of 128 byte(s) in 1 object(s) allocated from:
-    #0 0x493d49 in realloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x493d49)
-    #1 0x4c340e in realloc_it /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:15:12
-    #2 0x4c340e in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:113:11
-    #3 0x7f243da610b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
+0x603000000030 is located 0 bytes to the right of 32-byte region [0x603000000010,0x603000000030)
+allocated by thread T0 here:
+    #0 0x493a2d in malloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x493a2d)
+    #1 0x4c325f in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:79:8
+    #2 0x7fe21c6960b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
 
-Direct leak of 14 byte(s) in 1 object(s) allocated from:
-    #0 0x493d49 in realloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x493d49)
-    #1 0x4c3307 in realloc_it /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:15:12
-    #2 0x4c3307 in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:101:8
-    #3 0x7f243da610b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
-
-SUMMARY: AddressSanitizer: 142 byte(s) leaked in 2 allocation(s).
+SUMMARY: AddressSanitizer: heap-buffer-overflow /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:33:9 in dump
+Shadow bytes around the buggy address:
+  0x0c067fff7fb0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c067fff7fc0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c067fff7fd0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c067fff7fe0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x0c067fff7ff0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x0c067fff8000: fa fa 00 00 00 00[fa]fa fa fa fa fa fa fa fa fa
+  0x0c067fff8010: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8020: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8030: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8040: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c067fff8050: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+  Shadow gap:              cc
+==2318374==ABORTING
