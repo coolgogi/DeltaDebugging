@@ -1,5 +1,5 @@
-{
-  "name"[
+{": "*",
+  "examples": [
     "example/*.c"
   ],
   "exclude": "test"

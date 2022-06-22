@@ -1,6 +1,4 @@
-{
-  "nam: [
-    "example/*.c"
-  ],
-  "exclude": "test"
+{": "*",
+s": [c"
+  ]": "test"
 }

@@ -50,7 +50,7 @@ struct input {
 
 void
 queue_push(int element) {
-	if (rear - front == QUEUE_SIZE) {
+	if (rear - front >= QUEUE_SIZE) {
 		pthread_cond_wait(&empty, &empty_mutex) ;
 	}
 	int temp = rear % QUEUE_SIZE ;
@@ -64,9 +64,7 @@ queue_pop() {
 	pthread_mutex_lock(&queue_mutex) ;
 	int temp = front ;
 	front++ ;
-	if (rear - front == QUEUE_SIZE - 1) {
-		pthread_cond_signal(&empty) ;	
-	}
+	pthread_cond_signal(&empty) ;	
 	pthread_mutex_unlock(&queue_mutex) ;
 	temp = temp % QUEUE_SIZE ;
 	int rt = begin_queue[temp] ;

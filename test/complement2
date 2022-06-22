@@ -1,6 +1,4 @@
-{
-  "ns": [
-    "example/*.c"
-  ],
-  "exclude": "test"
+{": "*",
+  "examples": [c"
+  ]": "test"
 }

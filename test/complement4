@@ -1,6 +1,5 @@
-{
-  "na": [
-    "example/*.c"
+{": "*",
+  "examples": [c"
   ],
   "exclude": "test"
 }
