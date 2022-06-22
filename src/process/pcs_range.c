@@ -20,15 +20,20 @@
 int * candidate ;
 
 atomic_int answer_index = 0 ;
-atomic_int worker_total = 0 ;
+atomic_int number_of_done_task = 0 ;
 atomic_int q_index = 0 ;
+int number_of_total_task = 0 ;
 
 int range_size ;
 struct stat st ;
 int p_num ;
 
 sem_t buf ;
-pthread_mutex_t mutex ;
+pthread_mutex_t queue_mutex ;
+pthread_mutex_t cond_mutex ;
+pthread_mutex_t empty_mutex ;
+pthread_cond_t task_done ;
+pthread_cond_t empty ;
 
 int begin_queue[QUEUE_SIZE] ;
 int front = 0 ;
@@ -45,7 +50,8 @@ struct input {
 
 void
 queue_push(int element) {
-	while (rear - front >= QUEUE_SIZE) {
+	if (rear - front == QUEUE_SIZE) {
+		pthread_cond_wait(&empty, &empty_mutex) ;
 	}
 	int temp = rear % QUEUE_SIZE ;
 	begin_queue[temp] = element ;
@@ -55,10 +61,13 @@ queue_push(int element) {
 
 int
 queue_pop() {
-	pthread_mutex_lock(&mutex) ;
+	pthread_mutex_lock(&queue_mutex) ;
 	int temp = front ;
 	front++ ;
-	pthread_mutex_unlock(&mutex) ;
+	if (rear - front == QUEUE_SIZE - 1) {
+		pthread_cond_signal(&empty) ;	
+	}
+	pthread_mutex_unlock(&queue_mutex) ;
 	temp = temp % QUEUE_SIZE ;
 	int rt = begin_queue[temp] ;
 	return rt ;
@@ -94,13 +103,20 @@ thread (void * arg) {
 			cur_index = cur_index + p_num ;
 			sprintf(complement_path, "complement%d", cur_index) ;
 		}
-		atomic_fetch_add(&worker_total, 1) ;
+		atomic_fetch_add(&number_of_done_task, 1) ;
+		if (number_of_done_task == number_of_total_task) {
+			pthread_cond_signal(&task_done) ;
+		}
         }
 }
 
 void
 pcs_range (char * execute_file_path, char * input_file_path, char * answer, int process_num) {
-	pthread_mutex_init(&mutex, NULL) ;
+	pthread_mutex_init(&queue_mutex, NULL) ;
+	pthread_mutex_init(&cond_mutex, NULL) ;
+	pthread_mutex_init(&empty_mutex, NULL) ;
+	pthread_cond_init(&task_done, NULL) ;
+	pthread_cond_init(&empty, NULL) ;
 	sem_init(&buf, 0, 0) ;
 
 	p_num = process_num ;
@@ -124,17 +140,15 @@ pcs_range (char * execute_file_path, char * input_file_path, char * answer, int 
 		ip[i]->ans = answer ;
 		pthread_create(&t[i], NULL, thread, (void *) ip[i]) ;
         }
-	int main_cnt = 0 ;
 	while (1) {
 		for (range_size = start_size ; range_size > 0 ; range_size--) {
+			number_of_total_task = number_of_total_task + st.st_size - range_size + 1 ;
 			for (int begin = 0 ; begin <= st.st_size - range_size ; begin++) {
 				queue_push(begin) ;
 				sem_post(&buf) ;
-				main_cnt++ ;
 			}
 
-			while (main_cnt != worker_total) {
-			}
+			pthread_cond_wait(&task_done, &cond_mutex) ;
 
 			if (answer_index > 0) {
 				current_size = range_size ;
@@ -169,5 +183,7 @@ pcs_range (char * execute_file_path, char * input_file_path, char * answer, int 
 	free(candidate) ;
 	free(read_file_ptr) ;
 	sem_close(&buf) ;
-	pthread_mutex_destroy(&mutex) ;
+	pthread_mutex_destroy(&queue_mutex) ;
+	pthread_mutex_destroy(&cond_mutex) ;
+	pthread_cond_destroy(&task_done) ;
 }

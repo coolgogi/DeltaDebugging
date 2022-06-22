@@ -31,13 +31,13 @@ echo "process test"
 #wc -c temp
 #$THREAD $TARGET $INPUT $MSG 4
 #wc -c temp
-$THREAD $TARGET $INPUT $MSG 5
+#$THREAD $TARGET $INPUT $MSG 5
 #wc -c temp
-#$THREAD $TARGET $INPUT $MSG 6
+$THREAD $TARGET $INPUT $MSG 6
 #wc -c temp
 #$THREAD $TARGET $INPUT $MSG 7
 #wc -c temp
-$THREAD $TARGET $INPUT $MSG 8
+#$THREAD $TARGET $INPUT $MSG 8
 #wc -c temp
 
 #$THREAD $TARGET $INPUT $MSG 9

@@ -1,3 +1,6 @@
 {
-  st"
+  "nam: [
+    "example/*.c"
+  ],
+  "exclude": "test"
 }

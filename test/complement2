@@ -1,2 +1,6 @@
 {
-  "nam}
+  "ns": [
+    "example/*.c"
+  ],
+  "exclude": "test"
+}

@@ -1,3 +1,6 @@
 {
-  "t"
+  "name [
+    "example/*.c"
+  ],
+  "exclude": "test"
 }

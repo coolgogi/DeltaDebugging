@@ -1,3 +1,6 @@
 {
-  "n"
+  "na": [
+    "example/*.c"
+  ],
+  "exclude": "test"
 }

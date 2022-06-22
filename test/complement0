@@ -1,2 +1,6 @@
-{"test"
+{
+  "name"[
+    "example/*.c"
+  ],
+  "exclude": "test"
 }
