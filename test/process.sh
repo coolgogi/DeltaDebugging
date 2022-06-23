@@ -35,9 +35,9 @@ echo "process test"
 #wc -c temp
 $THREAD $TARGET $INPUT $MSG 6
 #wc -c temp
-#$THREAD $TARGET $INPUT $MSG 7
+$THREAD $TARGET $INPUT $MSG 7
 #wc -c temp
-#$THREAD $TARGET $INPUT $MSG 8
+$THREAD $TARGET $INPUT $MSG 8
 #wc -c temp
 
 #$THREAD $TARGET $INPUT $MSG 9

@@ -80,7 +80,12 @@ main (int argc, char * argv[]) {
 	int process_num = atoi(argv[4]) ;
 
 	time_t begin = time(NULL) ;
-	pcs_range(argv[1], argv[2], argv[3], process_num) ;
+	for (int i = 0 ; i < process_num ; i++) {
+		char temp_path[20] ;
+		sprintf(temp_path, "temp%d", i) ;
+		copy_file(argv[2], temp_path) ; 
+	}
+	pcs_range(argv[1], argv[3], process_num) ;
 	time_t end = time(NULL) ;
 	printf("running time: %ld\n", end - begin) ;
 	return 0 ;

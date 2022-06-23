@@ -43,7 +43,6 @@ FILE ** read_file_ptr ;
 
 struct input {
         int index ;
-	char * input_file_path ;
         char * execute_file_path ;
         char * ans ;
 } ;
@@ -79,9 +78,12 @@ thread (void * arg) {
 	char complement_path[50] ;
 	char stderr_path[20] ;
 	int cur_index = ip->index ;
+	char temp_file_path[20] ;
+
 	sprintf(complement_path, "complement%d", cur_index) ;
 	sprintf(stderr_path, "stderr%d", ip->index) ;
-        read_file_ptr[ip->index] = fopen(ip->input_file_path, "r") ;
+        sprintf(temp_file_path, "temp%d", ip->index) ;
+	read_file_ptr[ip->index] = fopen(temp_file_path, "r") ;
 
         while (1) {
 		int start ; 
@@ -111,7 +113,7 @@ thread (void * arg) {
 }
 
 void
-pcs_range (char * execute_file_path, char * input_file_path, char * answer, int process_num) {
+pcs_range (char * execute_file_path, char * answer, int process_num) {
 	pthread_mutex_init(&queue_mutex, NULL) ;
 	pthread_mutex_init(&cond_mutex, NULL) ;
 	pthread_mutex_init(&empty_mutex, NULL) ;
@@ -123,7 +125,7 @@ pcs_range (char * execute_file_path, char * input_file_path, char * answer, int 
 
 	read_file_ptr = (FILE **) malloc(sizeof(FILE *) * process_num) ;
 
-        stat(input_file_path, &st) ;
+        stat("temp0", &st) ;
 	int current_size ;
 	int start_size = st.st_size - 1 ;
 
@@ -136,7 +138,6 @@ pcs_range (char * execute_file_path, char * input_file_path, char * answer, int 
 		ip[i] = (struct input *) malloc(sizeof(struct input)) ;
 		ip[i]->index = i ;
 		ip[i]->execute_file_path = execute_file_path ;
-		ip[i]->input_file_path = input_file_path ;
 		ip[i]->ans = answer ;
 		pthread_create(&t[i], NULL, thread, (void *) ip[i]) ;
         }
@@ -165,8 +166,11 @@ pcs_range (char * execute_file_path, char * input_file_path, char * answer, int 
 		 	char selected_path[50] ;
 	 		sprintf(selected_path, "complement%d", new_index) ;
 			for (int i = 0 ; i < process_num ; i++) {
+				char temp_file_path[20] ;
+				sprintf(temp_file_path, "temp%d", i) ;
+				copy_file(selected_path, temp_file_path) ;
 				fclose(read_file_ptr[i]) ;
-				read_file_ptr[i] = fopen(selected_path, "r") ;
+				read_file_ptr[i] = fopen(temp_file_path, "r") ;
 			}
 			stat(selected_path, &st) ;
 			start_size = MIN(current_size, st.st_size - 1) ;
