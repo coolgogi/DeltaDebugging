@@ -82,60 +82,35 @@ thread (void * arg) {
 	char * stderr_path = ip->stderr_path ;
 	char * complement = ip->complement_path ;
 	
-	FILE * read_file = fopen(ip->inputFile_path, "r") ;
+	FILE * read_file_ptr = fopen(ip->inputFile_path, "r") ;
 	char stderr_output[300] ;
 	for (int i = mod ; i <= file_size - range_size ; i = i + 8) {
 		int begin = i ;
 		int end = i + range_size ;
 
-		FILE * write_file = fopen(complement, "w+") ;
-		fseek(read_file, 0, SEEK_SET) ;		
-		if (begin != 0) {
-			writeFile(read_file, write_file, begin, buf) ;
-		}
-		fseek(read_file, end, SEEK_SET) ;
-		if (end != file_size) {
-			writeFile(read_file, write_file, file_size - end, buf) ;
-		}
-		fclose(write_file) ;
+		FILE * write_file_ptr = fopen(complement, "w+") ;
+		write_file(read_file_ptr, write_file_ptr, 0, begin) ;
+		write_file(read_file_ptr, write_file_ptr, end, file_size) ;
+		fclose(write_file_ptr) ;
 
 		remove(stderr_path) ;
 		EXITCODE rt = thd_runner(exec, complement, stderr_path) ;
-/*
  		if (find_answer_string(stderr_path, ans) == 1) {
-			char temp_path[10] ;
-			int index ;
-			sem_wait(&mutex) ;
-			index = answer_index ;
-			answer_index ++ ;
-			sem_post(&mutex) ;
-
+                                char temp_path[10] ;
+                                sem_wait(&mutex) ;
+                                sprintf(temp_path, "temp%d", answer_index) ;
+                                answer_index ++ ;
+                                sem_post(&mutex) ;
+                                FILE * temp_file = fopen(temp_path, "w+") ;
+                                FILE * result_file = fopen(complement, "r") ;
+                                struct stat st ;
+                                stat(complement, &st) ;
+                                write_file(result_file, temp_file, 0, st.st_size) ;
+                                fclose(result_file) ;
+                                fclose(temp_file) ;
 		}
-*/
-		FILE * stderr_file = fopen(stderr_path, "r") ;	
-		while (!feof(stderr_file)) {
-			memset(stderr_output, 0, 300) ;
-			fgets(stderr_output, 300, stderr_file) ;
-			if (strstr(stderr_output, ans) != NULL) {
-				sem_wait(&mutex) ;
-				char * temp_path = (char *) malloc(10) ;
-				sprintf(temp_path, "temp%d", answer_index) ;
-				FILE * temp_file = fopen(temp_path, "w+") ;
-				FILE * result_file = fopen(complement, "r") ;
-				struct stat st ;
-				stat(complement, &st) ;
-				writeFile(result_file, temp_file, st.st_size, buf) ;
-				fclose(result_file) ;
-				fclose(temp_file) ;	
-				free(temp_path) ;
-				answer_index ++ ;
-				sem_post(&mutex) ;	
-				break ;
-			}
-		}
-		fclose(stderr_file) ;
 	}	
-	fclose(read_file) ;
+	fclose(read_file_ptr) ;
 	void * p = NULL ;
 	return p ;
 }
@@ -194,7 +169,7 @@ thd_range (char * executeFile_path, char * inputFile_path, char * answer) {
 			FILE * temp_file = fopen("temp", "w+") ;
 			stat(selected_path, &st) ;
 			file_size = st.st_size ;
-			writeFile(selected_file, temp_file, file_size, range_buf) ;
+			write_file(selected_file, temp_file, 0, file_size) ;
 			answer_index = 0 ;
 			range_size = MIN(file_size, range_size + 1) ;
 			fclose(temp_file) ;

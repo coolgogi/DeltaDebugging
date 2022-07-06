@@ -11,20 +11,25 @@
 #include <string.h>
 
 void
-writeFile (FILE * read_file, FILE * write_file, int len, unsigned char * buf) {
-        int buf_size = sizeof(&buf) / sizeof(unsigned char) ;
-        int div = len / buf_size ;
-        int mod = len % buf_size ;
-        for (int i = 0 ; i < div ; i ++) {
-                if (fread(buf, buf_size, 1, read_file) == 1) {
-                        fwrite(buf, buf_size, 1, write_file) ;
+write_file (FILE * read_file, FILE * write_file, int start, int end) {
+	int len = end - start ;
+	if (len == 0) {
+		return ;
+	}
+	
+	fseek(read_file, start, SEEK_SET);
+        char buf[1024];
+        int div = len / 1024;
+        int mod = len % 1024;
+        for (int i = 0; i < div; i++) {
+                if (fread(buf, 1024, 1, read_file) == 1) {
+                        fwrite(buf, 1024, 1, write_file);
                 }
         }
         if (fread(buf, mod, 1, read_file) == 1) {
-                fwrite(buf, mod, 1, write_file) ;
+                fwrite(buf, mod, 1, write_file);
         }
 }
-
 
 int
 main (int argc, char * argv[]) {
@@ -45,7 +50,7 @@ main (int argc, char * argv[]) {
 	}
         struct stat st;
         stat(argv[2], &st) ;
-        int file_size= st.st_size ;
+        int file_size = st.st_size ;
         char * temp = (char *) malloc(5) ;
         sprintf(temp, "temp") ;
 
@@ -54,7 +59,7 @@ main (int argc, char * argv[]) {
         unsigned char * buf = (unsigned char *) malloc(1024) ;
         memset(buf, 0, 1024) ;
 
-        writeFile(input_file, temp_file, file_size, buf) ;
+        write_file(input_file, temp_file, 0, file_size) ;
 
         fclose(input_file) ;
         fclose(temp_file) ;

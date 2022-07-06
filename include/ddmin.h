@@ -20,3 +20,4 @@ void pcs_range (char * execute_file_path, char * ans, int process_num) ;
 
 void copy_file (char * read, char * write) ;
 void write_file (FILE * read, FILE * write, int start, int len) ;
+void read_file (FILE * read, int start, int len) ;
