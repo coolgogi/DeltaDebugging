@@ -1,25 +1,23 @@
-fread(): unexpected EOF
 
 =================================================================
-==206403==ERROR: LeakSanitizer: detected memory leaks
+==15160==ERROR: LeakSanitizer: detected memory leaks
 
-Direct leak of 32 byte(s) in 1 object(s) allocated from:
-    #0 0x493a2d in malloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x493a2d)
-    #1 0x4c325f in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:79:8
-    #2 0x7f19169270b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
+Direct leak of 128 byte(s) in 1 object(s) allocated from:
+    #0 0x4938b9 in realloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x4938b9)
+    #1 0x4c2f7e in realloc_it /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:15:12
+    #2 0x4c2f7e in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:113:11
+    #3 0x7f9d264a3c86 in __libc_start_main /build/glibc-uZu3wS/glibc-2.27/csu/../csu/libc-start.c:310
 
 Direct leak of 14 byte(s) in 1 object(s) allocated from:
-    #0 0x493d49 in realloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x493d49)
-    #1 0x4c3307 in realloc_it /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:15:12
-    #2 0x4c3307 in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:101:8
-    #3 0x7f19169270b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
+    #0 0x4938b9 in realloc (/home/suhyun/DeltaDebugging/jsmn/jsondump+0x4938b9)
+    #1 0x4c2e77 in realloc_it /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:15:12
+    #2 0x4c2e77 in main /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:101:8
+    #3 0x7f9d264a3c86 in __libc_start_main /build/glibc-uZu3wS/glibc-2.27/csu/../csu/libc-start.c:310
 
-SUMMARY: AddressSanitizer: 46 byte(s) leaked in 2 allocation(s).
-./csu/libc-start.c:308:16
-
-SUMMARY: AddressSanitizer: 143 byte(s) leaked in 2 allocation(s).
-ndump.c:113:11
-    #3 0x7f8f316f80b2 in __libc_start_main /build/glibc-sMfBJT/glibc-2.31/csu/../csu/libc-start.c:308:16
+SUMMARY: AddressSanitizer: 142 byte(s) leaked in 2 allocation(s).
+ked in 2 allocation(s).
+jsondump.c:113:11
+    #3 0x7f01e25f1c86 in __libc_start_main /build/glibc-uZu3wS/glibc-2.27/csu/../csu/libc-start.c:310
 
 SUMMARY: AddressSanitizer: heap-buffer-overflow /home/suhyun/DeltaDebugging/jsmn/example/jsondump.c:33:9 in dump
 Shadow bytes around the buggy address:
@@ -54,4 +52,5 @@ Shadow byte legend (one shadow byte represents 8 application bytes):
   Left alloca redzone:     ca
   Right alloca redzone:    cb
   Shadow gap:              cc
-==206217==ABORTING
+==14689==ABORTING
+BORTING
