@@ -28,7 +28,6 @@ t_range (char * executeFile_path, char * inputFile_path, char * offsetFile_path,
 	fclose(inputFile) ;
 	
 	//offset
-	fprintf(stderr, "size: %d\n", size) ;
 	FILE * offsetFile = fopen(offsetFile_path, "r") ;
 	int * offset = (int *) calloc (sizeof(int), size) ;
 	char offset_temp[20] ;
@@ -88,7 +87,6 @@ t_range (char * executeFile_path, char * inputFile_path, char * offsetFile_path,
 			token[i][j] = data[d_index] ;
 			d_index ++ ;
 		}
-		fprintf(stderr, "token[%d]:\n%s\n", i, token[i]) ;
 	}
 	
 	//range
@@ -112,9 +110,7 @@ t_range (char * executeFile_path, char * inputFile_path, char * offsetFile_path,
 
 			if (begin != 0) {
 				for (int i = 0 ; i < begin ; i ++ ) {
-					fprintf(stderr, "i: %d, token_size: %d, rs: %d\n", i, token_size, rs) ;
 					inputArrayLength = inputArrayLength + strlen(token[i]) ;
-					fprintf(stderr, "%d %d\n", token_size - rs, temp_index) ;
 					temp_token[temp_index] = (char *) calloc (sizeof(char), strlen(token[i]) + 1) ;	
 					for (int j = 0 ; j < strlen(token[i]) ; j ++ ) {
 						temp_token[temp_index][j] = token[i][j] ; 
@@ -124,9 +120,7 @@ t_range (char * executeFile_path, char * inputFile_path, char * offsetFile_path,
 			}	
 			if (end != token_size) {
 				for (int i = end ; i < token_size ; i ++) {
-					fprintf(stderr, "i: %d, token_size: %d, rs: %d\n", i, token_size, rs) ;
 					inputArrayLength = inputArrayLength + strlen(token[i]) ;
-					fprintf(stderr, "%d %d\n", token_size - rs, temp_index) ;
 					temp_token[temp_index] = (char *) calloc (sizeof(char), strlen(token[i]) + 1) ;
 					for (int j = 0 ; j < strlen(token[i]) ; j ++ ) {
 						temp_token[temp_index][j] = token[i][j] ; 
